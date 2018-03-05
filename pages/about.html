@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	 <link rel="stylesheet" type="text/css" href="css/bootswatch/bootstrap.min.css">
+	 <link rel="stylesheet" type="text/css" href="css/bootswatch/bootstrap-grid.min.css">
+	 <link rel="stylesheet" type="text/css" href="css/FAQ.css">
+    <title>Ditto - About</title>
+	
+</head>
+
+
+<body style="background-color: rgb(209,236,241); height: 100vh;">
+
+
+<div class="grid-container" >
+
+	<header class="navigation">
+		<nav class="navbar navbar-expand-lg bg-info navbar-dark">
+			<div class="container">
+			  <a class="navbar-brand ml-4" href="#">Ditto</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			 
+			  <div class="collapse navbar-collapse" id="navbarColor02">
+				<ul class="navbar-nav mr-0 ml-2">
+				  <li class="nav-item active">
+					<a class="nav-link" href="#">News <span class="sr-only"></span></a>
+				  </li>
+				</ul>
+				<ul class="navbar-nav mr-auto ml-auto">
+					<form class="form-inline my-2 my-lg-0">
+					  <input class="form-control mr-sm-2" type="text" placeholder="Search">
+					  <button class="btn alert-warning my-2 my-sm-0" type="submit" id="btn-search">Search</button>
+					</form>
+				</ul>
+				<ul class="navbar-nav mr-3">
+				  <li class="nav-item">
+					<a class="btn btn-info" href="#">Features</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="btn btn-info" href="#">Contacts</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="btn btn-info" href="#">About</a>
+				  </li>
+				</ul>
+				<ul class="navbar-nav">
+				  <li class="nav-item mr-2">
+					<a class="btn alert-info my-2 my-sm-0" href="#" id="sign" onclick="showProfileForm()" >Log Out</a>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		</nav>
+	</header>
+
+
+	<div class="content">
+
+		
+		<h1 style="margin: 2rem auto; text-align: center; font-size:2rem;" >About</h1>
+		<p > Nowadays there are few applications where censorship is absent and users can share their thoughts/ideas, their work, and their interests freely. Currently available websites don’t allow the users to manage the content displayed nor the advertisements.</p>
+
+			<p>Our goal is to build a platform where users can post their news and get recognition by rewarding them with site exposure. The idea is that we intend to give users freedom in posting/deleting, commenting, upvoting/downvoting and tagging posts.</p>
+
+		<p>Group 1754</p>
+		<ul>
+
+			<li>João Carlos Miranda Almeida | up201504874@fe.up.pt</li>
+
+			<li>João Carlos Oliveira Lago | up201504374@fe.up.pt</li>
+
+			<li>João Paulo Martins Mendes | up201505439@fe.up.pt</li>
+
+			<li>Miguel Ferreira de Andrade | up201709051@fe.up.pt</li>
+		</ul>
+
+	</div>
+</div>
+
+
+
+
+<script>
+var hiddenFAQbody = document.getElementById('hiddenFAQbody');
+
+var question = document.getElementById('question-header');
+
+question.onclick = function() {
+	if(hiddenFAQbody.style.height == "0px"){
+		hiddenFAQbody.style.height = "10rem";
+	}else	
+		if(hiddenFAQbody.style.height == "10rem"){
+			hiddenFAQbody.style.height = "0px";
+		}
+}
+
+</script>
+
+
+</body>
+</html>
