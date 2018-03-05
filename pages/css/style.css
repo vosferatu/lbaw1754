@@ -51,5 +51,5 @@
 		'navigatorsubs navigatorsubs navigatorsubs'
 		'tags feed-posts subs'
 		'tags feed-posts subs';
-	grid-template-columns: 1fr minmax(100px, 850px) 1fr;
+	grid-template-columns: 1fr minmax(33%, 50%) 1fr;
 }
