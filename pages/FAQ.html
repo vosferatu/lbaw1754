@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	 <link rel="stylesheet" type="text/css" href="css/bootswatch/bootstrap.min.css">
+	 <link rel="stylesheet" type="text/css" href="css/bootswatch/bootstrap-grid.min.css">
+	 <link rel="stylesheet" type="text/css" href="css/FAQ.css">
+    <title>Ditto FAQ</title>
+	
+</head>
+
+
+<body style="background-color: rgb(209,236,241); height: 100vh;">
+
+<div style="position: absolute; height: 18rem; width: 100%; background-color: rgb(237, 247, 249); z-index: -1;"> 
+</div>
+
+<div class="grid-container" >
+
+	<header class="navigation">
+		<nav class="navbar navbar-expand-lg bg-info navbar-dark">
+			<div class="container">
+			  <a class="navbar-brand ml-4" href="#">Ditto</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			 
+			  <div class="collapse navbar-collapse" id="navbarColor02">
+				<ul class="navbar-nav mr-0 ml-2">
+				  <li class="nav-item active">
+					<a class="nav-link" href="#">News <span class="sr-only"></span></a>
+				  </li>
+				</ul>
+				<ul class="navbar-nav mr-auto ml-auto">
+					<form class="form-inline my-2 my-lg-0">
+					  <input class="form-control mr-sm-2" type="text" placeholder="Search">
+					  <button class="btn alert-warning my-2 my-sm-0" type="submit" id="btn-search">Search</button>
+					</form>
+				</ul>
+				<ul class="navbar-nav mr-3">
+				  <li class="nav-item">
+					<a class="btn btn-info" href="#">Features</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="btn btn-info" href="#">Contacts</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="btn btn-info" href="#">About</a>
+				  </li>
+				</ul>
+				<ul class="navbar-nav">
+				  <li class="nav-item mr-2">
+					<a class="btn alert-info my-2 my-sm-0" href="#" id="sign" onclick="showProfileForm()" >Log Out</a>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		</nav>
+	</header>
+
+
+
+	<aside class="asidem1" >
+		<div>
+		</div>
+	</aside>
+	
+	<aside class="asidem2">
+		<div>
+		</div>
+	</aside>
+	
+	<div class="content">
+	
+		<div style="text-align: center;">
+			<legend style="margin: 2rem auto; font-size:3rem;" >How can we help?</legend>
+			<form class="form-inline my-2 my-lg-0">
+				<div style="margin: 0 auto 3rem auto; width: 100%;">
+				  <input class="form-control mr-sm-2" style="width: 40%;" type="text" placeholder="Search">
+				  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+				</div>
+			</form>
+		</div>
+		
+		
+		<legend style="margin: 2rem auto; text-align: center; font-size:2rem;" >Frequently asked questions</legend>
+		
+		<div class="card border-danger" style="max-width: 100%; border-radius: 0.1rem; border:0;">
+		  <div class="card-header">Why did I get banned?</div>
+		  
+		  <div class="card-body">
+			<h4 class="card-title">Reasons for getting banned:</h4>
+			<p class="card-text">
+				<ul>			
+					<li>Content is prohibited if it is illegal.</li>
+					<li>Content is prohibited if it is involuntary pornography.</li>
+					<li>Content is prohibited if it is sexual or suggestive content involving minors.</li>
+					<li>Content is prohibited if it encourages or incites violence.</li>
+					<li>Content is prohibited if it threatens, harasses, or bullies or encourages others to do so.</li>
+					<li>Content is prohibited if it is personal and confidential information.</li>
+					<li>Content is prohibited if it is spam.</li>
+				</ul>
+			</p>
+		  </div>
+		  
+		</div>
+		
+		
+		<div id="question-header" class="card border-danger" style="cursor: pointer; max-width: 100%; border-radius: 0; border:0;">
+		  <div class="card-header">How many posts per day?</div>
+		  
+		  <div id="hiddenFAQbody" style=" padding: 0;
+															height: 0px;
+															transition-property: height;
+															transition-duration: 0.2s;
+															-webkit-transition-property: height; 
+															-webkit-transition-duration: 0.2s;"
+															>
+			<div class="card-body" >										
+				<h4 class="card-title">Danger card title</h4>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			</div>
+		  </div>
+		  
+		</div>
+		<div class="card border-danger" style="max-width: 100%; border-radius: 0; border:0;">
+		  <div class="card-header">How many posts per day?</div>
+		  
+		  
+		</div>
+		<div class="card border-danger" style="max-width: 100%; border-radius: 0; border:0;">
+		  <div class="card-header">How many posts per day?</div>
+		  
+		</div>
+		<div class="card border-danger" style="max-width: 100%; border-radius: 0; border:0;">
+		  <div class="card-header">How many posts per day?</div>
+		  
+		  
+		</div>
+		
+	</div>
+</div>
+
+
+
+
+<script>
+var hiddenFAQbody = document.getElementById('hiddenFAQbody');
+
+var question = document.getElementById('question-header');
+
+question.onclick = function() {
+	if(hiddenFAQbody.style.height == "0px"){
+		hiddenFAQbody.style.height = "10rem";
+	}else	
+		if(hiddenFAQbody.style.height == "10rem"){
+			hiddenFAQbody.style.height = "0px";
+		}
+}
+
+</script>
+
+
+</body>
+</html>

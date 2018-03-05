@@ -1,0 +1,55 @@
+#sign:hover
+{
+	color: black;
+	background-color: white;
+}
+#btn-search:hover
+{
+	color: white;
+	background-color: rgb(255, 150, 100);
+}
+
+.time-sep-posts{
+	border-bottom: solid;
+	border-width: 0.075rem;
+	margin: 1rem 0;
+	font-weight: 550;
+}
+
+.subscribed{
+	list-style-type: none; 
+	padding-left:0px;
+	margin: 1.5rem 0;
+}
+
+
+.subscribed li{
+	margin-bottom:1rem;
+}
+
+.subs{
+	grid-area: subs;
+}
+
+.contentsubs{
+	grid-area: contentsubs;
+}
+
+.tags{
+	grid-area: tags;
+}
+
+.navigatorsubs { 
+	grid-area: navigatorsubs; 
+	display: block;
+}
+
+ 
+.grid-containersubs {
+	display: grid;
+	grid-template-areas:
+		'navigatorsubs navigatorsubs navigatorsubs'
+		'tags feed-posts subs'
+		'tags feed-posts subs';
+	grid-template-columns: 1fr minmax(100px, 850px) 1fr;
+}
