@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Ditto About Page</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap/bootstrap-social.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/layout.css" rel="stylesheet">
+    <link href="../css/feed.css" rel="stylesheet">
+
+
+
+    <link href="https://www.tinymce.com/css/codepen.min.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<section>
+    <nav class="navbar rounded navbar-expand-lg navbar-light bg-light">
+        <div class="brand">
+            <a href="trending.html"> <img src="../images/logo.svg"></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ml-3"><a href="trending.html" class="nav-link"> <i class="fas fa-bolt"></i> Trending</a>
+                </li>
+                <li class="nav-item ml-3"><a href="latest.html" class="nav-link"><i class="fas fa-clock"></i> Latest</a></li>
+
+                <li class="nav-item ml-3"><a href="feed.html" class="nav-link"> <i class="fas fa-leaf"></i> Feed</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right ml-auto">
+                <li class="nav-item ml-3">
+                    <form id="demo-2">
+                        <input type="search" placeholder="Search">
+                    </form>
+                </li>
+                <li class="nav-item mx-3" data-toggle="modal" data-target="#exampleModalCenter"><a href="#" class="nav-link active"><i class="fas fa-pencil-alt"></i> New Post</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action active"><img
+                            src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar"
+                            alt="Avatar"> Cátia Ribeiro <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.html" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="drafts.html" class="dropdown-item"><i class="fas fa-edit"></i> My Drafts</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li><a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- New Post Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">New Post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-lg" id="title" placeholder="Title">
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="editor" id="editor" rows="10" cols="80" placeholder="Article"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-lg" id="tags" placeholder="Add Tags"> <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark mr-auto"><i class="fas fa-user-plus"></i> Add Author</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-success">Save</button>
+                        <button type="button" class="btn btn-outline-primary">Publish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-sm-2">
+                <nav id="sidebar">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active">funny</a>
+                        <a href="#" class="list-group-item list-group-item-action">indonesia</a>
+                        <a href="#" class="list-group-item list-group-item-action">food</a>
+                        <a href="#" class="list-group-item list-group-item-action">dmania</a>
+                        <a href="#" class="list-group-item list-group-item-action">news</a>
+                        <a href="#" class="list-group-item list-group-item-action">aceh</a>
+                        <a href="#" class="list-group-item list-group-item-action">dlive</a>
+                        <a href="#" class="list-group-item list-group-item-action">contest</a>
+                        <a href="#" class="list-group-item list-group-item-action">dtube</a>
+                        <a href="#" class="list-group-item list-group-item-action">money</a>
+                        <a href="#" class="list-group-item list-group-item-action">meme</a>
+                        <a href="#" class="list-group-item list-group-item-action">love</a>
+                        <a href="#" class="list-group-item list-group-item-action">writing</a>
+                        <a href="#" class="list-group-item list-group-item-action">music</a>
+                        <a href="#" class="list-group-item list-group-item-action">poetry</a>
+                        <a href="#" class="list-group-item list-group-item-action">evropa</a>
+                        <a href="#" class="list-group-item list-group-item-action">video</a>
+                        <a href="#" class="list-group-item list-group-item-action">science</a>
+                    </div>
+
+                    <footer>
+                        <p><a href="about-old.html">About</a> &middot; <a
+                                href="FAQ.html">FAQ</a></p>
+                        <p> <a href="policy.html">Content Policy</a> &middot; <a
+                                href="contact.html">Contact</a></p>
+                    </footer>
+
+                </nav>
+            </div>
+
+
+            <!-- Posts here -->
+            <div class="col-sm posts">
+                <!-- single post -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center my-auto">
+                                    <div class="col-sm-1 text-nowrap text-center px-0">
+                                        <ul class="list-group">
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless">112</li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-sm-9 pt-2 pl-1">
+                                        <h2 class="d-inline">ADSactly Fun - Oh Brother</h2>
+                                        <p><span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span></p>
+
+                                        <ul class="list-inline my-0 py-0">
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-comments"></i> 44 Comments</p>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-clock"></i> 1h20min ago</p>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-user-circle"></i> By Kevin</p>
+                                            </li>
+
+                                            <li class="list-inline-item float-right mx-auto">
+                                                <p><i class="fas fa-flag" ></i></p>
+                                            </li>
+                                            <li class="list-inline-item float-right mr-3">
+                                                <p><i class="fas fa-star"></i></p>
+                                            </li>
+
+                                        </ul>
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="post-pic">
+                                    <div class="pl-5 pr-5 pt-3 pb-3">
+                                        <a href="">
+                                            <img class="img-fluid rounded" src="../images/waves.jpg">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="post-text">
+                                   <p>  Aliquam erat volutpat. Morbi eleifend elementum nulla, id pharetra neque aliquet et. Curabitur vestibulum commodo eleifend. Sed quis erat vel erat venenatis efficitur. Morbi leo ex, dictum sed mi sit amet, tempus pulvinar erat. Aliquam et finibus nisl. Morbi vel ante eget dolor fringilla pulvinar.</p>
+
+                                    <p>     Vestibulum sed eleifend felis. Mauris varius mi purus, in malesuada odio faucibus non. Duis a rhoncus tellus, a malesuada velit. Sed vitae lobortis eros, at volutpat diam. Aenean iaculis a neque sit amet ultricies. Suspendisse gravida eros ut vestibulum elementum. Proin nec dignissim velit. Curabitur vulputate nunc est, a lobortis augue finibus vel. Quisque nisl nulla, hendrerit ac pellentesque nec, tincidunt ac massa. Maecenas lobortis dui est, at eleifend est tincidunt eu. Morbi volutpat, lectus eget tincidunt egestas, elit lacus aliquam arcu, sit amet facilisis mauris quam quis diam. Aliquam ornare tempus ex id gravida. Suspendisse potenti. Sed orci dolor, placerat gravida risus et, dignissim fringilla diam.</p>
+
+                                    <p>     Donec mattis dolor nec vestibulum tincidunt. Nunc et bibendum nisl. Sed accumsan augue sit amet eleifend blandit. Suspendisse sit amet accumsan neque. Aliquam vel nisl sed tortor iaculis tincidunt semper at ex. Nulla mattis ante erat, quis rhoncus ex dignissim non. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                                </div>
+                            </div>
+                        </div>
+                <!-- end of single post-- -->
+
+                <h1 class="mt-3">Discussion</h1>
+                <hr>
+
+                <!-- single post -->
+                <div class="row">
+                    <div class="col-10">
+                        <div class="card">
+                            <div class="card-body m-0 ">
+                                <div class="row align-items-center ">
+                                    <div class="col-sm-1 text-nowrap text-center px-0">
+                                        <ul class="list-group">
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless">3</li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
+                                        </ul>
+                                    </div>
+
+
+                                    <div class="col-sm-9 pt-2 pl-1">
+                                        <p>Donec vitae feugiat magna. Sed sit amet placerat metus. Ut eu sapien scelerisque, placerat nulla eget, faucibus felis. </p>
+
+                                        <ul class="list-inline my-0 py-0">
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-clock"></i> 1h20min ago</p>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-user-circle"></i> By Kevin</p>
+                                            </li>
+
+                                            <li class="list-inline-item float-right mx-auto">
+                                                <p><i class="fas fa-flag" ></i></p>
+                                            </li>
+                                            <li class="list-inline-item float-right mr-3">
+                                                <p><i class="fas fa-star"></i></p>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of single post-- -->
+
+                <!-- single post -->
+                <div class="row">
+                    <div class="col-10 mt-3 ml-3">
+                        <div class="card">
+                            <div class="card-body m-0 ">
+                                <div class="row align-items-center ">
+                                    <div class="col-sm-1 text-nowrap text-center px-0">
+                                        <ul class="list-group">
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless">3</li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
+                                        </ul>
+                                    </div>
+
+
+                                    <div class="col-sm-9 pt-2 pl-1">
+                                        <p>Donec vitae feugiat magna. Sed sit amet placerat metus. Ut eu sapien scelerisque, placerat nulla eget, faucibus felis. </p>
+
+                                        <ul class="list-inline my-0 py-0">
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-clock"></i> 1h20min ago</p>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-user-circle"></i> By Kevin</p>
+                                            </li>
+
+                                            <li class="list-inline-item float-right mx-auto">
+                                                <p><i class="fas fa-flag" ></i></p>
+                                            </li>
+                                            <li class="list-inline-item float-right mr-3">
+                                                <p><i class="fas fa-star"></i></p>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of single post-- -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../js/vendor/bootstrap.min.js"></script>
+
+<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'editor' );
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+
+body{
+    padding-top: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+
+    background: #f7f9fb;
+}
+
+.container-fluid{
+    padding-top: 1em;
+    padding-left: 4em;
+    padding-right: 4em;
+}
+

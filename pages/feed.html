@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Ditto Trending</title>
+    <title>Ditto Feed</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
 
-    <link href="css/bootstrap/bootstrap-social.css" rel="stylesheet">
+    <link href="../css/bootstrap/bootstrap-social.css" rel="stylesheet">
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
-    <link href="css/layout.css" rel="stylesheet">
+    <link href="../css/layout.css" rel="stylesheet">
 
-    <link href="css/feed.css" rel="stylesheet">
+    <link href="../css/feed.css" rel="stylesheet">
 
 
 
@@ -37,7 +37,7 @@
 
     <nav class="navbar rounded navbar-expand-lg navbar-light bg-light">
         <div class="brand">
-           <a href="pages/trending.html"> <img src="images/logo.svg"></a>
+            <a href="trending.html"> <img src="../images/logo.svg"></a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,11 +47,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item ml-3 active"><a href="pages/trending.html" class="nav-link"> <i class="fas fa-bolt"></i> Trending</a>
+                <li class="nav-item ml-3 "><a href="trending.html" class="nav-link"> <i class="fas fa-bolt"></i> Trending</a>
                 </li>
-                <li class="nav-item ml-3"><a href="pages/latest.html" class="nav-link"><i class="fas fa-clock"></i> Latest</a></li>
+                <li class="nav-item ml-3 "><a href="latest.html" class="nav-link"><i class="fas fa-clock"></i> Latest</a></li>
 
-                <li class="nav-item ml-3"><a href="pages/feed.html" class="nav-link"> <i class="fas fa-leaf"></i> Feed</a></li>
+                <li class="nav-item ml-3 active"><a href="feed.html" class="nav-link"> <i class="fas fa-leaf"></i> Feed</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right ml-auto">
@@ -63,11 +63,17 @@
                 <li class="nav-item mx-3" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"
                                                                                                    class="nav-link active"><i
                         class="fas fa-pencil-alt"></i> New Post</a></li>
-
-                <li class="nav-item ml-3"><a href="pages/register.html" class="nav-link"><i class="fas fa-user-plus"></i> Sign Up</a></li>
-
-                <li class="nav-item ml-3"><a href="pages/login.html" class="nav-link"> <i class="fas fa-sign-in-alt"></i> Sign In</a></li>
-
+                <li class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action active"><img
+                            src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar"
+                            alt="Avatar"> Cátia Ribeiro <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.html" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="drafts.html" class="dropdown-item"><i class="fas fa-edit"></i> My Drafts</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li><a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
 
@@ -95,6 +101,7 @@
 
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-lg" id="tags" placeholder="Add Tags"> <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
+
                             </div>
                         </form>
                     </div>
@@ -116,7 +123,7 @@
             <div class="col-sm-2">
                 <nav id="sidebar">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active ">funny</a>
+                        <a href="#" class="list-group-item list-group-item-action active">funny</a>
                         <a href="#" class="list-group-item list-group-item-action">indonesia</a>
                         <a href="#" class="list-group-item list-group-item-action">food</a>
                         <a href="#" class="list-group-item list-group-item-action">dmania</a>
@@ -137,10 +144,10 @@
                     </div>
 
                     <footer>
-                        <p><a href="pages/about.html">About</a> &middot; <a
-                                href="pages/FAQ.html">FAQ</a></p>
-                        <p> <a href="pages/policy.html">Content Policy</a> &middot; <a
-                                href="pages/contact.html">Contact</a></p>
+                        <p><a href="about.html">About</a> &middot; <a
+                                href="FAQ.html">FAQ</a></p>
+                        <p> <a href="policy.html">Content Policy</a> &middot; <a
+                                href="contact.html">Contact</a></p>
                     </footer>
 
                 </nav>
@@ -149,67 +156,7 @@
 
             <!-- Posts here -->
             <div class="col-sm posts">
-                <h4 class="title"> Hottest news right now  <i class="fas fa-bolt"></i> </a></li></h4>
-
-                <!-- single post -->
-                <div class="row">
-                    <div class="col-12 col-sm-12 mx-3 my-2">
-                        <a href="post.html">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center my-auto">
-                                    <div class="col-sm-1 text-nowrap text-center px-0">
-                                        <ul class="list-group">
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="images/upvote.svg"></a></li>
-                                            <li class="list-group-item borderless">112</li>
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="images/upvote.svg"></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-2  pl-1">
-                                        <a href="">
-                                            <img class="img-fluid rounded" src="images/waves.jpg">
-                                        </a>
-                                    </div>
-
-                                    <div class="col-sm-9 pt-2 pl-1">
-                                        <h2 class="d-inline"><a href="pages/post.html">ADSactly Fun - Oh Brother</a></h2>
-                                        <span class="badge badge-pill badge-warning">Photography</span> <span class="badge badge-pill badge-warning">Technology</span>
-
-                                        <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
-
-                                        <ul class="list-inline my-0 py-0">
-
-                                            <li class="list-inline-item">
-                                                <p><i class="far fa-comments"></i> 44 Comments</p>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <p><i class="far fa-clock"></i> 1h20min ago</p>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <p><i class="far fa-user-circle"></i> By Kevin</p>
-                                            </li>
-
-                                            <li class="list-inline-item float-right mx-auto">
-                                                <p><i class="fas fa-flag" ></i></p>
-                                            </li>
-                                            <li class="list-inline-item float-right mr-3">
-                                                <p><i class="fas fa-star"></i></p>
-                                            </li>
-
-                                        </ul>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                        </a>                    </div>
-                </div>
-                <!-- end of single post-- -->
+                <h4 class="title"> Latest news on Feed, carefully picked for you <i class="fas fa-leaf"></i> </a></li></h4>
 
                 <!-- single post -->
                 <div class="row">
@@ -219,20 +166,20 @@
                                 <div class="row align-items-center my-auto">
                                     <div class="col-sm-1 text-nowrap text-center px-0">
                                         <ul class="list-group">
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
                                             <li class="list-group-item borderless">112</li>
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2  pl-1">
                                         <a href="">
-                                            <img class="img-fluid rounded" src="images/waves.jpg">
+                                            <img class="img-fluid rounded" src="../images/waves.jpg">
                                         </a>
                                     </div>
 
                                     <div class="col-sm-9 pt-2 pl-1">
-                                        <h2 class="d-inline"><a href="pages/post.html">ADSactly Fun - Oh Brother</a></h2>
-                                        <span class="badge badge-pill badge-warning ">Photography</span> <span class="badge badge-pill badge-warning">Technology</span>
+                                        <h2 class="d-inline"><a href="post.html">ADSactly Fun - Oh Brother</a></h2>
+                                        <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
 
                                         <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
 
@@ -277,20 +224,20 @@
                                 <div class="row align-items-center my-auto">
                                     <div class="col-sm-1 text-nowrap text-center px-0">
                                         <ul class="list-group">
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
                                             <li class="list-group-item borderless">112</li>
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2  pl-1">
                                         <a href="">
-                                            <img class="img-fluid rounded" src="images/waves.jpg">
+                                            <img class="img-fluid rounded" src="../images/waves.jpg">
                                         </a>
                                     </div>
 
                                     <div class="col-sm-9 pt-2 pl-1">
-                                        <h2 class="d-inline"><a href="pages/post.html">ADSactly Fun - Oh Brother</a></h2>
-                                        <span class="badge badge-pill badge-warning">Photography</span> <span class="badge badge-pill badge-warning">Technology</span>
+                                        <h2 class="d-inline"><a href="post.html">ADSactly Fun - Oh Brother</a></h2>
+                                        <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
 
                                         <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
 
@@ -335,20 +282,20 @@
                                 <div class="row align-items-center my-auto">
                                     <div class="col-sm-1 text-nowrap text-center px-0">
                                         <ul class="list-group">
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
                                             <li class="list-group-item borderless">112</li>
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2  pl-1">
                                         <a href="">
-                                            <img class="img-fluid rounded" src="images/waves.jpg">
+                                            <img class="img-fluid rounded" src="../images/waves.jpg">
                                         </a>
                                     </div>
 
                                     <div class="col-sm-9 pt-2 pl-1">
-                                        <h2 class="d-inline"><a href="pages/post.html">ADSactly Fun - Oh Brother</a></h2>
-                                        <span class="badge badge-pill badge-warning">Photography</span> <span class="badge badge-pill badge-warning">Technology</span>
+                                        <h2 class="d-inline">ADSactly Fun - Oh Brother</h2>
+                                        <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
 
                                         <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
 
@@ -393,20 +340,20 @@
                                 <div class="row align-items-center my-auto">
                                     <div class="col-sm-1 text-nowrap text-center px-0">
                                         <ul class="list-group">
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
                                             <li class="list-group-item borderless">112</li>
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2  pl-1">
                                         <a href="">
-                                            <img class="img-fluid rounded" src="images/waves.jpg">
+                                            <img class="img-fluid rounded" src="../images/waves.jpg">
                                         </a>
                                     </div>
 
                                     <div class="col-sm-9 pt-2 pl-1">
-                                        <h2 class="d-inline"><a href="pages/post.html">ADSactly Fun - Oh Brother</a></h2>
-                                        <span class="badge badge-pill badge-warning">Photography</span> <span class="badge badge-pill badge-warning">Technology</span>
+                                        <h2 class="d-inline">ADSactly Fun - Oh Brother</h2>
+                                        <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
 
                                         <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
 
@@ -451,20 +398,20 @@
                                 <div class="row align-items-center my-auto">
                                     <div class="col-sm-1 text-nowrap text-center px-0">
                                         <ul class="list-group">
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
                                             <li class="list-group-item borderless">112</li>
-                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2  pl-1">
                                         <a href="">
-                                            <img class="img-fluid rounded" src="images/waves.jpg">
+                                            <img class="img-fluid rounded" src="../images/waves.jpg">
                                         </a>
                                     </div>
 
                                     <div class="col-sm-9 pt-2 pl-1">
-                                        <h2 class="d-inline"><a href="pages/post.html">ADSactly Fun - Oh Brother</a></h2>
-                                        <span class="badge badge-pill badge-warning">Photography</span> <span class="badge badge-pill badge-warning">Technology</span>
+                                        <h2 class="d-inline">ADSactly Fun - Oh Brother</h2>
+                                        <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
 
                                         <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
 
@@ -500,6 +447,69 @@
                     </div>
                 </div>
                 <!-- end of single post-- -->
+
+                <!-- single post -->
+                <div class="row">
+                    <div class="col-12 col-sm-12 mx-3 my-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center my-auto">
+                                    <div class="col-sm-1 text-nowrap text-center px-0">
+                                        <ul class="list-group">
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote" src="../images/upvote.svg"></a></li>
+                                            <li class="list-group-item borderless">112</li>
+                                            <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src="../images/upvote.svg"></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-2  pl-1">
+                                        <a href="">
+                                            <img class="img-fluid rounded" src="../images/waves.jpg">
+                                        </a>
+                                    </div>
+
+                                    <div class="col-sm-9 pt-2 pl-1">
+                                        <h2 class="d-inline">ADSactly Fun - Oh Brother</h2>
+                                        <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
+
+                                        <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
+
+                                        <ul class="list-inline my-0 py-0">
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-comments"></i> 44 Comments</p>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-clock"></i> 1h20min ago</p>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <p><i class="far fa-user-circle"></i> By Kevin</p>
+                                            </li>
+
+                                            <li class="list-inline-item float-right mx-auto">
+                                                <p><i class="fas fa-flag" ></i></p>
+                                            </li>
+                                            <li class="list-inline-item float-right mr-3">
+                                                <p><i class="fas fa-star"></i></p>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of single post-- -->
+
+
+
+
+
             </div>
         </div>
     </div>
@@ -513,7 +523,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/vendor/bootstrap.min.js"></script>
+<script src="../js/vendor/bootstrap.min.js"></script>
 
 <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
 <script>
