@@ -337,7 +337,10 @@ ALTER TABLE ONLY news_creation
 
 -- INDEXES
 
-CREATE INDEX user_id ON "user" USING HASH (id);	
+CREATE INDEX user_id ON "user" USING hash (id);
+CREATE INDEX title_order ON news_post USING btree (title);
+CREATE INDEX dinamic_search_news ON news_post USING GIST ( to_tsvector('english', coalesce(title,'')));
+CREATE INDEX dinamic_search_content ON content USING GIST ( to_tsvector('english', "text"));
 
 
 -- TRIGGERS and UDFs
