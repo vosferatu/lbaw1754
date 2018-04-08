@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS news_creation;
+
 DROP TABLE IF EXISTS comment_creation;
 DROP TABLE IF EXISTS content_report;
 DROP TABLE IF EXISTS downvotes;
@@ -16,22 +16,26 @@ DROP TABLE IF EXISTS user_report;
 DROP TABLE IF EXISTS tags_blocked;
 DROP TABLE IF EXISTS tags_subscribed;
 DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS news_post;
+DROP TABLE IF EXISTS news_creation;
+DROP TABLE IF EXISTS news_post CASCADE;
 DROP TABLE IF EXISTS content;
 DROP TABLE IF EXISTS tags ;
 DROP TABLE IF EXISTS "user";
 DROP FUNCTION IF EXISTS news_post_upvote();
 DROP FUNCTION IF EXISTS news_post_downvote();
-DROP FUNCTION IF EXISTS check_if_news_is_published();
-DROP FUNCTION IF EXISTS set_user_published();
-DROP FUNCTION IF EXISTS set_news_publish_date();
+DROP FUNCTION IF EXISTS check_if_news_is_published() CASCADE;
+DROP FUNCTION IF EXISTS set_user_published() CASCADE;
+DROP FUNCTION IF EXISTS set_news_publish_date() CASCADE;
+DROP FUNCTION IF EXISTS check_unique_values_user_f();
+DROP FUNCTION IF EXISTS check_unique_value_tags_f();
+
 
 CREATE TABLE "user" (
    id SERIAL NOT NULL,
    username text NOT NULL,
    password text NOT NULL,
    email text NOT NULL,
-   nome text,
+   name text,
    country text,
    introduction text,
    photo text,
@@ -348,8 +352,9 @@ CREATE INDEX dinamic_search_content ON content USING GIST ( to_tsvector('english
 CREATE FUNCTION news_post_upvote() RETURNS TRIGGER AS
 $BODY$
 BEGIN
- UPDATE content SET votes = votes + 1 FROM content 
+ UPDATE content SET votes = votes + 1  
    WHERE content.id = NEW.id_content;
+   RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -364,8 +369,9 @@ CREATE TRIGGER content_upvote_trigger
 CREATE FUNCTION news_post_downvote() RETURNS TRIGGER AS
 $BODY$
 BEGIN
- UPDATE content SET votes = votes - 1 FROM content 
+ UPDATE content SET votes = votes - 1 
    WHERE content.id = NEW.id_content;
+   RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -386,6 +392,7 @@ BEGIN
       WHERE id_content = NEW.id_news;
    END IF;
  END IF;
+ RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -425,6 +432,7 @@ BEGIN
       WHERE id_content = NEW.id_news;
    END IF;
  END IF;
+ RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -433,3 +441,41 @@ CREATE TRIGGER news_publish_date
  AFTER UPDATE ON news_creation
  FOR EACH ROW
    EXECUTE PROCEDURE set_news_publish_date();	
+ 
+--
+   
+CREATE FUNCTION check_unique_values_user_f() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+ IF exists (select * from "user" where username = NEW.username or email = NEW.email or id = NEW.id) THEN
+    RAISE EXCEPTION 'User already with either username: "%" or email: "%".', NEW.username, NEW.email;
+    ROLLBACK;
+ END IF;
+ RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER check_unique_values_user
+ BEFORE INSERT ON "user"
+ FOR EACH ROW
+   EXECUTE PROCEDURE check_unique_values_user_f();	
+  
+-- 
+   
+CREATE FUNCTION check_unique_value_tags_f() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+ IF exists (select * from tags where name = NEW.name or id = NEW.id) THEN
+    RAISE EXCEPTION 'Tag "%" already exists', NEW.name;
+    ROLLBACK;
+ END IF;
+ RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER check_unique_value_tags
+ BEFORE INSERT ON tags
+ FOR EACH ROW
+   EXECUTE PROCEDURE check_unique_value_tags_f();	
