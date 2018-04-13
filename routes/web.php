@@ -15,6 +15,13 @@ Route::get('/', function () {
     return redirect('login');
 });
 
+// Static pages
+Route::get('about', 'StaticPageController@showAbout');
+Route::get('contentpolicy', 'StaticPageController@showContentPolicy');
+Route::get('faq', 'StaticPageController@showFaq');
+Route::get('contact', 'StaticPageController@showContact');
+
+
 // Cards
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
