@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('login');
-});
+Route::get('/', 'PostController@list');
+
 
 // Static pages
 Route::get('about', 'StaticPageController@showAbout');

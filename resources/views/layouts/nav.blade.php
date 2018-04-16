@@ -23,20 +23,33 @@
                         <input type="search" placeholder="Search">
                     </form>
                 </li>
-                <li class="nav-item mx-3" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"
-                                                                                                   class="nav-link active"><i
-                        class="fas fa-pencil-alt"></i> New Post</a></li>
-                <li class="nav-item dropdown">
-                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action active"><img
-                            src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar"
-                            alt="Avatar"> Cátia Ribeiro <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="profile.html" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="drafts.html" class="dropdown-item"><i class="fas fa-edit"></i> My Drafts</a></li>
-                        <li class="divider dropdown-divider"></li>
-                        <li><a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                    </ul>
-                </li>
+
+          @if (Auth::check())
+          <li class="nav-item mx-3" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"
+                                                                                             class="nav-link active"><i
+                  class="fas fa-pencil-alt"></i> New Post</a></li>
+
+          <li class="nav-item dropdown">
+              <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action active"><img
+                      src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar"
+                      alt="Avatar"> {{ Auth::user()->name }} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                  <li><a href="profile.html" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a></li>
+                  <li><a href="drafts.html" class="dropdown-item"><i class="fas fa-edit"></i> My Drafts</a></li>
+                  <li class="divider dropdown-divider"></li>
+                  <li><a href="{{ url('/logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+              </ul>
+          </li>
+
+
+          @else
+          <li class="nav-item ml-3"><a href={{ route('register') }} class="nav-link"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+                <li class="nav-item ml-3"><a href={{ route('login') }} class="nav-link"> <i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+
+          @endif
+
+
+
             </ul>
         </div>
 

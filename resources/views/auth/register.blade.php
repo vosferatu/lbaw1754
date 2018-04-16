@@ -36,7 +36,7 @@
                                       <div class="input-group-prepend">
                                           <div class="input-group-text">@</div>
                                       </div>
-                                      <input type="text" class="form-control" id="inlineFormInputGroup"  value="{{ old('username') }}"
+                                      <input type="text" class="form-control" id="inlineFormInputGroup"  value="{{ old('username') }}" name="username"
                                              placeholder="Username">
                                              @if ($errors->has('username'))
                                                <span class="error">
