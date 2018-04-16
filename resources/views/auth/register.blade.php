@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@extends('auth.master')
+
+@push('styles')
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+@endpush
 
 @section('content')
 
@@ -7,14 +11,14 @@
           <div class="card-wrapper">
 
               <div class="brand">
-                  <img src="../images/logo.svg">
+                  <img src={{ url('/img/logo.svg')}}>
               </div>
 
               <div class="card-group">
 
                   <!-- card two -->
                   <div class="card fat imgcard col-md-10">
-                      <img class="" src="../images/register.svg" alt="Card image">
+                      <img class="" src={{ url('/img/register.svg')}} alt="Card image">
                   </div>
                   <!-- card two -->
 
@@ -23,7 +27,8 @@
                       <div class="card-body">
                           <h4 class="card-title">Register</h4>
 
-                          <form method="POST">
+                          <form method="POST" action="{{ route('register') }}">
+                              {{ csrf_field() }}
 
                               <div class="form-group">
                                   <label class="sr-only" for="inlineFormInputGroup">Username</label>
@@ -31,23 +36,32 @@
                                       <div class="input-group-prepend">
                                           <div class="input-group-text">@</div>
                                       </div>
-                                      <input type="text" class="form-control" id="inlineFormInputGroup"
+                                      <input type="text" class="form-control" id="inlineFormInputGroup"  value="{{ old('username') }}"
                                              placeholder="Username">
-                                  </div>
-                              </div>
-
-                              <div class="form-row form-group">
-                                  <div class="col">
-                                      <input type="text" class="form-control" placeholder="First name">
-                                  </div>
-                                  <div class="col">
-                                      <input type="text" class="form-control" placeholder="Last name">
+                                             @if ($errors->has('username'))
+                                               <span class="error">
+                                                   {{ $errors->first('username') }}
+                                               </span>
+                                             @endif
                                   </div>
                               </div>
 
                               <div class="form-group">
-                                  <input type="email" class="form-control" id="email" placeholder="E-mail adress">
+                                <input id="name" type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Name" required autofocus>
+                                @if ($errors->has('name'))
+                                  <span class="error">
+                                      {{ $errors->first('name') }}
+                                  </span>
+                                @endif
                               </div>
+
+                              <div class="form-group">
+                                <input id="email" type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="E-mail" required>
+                                @if ($errors->has('email'))
+                                  <span class="error">
+                                      {{ $errors->first('email') }}
+                                  </span>
+                                @endif                              </div>
 
                               <div class="form-row form-group">
                                   <div class="col">
@@ -55,18 +69,20 @@
                                              name="password"
                                              placeholder="Password"
                                              required data-eye>
+                                             @if ($errors->has('password'))
+                                               <span class="error">
+                                                   {{ $errors->first('password') }}
+                                               </span>
+                                             @endif
                                   </div>
 
                                   <div class="col">
-                                      <input id="passwordconfirmation" type="password" class="form-control"
-                                             name="passwordconfirmation"
-                                             placeholder="Confirm Password"
-                                             required data-eye>
+                                    <input id="password-confirm" type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required data-eye>
                                   </div>
 
                               </div>
 
-                              <select class="form-control form-group">
+                              <select class="form-control form-group" name="country">
                                   <option>Country</option>
                                   <option value="AF">Afghanistan</option>
                                   <option value="AX">Åland Islands</option>
@@ -323,7 +339,7 @@
                                   <div class="custom-control custom-checkbox">
                                       <input type="checkbox" class="custom-control-input" id="customCheck1">
                                       <label class="custom-control-label" for="customCheck1">I agree with
-                                         <a href="policy.html"> Ditto Content Policy.</a></label>
+                                         <a href={{ url('contentpolicy')}}> Ditto Content Policy.</a></label>
                                   </div>
                               </div>
 
@@ -339,18 +355,15 @@
                                   </button>
                               </div>
                               <div class="margin-top20 text-center">
-                                  Already have an account? <a href="login.html">Log in now.</a>
+                                  Already have an account? <a href={{ url('/img/logo.svg')}}>Log in now.</a>
                               </div>
                           </form>
                       </div>
                   </div>
                   <!-- card one end -->
-
-
               </div>
 
               @include('layouts.footer')
-
           </div>
       </div>
   </div>
@@ -359,39 +372,18 @@
   </div>
 
 
-<form method="POST" action="{{ route('register') }}">
-    {{ csrf_field() }}
 
-    <label for="name">Name</label>
-    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
-    @if ($errors->has('name'))
-      <span class="error">
-          {{ $errors->first('name') }}
-      </span>
-    @endif
-
-    <label for="email">E-Mail Address</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
-    @if ($errors->has('email'))
-      <span class="error">
-          {{ $errors->first('email') }}
-      </span>
-    @endif
 
     <label for="password">Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-      <span class="error">
-          {{ $errors->first('password') }}
-      </span>
-    @endif
+
 
     <label for="password-confirm">Confirm Password</label>
-    <input id="password-confirm" type="password" name="password_confirmation" required>
 
     <button type="submit">
       Register
     </button>
     <a class="button button-outline" href="{{ route('login') }}">Login</a>
 </form>
+
+
 @endsection
