@@ -29,7 +29,7 @@ DROP FUNCTION IF EXISTS check_unique_values_user_f();
 DROP FUNCTION IF EXISTS check_unique_value_tags_f();
 
 
-CREATE TABLE "user" (
+CREATE TABLE "users" (
    id SERIAL NOT NULL,
    username text NOT NULL,
    password text NOT NULL,
