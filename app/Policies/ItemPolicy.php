@@ -1,10 +1,10 @@
 <?php
 
-namespace app\Policies;
+namespace App\Policies;
 
-use app\User;
-use app\Card;
-use app\Item;
+use App\User;
+use App\Card;
+use App\Item;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 

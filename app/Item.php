@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +13,6 @@ class Item extends Model
    * The card this item belongs to.
    */
   public function card() {
-    return $this->belongsTo('app\Card');
+    return $this->belongsTo('App\Card');
   }
 }
