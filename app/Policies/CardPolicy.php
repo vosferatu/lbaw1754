@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
-use App\User;
-use App\Card;
+use app\User;
+use app\Card;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;

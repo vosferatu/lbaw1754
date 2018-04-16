@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Item;
-use App\Card;
+use app\Item;
+use app\Card;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
