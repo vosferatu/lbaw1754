@@ -1,3 +1,5 @@
+DROP SCHEMA IF EXISTS public CASCADE;
+CREATE SCHEMA public authorization lbaw1754;
 
 DROP TABLE IF EXISTS comment_creation;
 DROP TABLE IF EXISTS content_report;
