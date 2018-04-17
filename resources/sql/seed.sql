@@ -1,3 +1,6 @@
+DROP SCHEMA IF EXISTS public CASCADE;
+CREATE SCHEMA public;
+
 DROP TABLE IF EXISTS comment_creation CASCADE;
 DROP TABLE IF EXISTS content_report CASCADE;
 DROP TABLE IF EXISTS downvotes CASCADE;
@@ -19,7 +22,7 @@ DROP TABLE IF EXISTS news_creation CASCADE;
 DROP TABLE IF EXISTS news_post CASCADE;
 DROP TABLE IF EXISTS content CASCADE;
 DROP TABLE IF EXISTS tags CASCADE;
-DROP TABLE IF EXISTS "user" CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 DROP FUNCTION IF EXISTS news_post_upvote();
 DROP FUNCTION IF EXISTS news_post_downvote();
 DROP FUNCTION IF EXISTS check_if_news_is_published() CASCADE;
@@ -29,7 +32,7 @@ DROP FUNCTION IF EXISTS check_unique_values_user_f();
 DROP FUNCTION IF EXISTS check_unique_value_tags_f();
 
 
-CREATE TABLE "user" (
+CREATE TABLE users (
    id SERIAL NOT NULL,
    username text NOT NULL,
    password text NOT NULL,
@@ -177,16 +180,16 @@ CREATE TABLE news_creation (
 
 --Primary_Keys_and_Uniques
 
-ALTER TABLE ONLY "user"
+ALTER TABLE ONLY users
    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 
-ALTER TABLE ONLY "user"
+ALTER TABLE ONLY users
    ADD CONSTRAINT user_ukey_username UNIQUE (username);
 
-ALTER TABLE ONLY "user"
+ALTER TABLE ONLY users
    ADD CONSTRAINT user_ukey_password UNIQUE (password);
 
-ALTER TABLE ONLY "user"
+ALTER TABLE ONLY users
    ADD CONSTRAINT user_ukey_email UNIQUE (email);
 
 ALTER TABLE ONLY tags
@@ -261,34 +264,34 @@ ALTER TABLE ONLY tags_subscribed
    ADD CONSTRAINT tags_subscribed_tags_fkey FOREIGN KEY (id_tag) REFERENCES tags(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY tags_subscribed
-   ADD CONSTRAINT tags_subscribed_user_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT tags_subscribed_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY tags_blocked
    ADD CONSTRAINT tags_blocked_tags_fkey FOREIGN KEY (id_tag) REFERENCES tags(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY tags_blocked
-   ADD CONSTRAINT tags_blocked_user_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT tags_blocked_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY user_report
-   ADD CONSTRAINT user_report_reported_fkey FOREIGN KEY (id_reported) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT user_report_reported_fkey FOREIGN KEY (id_reported) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY user_report
-   ADD CONSTRAINT user_report_informer_fkey FOREIGN KEY (id_informer) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT user_report_informer_fkey FOREIGN KEY (id_informer) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY user_subscribes
-   ADD CONSTRAINT user_subscribes_followed_fkey FOREIGN KEY (id_followed) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT user_subscribes_followed_fkey FOREIGN KEY (id_followed) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY user_subscribes
-   ADD CONSTRAINT user_subscribes_follower_fkey FOREIGN KEY (id_follower) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT user_subscribes_follower_fkey FOREIGN KEY (id_follower) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY administrator
-   ADD CONSTRAINT administrator_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT administrator_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY moderator
-   ADD CONSTRAINT moderator_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT moderator_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY kicked
-   ADD CONSTRAINT kicked_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT kicked_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY banned
    ADD CONSTRAINT banned_fkey FOREIGN KEY (id_user) REFERENCES kicked(id_user) ON UPDATE CASCADE;
@@ -297,34 +300,34 @@ ALTER TABLE ONLY suspended
    ADD CONSTRAINT suspended_fkey FOREIGN KEY (id_user) REFERENCES kicked(id_user) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY inactive
-   ADD CONSTRAINT inactive_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT inactive_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY verified
-   ADD CONSTRAINT verified_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT verified_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY saves
    ADD CONSTRAINT saves_content_fkey FOREIGN KEY (id_content) REFERENCES content(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY saves
-   ADD CONSTRAINT saves_user_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT saves_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY upvotes
    ADD CONSTRAINT upvotes_content_fkey FOREIGN KEY (id_content) REFERENCES content(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY upvotes
-   ADD CONSTRAINT upvotes_user_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT upvotes_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY downvotes
    ADD CONSTRAINT downvotes_content_fkey FOREIGN KEY (id_content) REFERENCES content(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY downvotes
-   ADD CONSTRAINT downvotes_user_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT downvotes_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY content_report
    ADD CONSTRAINT content_report_content_fkey FOREIGN KEY (id_content) REFERENCES content(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY content_report
-   ADD CONSTRAINT content_report_user_fkey FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT content_report_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY news_post
    ADD CONSTRAINT news_post_fkey FOREIGN KEY (id_content) REFERENCES content(id) ON UPDATE CASCADE;
@@ -340,7 +343,7 @@ ALTER TABLE ONLY news_creation
 
 -- INDEXES
 
-CREATE INDEX user_id ON "user" USING hash (id);
+CREATE INDEX user_id ON users USING hash (id);
 CREATE INDEX title_order ON news_post USING btree (title);
 CREATE INDEX dinamic_search_news ON news_post USING GIST ( to_tsvector('english', coalesce(title,'')));
 CREATE INDEX dinamic_search_content ON content USING GIST ( to_tsvector('english', "text"));
@@ -446,7 +449,7 @@ CREATE TRIGGER news_publish_date
 CREATE FUNCTION check_unique_values_user_f() RETURNS TRIGGER AS
 $BODY$
 BEGIN
- IF exists (select * from "user" where username = NEW.username or email = NEW.email or id = NEW.id) THEN
+ IF exists (select * from users where username = NEW.username or email = NEW.email or id = NEW.id) THEN
     RAISE EXCEPTION 'User already with either username: "%" or email: "%".', NEW.username, NEW.email;
     ROLLBACK;
  END IF;
@@ -456,7 +459,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER check_unique_values_user
- BEFORE INSERT ON "user"
+ BEFORE INSERT ON users
  FOR EACH ROW
    EXECUTE PROCEDURE check_unique_values_user_f();
 
@@ -479,32 +482,32 @@ CREATE TRIGGER check_unique_value_tags
  FOR EACH ROW
    EXECUTE PROCEDURE check_unique_value_tags_f();
 
- INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+ INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (1,'Holder','DWK39TID7ER','est.tempor.bibendum@nonbibendum.ca','Lester Patrick','Montserrat','eu','French',8,'2018/06/21 10:45:12');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (2,'Knowles','HFW83FAD8FZ','dapibus@malesuadavelvenenatis.edu','Addison Duffy',
 'Afghanistan','volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam','Nielsen',87,'2018/06/20 10:45:12');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (3,'Mckee','OTO55ZHO5UR','nonummy@necmalesuadaut.co.uk','Chandler Mack','Tonga',
 'urna. Nullam lobortis quam a felis','Mcneil',156,'03/04/2019');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (4,'Jordan','FJG13CFB0FM','quis.accumsan@augueSedmolestie.com','Steel Hicks','Greece',
 'nisl. Maecenas malesuada fringilla est. Mauris','Strong',4,'04/08/2018');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (5,'Barron','FQF22VDM5NP','dolor.sit.amet@Cras.edu','Perry Sosa','Cape Verde',
 'natoque penatibus et magnis dis','Parrish',119,'2018/06/15 10:45:12');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (6,'Powers','VRL89XUY3HE','enim.sit.amet@sollicitudinorci.com','Herman Torres',
 'Latvia','tortor at risus. Nunc ac','Harrell',165,'2018/06/26 11:45:12');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (7,'Hooper','EUR33HTL9TK','elit.a@semegestasblandit.edu','Colin Cote',
 'Heard Island and Mcdonald Islands','feugiat placerat velit.','Bailey',14,'2018/06/22 08:45:12');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (8,'Sawyer','XSB27PUS6OC','ac.arcu.Nunc@Fuscemilorem.co.uk','Arthur Kerr',
 'Malta','tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec','Klein',34,'2018/06/30 10:30:12');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (9,'Price','UUZ76WQD8AY','Morbi@consectetuermauris.co.uk','Joel Mack','Saudi Arabia','ac','Mclaughlin',81,'2018/06/11 14:45:13');
-INSERT INTO "user" (id,username,password,email,name,country,introduction,photo,followers,registered)
+INSERT INTO users (id,username,password,email,name,country,introduction,photo,followers,registered)
 VALUES (10,'Daugherty','MEG47BZI3NY','leo.Vivamus@elit.ca','Felix Robbins','Myanmar','sed, sapien. Nunc','Freeman',178,'2018/06/05 10:45:12');
 
 INSERT INTO "tags" (id,name,frequency) VALUES (1,'Duis',159);
