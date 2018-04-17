@@ -1,181 +1,157 @@
-/* prior layout.css */
-body{
-    padding-top: 1em;
-    padding-left: 3em;
-    padding-right: 3em;
-    background-color: #f7f9fb !important;
+body {
+  background-color: #ffffff;
+  color: #9b4dca;
 }
-
-.container-fluid{
-    padding-top: 1em;
-    padding-left: 4em;
-    padding-right: 4em;
+main > header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  background-color: #d2afe7;
+  padding: 1em;
+  margin: 1em;
 }
-
-/* prior style.css */
-
-.navbar {
-    background: #76c1ee !important;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-bottom: 1px solid #d6d6d6;
-    box-shadow: 0 0 4px rgba(0,0,0,.1);
-    font-size: 16px;
+main > header h1 {
+  margin: 0;
 }
-
-.form-inline {
-    display: inline-block;
+main > header a.button {
+  margin: 1em;
+  justify-self: center;
 }
-
-.navbar-header.col {
-    padding: 0 !important;
+main > header span {
+  margin: 1em;
+  justify-self: center;
 }
-
-
-.nav-link img {
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    margin: -8px 0;
-    float: left;
-    margin-right: 10px;
+#cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
-
-.navbar .nav-item i {
-    font-size: 18px;
+#cards article.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #d3edc3;
+  padding: 1em;
+  margin: 1em;
 }
-.navbar .dropdown-item i {
-    font-size: 16px;
-    min-width: 22px;
+#cards article.card header {
+  display: flex;
+  align-items: center;
 }
-.navbar .nav-item.open > a {
-    background: none !important;
+#cards article.card header h2 {
+  flex-grow: 1;
 }
-.navbar .dropdown-menu {
-    border-radius: 1px;
-    border-color: #e5e5e5;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+#cards article.card header a.delete {
+  display: none;
+  font-size: 2.6rem;
+  margin-top: .5rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.25;
 }
-.navbar .dropdown-menu li a {
-    color: #777;
-    padding: 8px 20px;
-    line-height: normal;
+#cards article.card header:hover a.delete {
+  display: inline;
 }
-.navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
-    color: #333;
+#cards article.card li {
+  list-style-type: none;
 }
-
-.navbar .dropdown-item .material-icons {
-    font-size: 21px;
-    line-height: 16px;
-    vertical-align: middle;
-    margin-top: -2px;
+#cards article.card li label {
+  display: flex;
+  align-items: baseline;
 }
-
-
-.navbar .active a, .navbar .active a:hover, .navbar .active a:focus {
-    background: transparent !important;
+#cards article.card li label span {
+  margin-left: .5em;
+  flex-grow: 1;
 }
-
-
-.navbar .brand {
-    width: 10em;
-    height: 3em;
-    overflow: hidden;
-    margin: 0.4em;
-
+#cards article.card li label a {
+  display: none;
 }
-
-.navbar .brand img {
-    width: 100%;
+#cards article.card li label:hover a {
+  display: inline;
 }
-
-
-
-/* search bar */
-
-
-input {
-    outline: none;
+#cards article.card input:checked + span {
+  text-decoration: var(--primary-color) solid line-through;
 }
-input[type=search] {
-    -webkit-appearance: textfield;
-    -webkit-box-sizing: content-box;
-    font-family: inherit;
-    font-size: 100%;
+#cards article.card ul {
+  margin: 0;
 }
-input::-webkit-search-decoration, input::-webkit-search-cancel-button {
-    display: none;
+#cards article.card form {
+  margin: 0;
 }
-
-input[type=search] {
-    background: #ededed url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-    border: solid 1px #ccc;
-    padding: 9px 10px 9px 32px;
-    width: 55px;
-    -webkit-border-radius: 10em;
-    -moz-border-radius: 10em;
-    border-radius: 10em;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    transition: all .5s;
+#cards article.card input[type=text] {
+  background-color: white;
+  margin: 0;
 }
-input[type=search]:focus {
-    width: 130px;
-    background-color: #fff;
-    border-color: #ff8a45;
-    -webkit-box-shadow: 0 0 5px rgba(246, 112, 2, 0.5);
-    -moz-box-shadow: 0 0 5px rgba(255, 115, 24, 0.5);
-    box-shadow: 0 0 5px rgba(255, 115, 24, 0.5);
+#content label {
+  font-weight: normal;
 }
-input:-moz-placeholder {
-    color: #999;
+#content > form {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 20em;
+  border: 1px solid #d2afe7;
 }
-input::-webkit-input-placeholder {
-    color: #999;
+#content > form .error {
+  font-weight: bold;
+  color: #ff3333;
 }
-/* Demo 2 */
-#demo-2 input[type=search] {
-    width: 15px;
-    padding-left: 10px;
-    color: transparent;
-    cursor: pointer;
+#content > form input {
+  background-color: white;
 }
-#demo-2 input[type=search]:hover {
-    background-color: #fff;
+@media (max-width: 70em) {
+  #cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  main > header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  main > header h1 {
+    grid-row-end: span 2;
+  }
 }
-#demo-2 input[type=search]:focus {
-    width: 130px;
-    padding-left: 32px;
-    color: #000;
-    background-color: #fff;
-    cursor: auto;
+@media (max-width: 40em) {
+  #cards {
+    grid-template-columns: 1fr;
+  }
 }
-#demo-2 input:-moz-placeholder {
-    color: transparent;
+@media (max-width: 25em) {
+  body {
+    margin: 0;
+  }
+  main > header {
+    margin: 0;
+    padding: 0.5em;
+  }
+  main > header span {
+    margin: 0;
+  }
+  #content form {
+    margin: 0;
+    max-width: 25em;
+  }
+  article.card {
+    margin: 0;
+    border-bottom: 1px solid rgba(96, 108, 118, 0.4);
+  }
 }
-#demo-2 input::-webkit-input-placeholder {
-    color: transparent;
+/**
+ * Overide milligram colors
+ * Some styles might be missing
+ **/
+button {
+  background-color: #9b4dca;
+  border-color: #9b4dca;
 }
-
-
-footer {
-    margin: 40px 0;
-    color: #888;
-    text-align: center;
+a.button {
+  background-color: #9b4dca;
+  border-color: #9b4dca;
 }
-
-footer a {
-    color: inherit;
+a.button.button-outline {
+  color: #9b4dca;
 }
-
-footer a:hover {
-    color: #545454;
-    text-decoration: none;
+a {
+  color: #9b4dca;
 }
-
-.profile-info  img{
-    width: 10em;
-    height: 10em;
-    border-radius: 50%;
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+  border-color: #9b4dca;
 }

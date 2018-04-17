@@ -11,15 +11,9 @@
 |
 */
 
-Route::get('/', 'PostController@list');
-
-
-// Static pages
-Route::get('about', 'StaticPageController@showAbout');
-Route::get('contentpolicy', 'StaticPageController@showContentPolicy');
-Route::get('faq', 'StaticPageController@showFaq');
-Route::get('contact', 'StaticPageController@showContact');
-
+Route::get('/', function () {
+    return redirect('login');
+});
 
 // Cards
 Route::get('cards', 'CardController@list');
