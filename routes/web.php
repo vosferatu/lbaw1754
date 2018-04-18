@@ -11,10 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('login');
-});
 
+Route::get('/', 'PostController@list');
+
+
+// Static pages
+Route::get('about', 'StaticPageController@showAbout');
+Route::get('contentpolicy', 'StaticPageController@showContentPolicy');
+Route::get('faq', 'StaticPageController@showFaq');
+Route::get('contact', 'StaticPageController@showContact');
+
+
+
+/*
 // Cards
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
@@ -25,6 +34,8 @@ Route::delete('api/cards/{card_id}', 'CardController@delete');
 Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
+*/
+
 
 // Authentication
 
@@ -33,3 +44,5 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+

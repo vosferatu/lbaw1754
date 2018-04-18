@@ -1,0 +1,32 @@
+.upvote{
+   width: 50%;
+}
+
+.upvote:hover{
+    width: 70%;
+}
+
+.rotate{
+    transform: rotate(180deg);
+}
+
+li.borderless { border: none; }
+
+.posts .title {
+    margin-left: 1em;
+}
+
+.posts .title .fa-leaf {
+    color: #268034;
+}
+
+.posts .title .fa-clock {
+    color: #a5a5a2;
+}
+
+.posts .title .fa-bolt {
+    color: #ffaa22;
+}
+
+.post-pic{}
+
