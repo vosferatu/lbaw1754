@@ -177,6 +177,10 @@ CREATE TABLE news_creation (
 
 );
 
+CREATE TABLE tag_news_post (
+  id_news Integer NOT NULL,
+  id_tag Integer NOT NULL
+);
 
 --Primary_Keys_and_Uniques
 
@@ -258,6 +262,9 @@ ALTER TABLE ONLY comment_creation
 ALTER TABLE ONLY news_creation
    ADD CONSTRAINT news_creation_pkey PRIMARY KEY (id_news, id_user);
 
+ALTER TABLE ONLY tag_news_post
+  ADD CONSTRAINT tag_news_post_pkey PRIMARY KEY (id_news, id_tag);
+  
 --Foreign_Keys
 
 ALTER TABLE ONLY tags_subscribed
@@ -340,6 +347,12 @@ ALTER TABLE ONLY comment_creation
    
 ALTER TABLE ONLY news_creation
    ADD CONSTRAINT news_creation_fkey FOREIGN KEY (id_news) REFERENCES news_post(id_content) ON UPDATE CASCADE;
+   
+ALTER TABLE ONLY tag_news_post
+  ADD CONSTRAINT tag_news_post_fkey FOREIGN KEY (id_news) REFERENCES news_post(id_content) ON UPDATE CASCADE;
+
+ALTER TABLE ONLY tag_news_post
+  ADD CONSTRAINT tag_news_post_fkey FOREIGN KEY (id_tag) REFERENCES tags (id_tag) ON UPDATE CASCADE;
 
 -- INDEXES
 
