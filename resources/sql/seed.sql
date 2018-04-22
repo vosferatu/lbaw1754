@@ -42,6 +42,7 @@ CREATE TABLE users (
    introduction text,
    photo text,
    followers INTEGER,
+   remember_token VARCHAR,
    registered TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
    CONSTRAINT followers_positive CHECK ((followers >= 0))
 );

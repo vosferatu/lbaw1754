@@ -371,18 +371,6 @@
   </div>
   </div>
 
-
-
-
-    <label for="password">Password</label>
-
-
-    <label for="password-confirm">Confirm Password</label>
-
-    <button type="submit">
-      Register
-    </button>
-    <a class="button button-outline" href="{{ route('login') }}">Login</a>
 </form>
 
 

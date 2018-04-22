@@ -17,7 +17,7 @@ Route::get('/', 'PostController@list');
 
 // Static pages
 Route::get('about', 'StaticPageController@showAbout');
-Route::get('contentpolicy', 'StaticPageController@showContentPolicy');
+Route::get('contentpolicy', 'StaticPageController@showContentPolicy')->name('contentpolicy');
 Route::get('faq', 'StaticPageController@showFaq');
 Route::get('contact', 'StaticPageController@showContact');
 
@@ -45,4 +45,9 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
+//User Profile
+
+Route::get('user/edit', 'UserController@edit');
+Route::get('user/{user}', 'UserController@show')->name('user.profile');
+Route::patch('user/{user}/update', 'UserController@update')->name('users.update');
 

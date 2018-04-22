@@ -22,16 +22,16 @@
                           <form method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
 
-                              <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                              <label class="sr-only" for="email">Username</label>
                               <div class="input-group mb-2">
                                   <div class="input-group-prepend">
                                       <div class="input-group-text">@</div>
                                   </div>
-                                  <input type="text" class="form-control" id="inlineFormInputGroup" name="username" value="{{ old('email') }}"
-                                         placeholder="Username"  required autofocus>
-                                         @if ($errors->has('username'))
+                                  <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
+                                         placeholder="Username or e-mail"  required autofocus>
+                                         @if ($errors->has('email'))
                                              <span class="error">
-                                               {{ $errors->first('username') }}
+                                               {{ $errors->first('email') }}
                                              </span>
                                          @endif
                               </div>

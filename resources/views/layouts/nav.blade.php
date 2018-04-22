@@ -1,6 +1,6 @@
 <nav class="navbar rounded navbar-expand-lg navbar-light">
         <div class="brand">
-           <a href="trending.html"> <img src={{ url('/img/logo.svg')}}></a>
+           <a href={{url('/')}}> <img src={{ url('/img/logo.svg')}}></a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -25,19 +25,19 @@
                 </li>
 
           @if (Auth::check())
-          <li class="nav-item mx-3" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"
-                                                                                             class="nav-link active"><i
-                  class="fas fa-pencil-alt"></i> New Post</a></li>
+          <li class="nav-item mx-3" data-toggle="modal" data-target="#exampleModalCenter">
+              <a href="#" class="nav-link active">
+                  <i class="fas fa-pencil-alt"></i> New Post</a> </li>
 
           <li class="nav-item dropdown">
               <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action active"><img
                       src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar"
-                      alt="Avatar"> {{ Auth::user()->name }} <b class="caret"></b></a>
+                      alt="Avatar"> {{ Auth::user()->username }} <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                  <li><a href="profile.html" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a></li>
+                  <li><a href="/user/{{ Auth::user()->id  }}" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a></li>
                   <li><a href="drafts.html" class="dropdown-item"><i class="fas fa-edit"></i> My Drafts</a></li>
                   <li class="divider dropdown-divider"></li>
-                  <li><a href="{{ url('/logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                  <li><a href="{{ route('logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
               </ul>
           </li>
 
