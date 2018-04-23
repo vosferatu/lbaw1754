@@ -486,7 +486,7 @@ CREATE TRIGGER check_unique_value_tags
    EXECUTE PROCEDURE check_unique_value_tags_f();
 
  INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
-VALUES ('Holder','DWK39TID7ER','est.tempor.bibendum@nonbibendum.ca','Lester Patrick','Montserrat','eu','French',8,'2018/06/21 10:45:12');
+VALUES ('Kevin','$2y$10$RtncNiOZF3.Nd2KVqefXi.iAanZOkpo4JJmsqLktuTdW6TJRidV1q','kevin@jevin.com','Kevin Maria Fonseca','BR','I love collaborative news and I want to improve the quality of them!','default.jpg',8,'2018/06/21 10:45:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Knowles','HFW83FAD8FZ','dapibus@malesuadavelvenenatis.edu','Addison Duffy',
 'Afghanistan','volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam','Nielsen',87,'2018/06/20 10:45:12');
@@ -525,21 +525,21 @@ INSERT INTO "tags" (id,name,frequency) VALUES (9,'erat',46);
 INSERT INTO "tags" (id,name,frequency) VALUES (10,'ante',92);
 INSERT INTO "tags" (id,name,frequency) VALUES (11,'lectus,',174);
 
-INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (9,1);
+INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (9,2);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (2,7);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (9,4);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (4,9);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (7,6);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (8,10);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (7,8);
-INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (10,1);
+INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (10,2);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (4,7);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (1,10);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (4,2);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (5,2);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (6,8);
 
-INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (7,1);
+INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (7,2);
 INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (9,5);
 INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (5,3);
 INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (7,5);
@@ -547,7 +547,7 @@ INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (9,8);
 INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (5,8);
 INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (2,7);
 INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (7,9);
-INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (1,1);
+INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (1,3);
 
 INSERT INTO "user_report" (id_reported,id_informer,reason)
 VALUES (6,8,'ipsum porta');
@@ -560,17 +560,17 @@ VALUES (9,4,'Donec egestas. Duis');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
 VALUES (9,3,'malesuada');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
-VALUES (9,1,'arcu. Vivamus sit');
+VALUES (9,5,'arcu. Vivamus sit');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
 VALUES (10,9,'dui. Fusce aliquam, enim nec');
 
 INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (2,6);
-INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (1,3);
-INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (6,1);
+INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (5,3);
+INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (6,5);
 INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (5,6);
 INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (2,10);
 
-INSERT INTO "administrator" (id_user,started) VALUES (1, '2018/06/04 10:45:12');
+INSERT INTO "administrator" (id_user,started) VALUES (5, '2018/06/04 10:45:12');
 
 INSERT INTO "moderator" (id_user,started) VALUES (4, '2018/04/04 10:45:12');
 INSERT INTO "moderator" (id_user,started) VALUES (7, '2018/04/03 10:45:12');
@@ -623,9 +623,9 @@ INSERT INTO "saves" (id_content,id_user) VALUES (6,5);
 INSERT INTO "saves" (id_content,id_user) VALUES (9,10);
 INSERT INTO "saves" (id_content,id_user) VALUES (5,10);
 INSERT INTO "saves" (id_content,id_user) VALUES (10,6);
-INSERT INTO "saves" (id_content,id_user) VALUES (2,1);
+INSERT INTO "saves" (id_content,id_user) VALUES (2,5);
 INSERT INTO "saves" (id_content,id_user) VALUES (6,8);
-INSERT INTO "saves" (id_content,id_user) VALUES (9,1);
+INSERT INTO "saves" (id_content,id_user) VALUES (9,6);
 
 INSERT INTO "upvotes" (id_content,id_user) VALUES (5,3);
 INSERT INTO "upvotes" (id_content,id_user) VALUES (9,6);
@@ -640,14 +640,14 @@ INSERT INTO "downvotes" (id_content,id_user) VALUES (6,8);
 INSERT INTO "downvotes" (id_content,id_user) VALUES (7,6);
 INSERT INTO "downvotes" (id_content,id_user) VALUES (8,9);
 INSERT INTO "downvotes" (id_content,id_user) VALUES (3,2);
-INSERT INTO "downvotes" (id_content,id_user) VALUES (3,1);
+INSERT INTO "downvotes" (id_content,id_user) VALUES (3,7);
 INSERT INTO "downvotes" (id_content,id_user) VALUES (8,10);
 INSERT INTO "downvotes" (id_content,id_user) VALUES (3,3);
 
 INSERT INTO "content_report" (id_content,id_user,reason,date)
 VALUES (3,2,'sem. Nulla interdum. Curabitur dictum. Phasellus','2018/04/19 10:45:12');
 INSERT INTO "content_report" (id_content,id_user,reason,date)
-VALUES (9,1,'erat nonummy ultricies ornare, elit elit fermentum','2018/04/18 10:45:12');
+VALUES (9,6,'erat nonummy ultricies ornare, elit elit fermentum','2018/04/18 10:45:12');
 INSERT INTO "content_report" (id_content,id_user,reason,date)
 VALUES (1,2,'nonummy ut, molestie in, tempus eu, ligula. Aenean euismod','2018/04/10 10:45:12');
 
@@ -684,8 +684,8 @@ INSERT INTO "comment_creation" (id_comment,id_user) VALUES (15,4);
 
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,2,TRUE,'2018/11/17 10:45:12');
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,3,FALSE,null);
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,1,TRUE,'2018/11/18 10:45:12');
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (10,1,TRUE,'2018/05/17 10:45:12');
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,5,TRUE,'2018/11/18 10:45:12');
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (10,6,TRUE,'2018/05/17 10:45:12');
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (8,8,TRUE,'2018/05/16 11:45:12');
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (8,7,FALSE,null);
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (2,5,TRUE,'2018/08/17 11:45:12');

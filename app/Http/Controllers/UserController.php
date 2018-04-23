@@ -76,9 +76,9 @@ class UserController extends Controller
     public function delete(Request $request, $user)
     {
 
-     $this->authorize('delete', $user);
+     //$this->authorize('delete', $user);
     
-      //$users = Auth::user($user);
+      $users = Auth::user($user);
       $users->delete();
 
       return redirect('/');
