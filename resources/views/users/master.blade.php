@@ -3,6 +3,8 @@
 
 @push('styles')
     <link href="{{ asset('css/feed.css') }}" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -17,19 +19,19 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-2 col-4 mx-auto text-nowrap text-center px-2">
                                     <a href="">
-                                        <img class="d-block mx-auto img-fluid" src="../images/catia.jpeg ">
+                                        <img class="d-block mx-auto img-fluid" src={{ URL::to('uploads/profilePictures/' . $user->photo)}}>
                                     </a>
                                 </div>
-                                <div class="col-lg-7 text-center text-lg-left">
+                                <div class="col-lg-7 col-6 text-center text-lg-left">
                                     <h2 class="d-inline">{{ $user->name }}</h2> <span class="flag-icon flag-icon-br  "></span>
-                                    <h6>@ {{ $user->username }} <i class="fas fa-check-circle"></i></h6>
+                                    <h6>&commat;{{ $user->username }} <i class="fas fa-check-circle"></i></h6>
                                     @if($user->introduction == NULL)
-                                    <h2>Empty introduction.</h2>
+                                    <h2> Empty introduction. </h2>
                                     @else
                                     <h2>{{$user->introduction}}</h2>
                                     @endif    
                                 </div>
-                                <div class="col-lg-2 col-6 mx-auto">
+                                <div class="col-lg-2 col-2 mx-auto">
                                     <div class="row no-gutters text-center justify-content-end align-items-end">
                                         <div class="col">
                                             <h2>123</h2>

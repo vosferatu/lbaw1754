@@ -49,5 +49,12 @@ Route::post('register', 'Auth\RegisterController@register');
 
 Route::get('user/edit', 'UserController@edit');
 Route::get('user/{user}', 'UserController@show')->name('user.profile');
-Route::patch('user/{user}/update', 'UserController@update')->name('users.update');
+Route::patch('user/{user}/updateProfile', 'UserController@updateProfile')->name('users.update.profile');
+Route::patch('user/{user}/updateEmail', 'UserController@updateEmail')->name('users.update.email');
+Route::patch('user/{user}/updatePassword', 'UserController@updatePassword')->name('users.update.password');
+Route::delete('user/{user}/delete', 'UserController@delete')->name('user.delete');
+
+
+
+
 

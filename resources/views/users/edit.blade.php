@@ -1,32 +1,59 @@
 @extends('users.master')
 
 @section('profile')
-<div class="container">
+
+<div class="container editProfile">
+
+        @if(Session::has('success'))
+
+	    <div class="alert alert-success">
+
+	        {{ Session::get('success') }}
+
+	        @php
+
+	        Session::forget('success');
+
+            @endphp
+            
+        </div>
+        @endif
+
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">Edit Profile</a>
+        <a class="nav-link active" id="profile-tab" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Edit Profile</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="pills-account-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" aria-selected="false">Edit Account</a>
+        <a class="nav-link" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="false">Edit Account</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="pills-delete-tab" data-toggle="pill" href="#pills-delete" role="tab" aria-controls="pills-delete" aria-selected="false">Delete Account</a>
+        <a class="nav-link" id="delete-tab" data-toggle="pill" href="#delete" role="tab" aria-controls="delete" aria-selected="false">Delete Account</a>
     </li>
 
     @if ($user->id == Auth::id())
     <li class="nav-item ml-auto">
-        <a href={{ route('user.profile', Auth::Id())  }} class="btn btn-outline-danger ml-auto" id="pills-settings-tab"> <i class="fas fa-cog"></i> Close Settings</a>
+        <a href={{ route('user.profile', Auth::Id())  }} class="btn btn-outline-danger ml-auto" id="settings-tab"> <i class="fas fa-cog"></i> Close Settings</a>
     </li>
     @endif
 </ul>
 
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"> 
+    <div class="tab-content" id="tabContent">
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="pills-profile-tab"> 
                 <div class="card">
                         <div class="card-header">Edit Profile Information</div>
                         <div class="card-body">
                                 
-                                <form method="post" action="{{route('users.update', $user)}}">    
+                                <form method="post" action="{{route('users.update.profile', $user)}}">    
                                         
                                         {{ csrf_field() }}
                                         {{ method_field('patch') }}
@@ -38,10 +65,14 @@
                                                 <label for="name">Name</label>
                                                 <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" value="{{ $user->name }}">
                                             </div>
-                
+                                            @if ($errors->has('name'))
+                                            <span class="error">
+                                                {{ $errors->first('name') }}
+                                            </span>
+                                          @endif
                                             <div class="form-group">
                                                 <label for="country">Country</label>
-                                                <select class="form-control" name="country" id="country" aria-describedby="countryHelp" name="country" value={{ $user->country }} >
+                                                <select class="form-control" name="country" id="country" aria-describedby="countryHelp" name="country" selected={{ $user->country }} >
                                                         <option value="AF">Afghanistan</option>
                                                         <option value="AX">Åland Islands</option>
                                                         <option value="AL">Albania</option>
@@ -297,9 +328,13 @@
                 
                                             <div class="form-group">
                                                 <label for="introduction">Bio:</label>
-                                                <textarea class="form-control" rows="5" id="introduction" name="introduction" value={{ $user->introduction }}></textarea>
+                                                <textarea class="form-control" rows="5" id="introduction" name="introduction">{{ $user->introduction }}</textarea>
                                             </div>
-                                            
+                                            @if ($errors->has('introduction'))
+                                               <span class="error">
+                                                   {{ $errors->first('introduction') }}
+                                               </span>
+                                             @endif
                                         </div>
 <!--
                                         <div class="col">
@@ -320,19 +355,69 @@
     </div>
 
 
-        <div class="tab-pane fade" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
+        <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
                 <div class="card">
                     <div class="card-header">Edit Account Settings</div>
-                    <div class="card-body">Content</div>
-                </div>
+                    <div class="card-body">  
+                                    <div class="row">
+                                    <div class="col">
+                                    <form method="post" action="{{route('users.update.email', $user)}}">    
+                                    
+                                    {{ csrf_field() }}
+                                     {{ method_field('patch') }}
+                                     <div class="form-group">
+                                            <label for="name">E-mail</label>
+                                            <input type="text" class="form-control" id="email" aria-describedby="emailHelp" name="email" value="{{ $user->email }}">
+                                        </div>
+                                    
+
+                                    <div class="text-center"> 
+                                            <button type="submit" class="btn btn-primary text-center">Change e-mail</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                    <div class="col">
+                                            <form method="post" action="{{route('users.update.password', $user)}}">    
+                                    
+                                                    {{ csrf_field() }}
+                                                     {{ method_field('patch') }}
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp">
+                                            @if ($errors->has('password'))
+                                            <span class="error">
+                                                {{ $errors->first('password') }}
+                                            </span>
+                                          @endif
+                                            <label for="password_confirmation">Password Confirmation</label>
+                                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" aria-describedby="passwordHelp">
+                                        </div>
+
+                                        <div class="text-center"> 
+                                                <button type="submit" class="btn btn-primary text-center">Change Password</button>
+                                            </div>
+                                        </form>
+                                </div>
+
+                              
+                            </div>
+                </div>   
+            </div>  
         </div>
-        <div class="tab-pane fade" id="pills-delete" role="tabpanel" aria-labelledby="pills-delete-tab">
+        <div class="tab-pane fade" id="delete" role="tabpanel" aria-labelledby="delete-tab">
                 <div class="card">
                         <div class="card-header bg-danger text-white">Delete Account</div>
                         <div class="card-body">
                             <p>According to our <a href={{route('contentpolicy')}}> Content Policy</a> your personal information will be deleted, but your posts and comments will still be visible.</p>
                             <p>Are you sure you want to delete your account? </p>
-                            <button type="button" class="btn btn-danger">Delete Account</button>
+                            <form method="post" action="{{route('user.delete', $user)}}">    
+                                    {{ csrf_field() }}
+                                    {{ method_field('delete') }}
+
+                            <button type="submit" class="btn btn-danger">Delete Account</button>
+                        </form>
+
                         </div>
                     </div>
         </div>

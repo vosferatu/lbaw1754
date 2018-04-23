@@ -27,7 +27,8 @@
 
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> <!-- single post -->
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
+                        <!-- single post -->
                         <div class="row">
                             <div class="col-12 col-sm-12 mx-3 my-2">
                                 <div class="card">
