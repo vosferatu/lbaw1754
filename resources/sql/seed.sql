@@ -48,7 +48,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE tags (
-       id SERIAL NOT NULL,
+   id SERIAL NOT NULL,
    name text NOT NULL,
    frequency Integer,
    CONSTRAINT frequency_positive CHECK ((frequency >= 0))
@@ -76,38 +76,38 @@ CREATE TABLE user_subscribes (
 );
 
 CREATE TABLE administrator (
-   id_user Integer NOT NULL,
+   id Integer NOT NULL,
    started TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE moderator (
-   id_user Integer NOT NULL,
+   id Integer NOT NULL,
    started TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE kicked (
-   id_user Integer NOT NULL,
+   id Integer NOT NULL,
    ban_date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
    reason text
 );
 
 CREATE TABLE banned (
-   id_user Integer NOT NULL
+   id Integer NOT NULL
 );
 
 CREATE TABLE suspended (
-   id_user Integer NOT NULL,
+   id Integer NOT NULL,
    days Integer NOT NULL,
    CONSTRAINT days_positive CHECK ((days > 0))
 );
 
 CREATE TABLE inactive (
-   id_user Integer NOT NULL,
+   id Integer NOT NULL,
    deletion_date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE verified (
-   id_user Integer NOT NULL,
+   id Integer NOT NULL,
    status text NOT NULL,
    verified TIMESTAMP WITH TIME zone,
    CONSTRAINT status_enum CHECK ((status = ANY (ARRAY['Verified'::text, 'Pending'::text, 'Unconfirmed'::text]))),
@@ -145,7 +145,7 @@ CREATE TABLE content_report (
 );
 
 CREATE TABLE news_post (
-   id_content Integer NOT NULL,
+   id Integer NOT NULL,
    title text,
    photo text,
    comments Integer,
@@ -159,7 +159,7 @@ CREATE TABLE news_post (
 );
 
 CREATE TABLE "comment" (
-   id_content Integer NOT NULL,
+   id Integer NOT NULL,
    parent_comment  Integer,
    parent_news  Integer NOT NULL
 );
@@ -212,25 +212,25 @@ ALTER TABLE ONLY user_subscribes
    ADD CONSTRAINT user_subscribes_pkey PRIMARY KEY (id_followed, id_follower);
 
 ALTER TABLE ONLY administrator
-   ADD CONSTRAINT administrator_pkey PRIMARY KEY (id_user);
+   ADD CONSTRAINT administrator_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY moderator
-   ADD CONSTRAINT moderator_pkey PRIMARY KEY (id_user);
+   ADD CONSTRAINT moderator_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY kicked
-   ADD CONSTRAINT kicked_pkey PRIMARY KEY (id_user);
+   ADD CONSTRAINT kicked_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY banned
-   ADD CONSTRAINT banned_pkey PRIMARY KEY (id_user);
+   ADD CONSTRAINT banned_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY suspended
-   ADD CONSTRAINT suspended_pkey PRIMARY KEY (id_user);
+   ADD CONSTRAINT suspended_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY inactive
-   ADD CONSTRAINT inactive_pkey PRIMARY KEY (id_user);
+   ADD CONSTRAINT inactive_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY verified
-   ADD CONSTRAINT verified_pkey PRIMARY KEY (id_user);
+   ADD CONSTRAINT verified_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY content
    ADD CONSTRAINT content_pkey PRIMARY KEY (id);
@@ -248,10 +248,10 @@ ALTER TABLE ONLY content_report
    ADD CONSTRAINT content_report_pkey PRIMARY KEY (id_content, id_user);
 
 ALTER TABLE ONLY news_post
-   ADD CONSTRAINT news_post_pkey PRIMARY KEY (id_content);
+   ADD CONSTRAINT news_post_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY "comment"
-   ADD CONSTRAINT comment_pkey PRIMARY KEY (id_content);
+   ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY comment_creation
    ADD CONSTRAINT comment_creation_pkey PRIMARY KEY (id_comment, id_user);
@@ -286,25 +286,25 @@ ALTER TABLE ONLY user_subscribes
    ADD CONSTRAINT user_subscribes_follower_fkey FOREIGN KEY (id_follower) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY administrator
-   ADD CONSTRAINT administrator_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT administrator_fkey FOREIGN KEY (id) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY moderator
-   ADD CONSTRAINT moderator_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT moderator_fkey FOREIGN KEY (id) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY kicked
-   ADD CONSTRAINT kicked_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT kicked_fkey FOREIGN KEY (id) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY banned
-   ADD CONSTRAINT banned_fkey FOREIGN KEY (id_user) REFERENCES kicked(id_user) ON UPDATE CASCADE;
+   ADD CONSTRAINT banned_fkey FOREIGN KEY (id) REFERENCES kicked(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY suspended
-   ADD CONSTRAINT suspended_fkey FOREIGN KEY (id_user) REFERENCES kicked(id_user) ON UPDATE CASCADE;
+   ADD CONSTRAINT suspended_fkey FOREIGN KEY (id) REFERENCES kicked(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY inactive
-   ADD CONSTRAINT inactive_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT inactive_fkey FOREIGN KEY (id) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY verified
-   ADD CONSTRAINT verified_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT verified_fkey FOREIGN KEY (id) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY saves
    ADD CONSTRAINT saves_content_fkey FOREIGN KEY (id_content) REFERENCES content(id) ON UPDATE CASCADE;
@@ -331,16 +331,16 @@ ALTER TABLE ONLY content_report
    ADD CONSTRAINT content_report_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY news_post
-   ADD CONSTRAINT news_post_fkey FOREIGN KEY (id_content) REFERENCES content(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT news_post_fkey FOREIGN KEY (id) REFERENCES content(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY "comment"
-   ADD CONSTRAINT comment_fkey FOREIGN KEY (id_content) REFERENCES content(id) ON UPDATE CASCADE;
+   ADD CONSTRAINT comment_fkey FOREIGN KEY (id) REFERENCES content(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY comment_creation
-   ADD CONSTRAINT comment_creation_fkey FOREIGN KEY (id_comment) REFERENCES "comment"(id_content) ON UPDATE CASCADE;
+   ADD CONSTRAINT comment_creation_fkey FOREIGN KEY (id_comment) REFERENCES "comment"(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY news_creation
-   ADD CONSTRAINT news_creation_fkey FOREIGN KEY (id_news) REFERENCES news_post(id_content) ON UPDATE CASCADE;
+   ADD CONSTRAINT news_creation_fkey FOREIGN KEY (id_news) REFERENCES news_post(id) ON UPDATE CASCADE;
 
 -- INDEXES
 
@@ -392,7 +392,7 @@ BEGIN
  IF OLD.ready = FALSE AND NEW.ready = TRUE THEN
    IF NOT EXISTS (SELECT ready FROM news_creation WHERE id_news = NEW.id_news AND ready = TRUE) THEN
       UPDATE news_post SET published = TRUE
-      WHERE id_content = NEW.id_news;
+      WHERE id = NEW.id_news;
    END IF;
  END IF;
  RETURN NEW;
@@ -432,7 +432,7 @@ BEGIN
  IF OLD.ready = FALSE AND NEW.ready = TRUE THEN
    IF NOT EXISTS (SELECT ready FROM news_creation WHERE id_news = NEW.id_news AND ready = TRUE) THEN
       UPDATE news_post SET published_date = now()
-      WHERE id_content = NEW.id_news;
+      WHERE id = NEW.id_news;
    END IF;
  END IF;
  RETURN NEW;
@@ -570,21 +570,21 @@ INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (6,5);
 INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (5,6);
 INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (2,10);
 
-INSERT INTO "administrator" (id_user,started) VALUES (5, '2018/06/04 10:45:12');
+INSERT INTO "administrator" (id,started) VALUES (5, '2018/06/04 10:45:12');
 
-INSERT INTO "moderator" (id_user,started) VALUES (4, '2018/04/04 10:45:12');
-INSERT INTO "moderator" (id_user,started) VALUES (7, '2018/04/03 10:45:12');
+INSERT INTO "moderator" (id,started) VALUES (4, '2018/04/04 10:45:12');
+INSERT INTO "moderator" (id,started) VALUES (7, '2018/04/03 10:45:12');
 
-INSERT INTO "kicked" (id_user,ban_date,reason) VALUES (3, '2018/04/02 10:45:12', 'lorem ipsum');
-INSERT INTO "kicked" (id_user,ban_date,reason) VALUES (6, '2018/04/01 13:45:12', 'lorem ipsum lorem');
+INSERT INTO "kicked" (id,ban_date,reason) VALUES (3, '2018/04/02 10:45:12', 'lorem ipsum');
+INSERT INTO "kicked" (id,ban_date,reason) VALUES (6, '2018/04/01 13:45:12', 'lorem ipsum lorem');
 
-INSERT INTO "banned" (id_user) VALUES (3);
+INSERT INTO "banned" (id) VALUES (3);
 
-INSERT INTO "suspended" (id_user,days) VALUES (6, 2);
+INSERT INTO "suspended" (id,days) VALUES (6, 2);
 
-INSERT INTO "inactive" (id_user,deletion_date) VALUES (9, '05/05/2018');
+INSERT INTO "inactive" (id,deletion_date) VALUES (9, '05/05/2018');
 
-INSERT INTO "verified" (id_user,status,verified) VALUES (8, 'Verified', '05/04/2018');
+INSERT INTO "verified" (id,status,verified) VALUES (8, 'Verified', '05/04/2018');
 
 INSERT INTO "content" (id,votes,text,created)
 VALUES (11,123,'Vestibulum accumsan neque et nunc.','2018/04/04 10:45:12');
@@ -651,31 +651,31 @@ VALUES (9,6,'erat nonummy ultricies ornare, elit elit fermentum','2018/04/18 10:
 INSERT INTO "content_report" (id_content,id_user,reason,date)
 VALUES (1,2,'nonummy ut, molestie in, tempus eu, ligula. Aenean euismod','2018/04/10 10:45:12');
 
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (4,'ante. Maecenas','Curabitur',62,161,3,FALSE,'2018/10/17 10:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (10,'ornare egestas ligula. Nullam','facilisis,',159,186,1,TRUE,'2018/05/17 10:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (8,'nascetur ridiculus mus. Donec dignissim','et,',34,174,2,FALSE,'2018/05/17 08:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (2,'turpis egestas. Fusce aliquet magna','sem',74,83,1,TRUE,'2018/08/17 11:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (6,'metus. Vivamus euismod','netus',103,143,1,FALSE,'2018/04/27 10:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (9,'risus.','eu,',146,79,3,FALSE,'2018/05/17 10:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (5,'ipsum ac mi','purus.',124,55,1,FALSE,'2018/04/27 10:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (1,'Nulla dignissim. Maecenas ornare egestas','facilisis',39,2,2,TRUE,'2018/11/17 10:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (7,'turpis vitae purus gravida sagittis.','Nulla',42,22,5,TRUE,'2018/11/27 10:45:12');
-INSERT INTO "news_post" (id_content,title,photo,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
 VALUES (11,'non, cursus non, egestas','viverra.',54,19,1,FALSE,'2018/06/17 10:45:12');
 
-INSERT INTO "comment" (id_content,parent_comment,parent_news) VALUES (3,2,2);
-INSERT INTO "comment" (id_content,parent_comment,parent_news) VALUES (18,7,8);
-INSERT INTO "comment" (id_content,parent_comment,parent_news) VALUES (13,1,10);
-INSERT INTO "comment" (id_content,parent_comment,parent_news) VALUES (15,7,9);
+INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (3,2,2);
+INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (18,7,8);
+INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (13,1,10);
+INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (15,7,9);
 
 INSERT INTO "comment_creation" (id_comment,id_user) VALUES (3,9);
 INSERT INTO "comment_creation" (id_comment,id_user) VALUES (18,10);
