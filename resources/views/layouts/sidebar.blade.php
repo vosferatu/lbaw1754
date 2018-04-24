@@ -22,10 +22,10 @@
                     </div>
 
                     <footer>
-                        <p><a href="about.html">About</a> &middot; <a
-                                href="FAQ.html">FAQ</a></p>
-                        <p> <a href="policy.html">Content Policy</a> &middot; <a
-                                href="contact.html">Contact</a></p>
+                        <p><a href={{ route('about') }}>About</a> &middot; <a
+                                href={{ route('faq') }}>FAQ</a></p>
+                        <p> <a href={{ route('contentpolicy') }}>Content Policy</a> &middot; <a
+                                href={{ route('contact') }}>Contact</a></p>
                     </footer>
                   </nav>
               </div>

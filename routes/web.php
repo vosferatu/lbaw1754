@@ -16,10 +16,10 @@ Route::get('/', 'PostController@list');
 
 
 // Static pages
-Route::get('about', 'StaticPageController@showAbout');
+Route::get('about', 'StaticPageController@showAbout')->name('about');
 Route::get('contentpolicy', 'StaticPageController@showContentPolicy')->name('contentpolicy');
-Route::get('faq', 'StaticPageController@showFaq');
-Route::get('contact', 'StaticPageController@showContact');
+Route::get('faq', 'StaticPageController@showFaq')->name('faq');
+Route::get('contact', 'StaticPageController@showContact')->name('contact');
 
 
 
