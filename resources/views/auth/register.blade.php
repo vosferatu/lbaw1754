@@ -355,7 +355,7 @@
                                   </button>
                               </div>
                               <div class="margin-top20 text-center">
-                                  Already have an account? <a href={{ url('/img/logo.svg')}}>Log in now.</a>
+                                  Already have an account? <a href={{ url('/login')}}>Log in now.</a>
                               </div>
                           </form>
                       </div>
