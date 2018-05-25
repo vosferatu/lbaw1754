@@ -26,7 +26,7 @@
 
           @if (Auth::check())
           <li class="nav-item mx-3" data-toggle="modal" data-target="#exampleModalCenter">
-              <a href="#" class="nav-link active">
+              <a href="{{ route('post.create') }}" class="nav-link active">
                   <i class="fas fa-pencil-alt"></i> New Post</a> </li>
 
           <li class="nav-item dropdown">
@@ -55,6 +55,7 @@
 
 
         <!-- New Post Modal -->
+<!--
         <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -90,5 +91,5 @@
                 </div>
             </div>
         </div>
-
+-->
     </nav>

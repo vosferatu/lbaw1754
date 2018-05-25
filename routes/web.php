@@ -54,7 +54,5 @@ Route::patch('user/{user}/updateEmail', 'UserController@updateEmail')->name('use
 Route::patch('user/{user}/updatePassword', 'UserController@updatePassword')->name('users.update.password');
 Route::delete('user/{user}/delete', 'UserController@delete')->name('user.delete');
 
-
-
-
-
+Route::get('post/create', 'PostController@showPostForm')->name('post.create');
+Route::post('post/create', 'PostController@create');
