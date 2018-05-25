@@ -586,38 +586,38 @@ INSERT INTO "inactive" (id,deletion_date) VALUES (9, '05/05/2018');
 
 INSERT INTO "verified" (id,status,verified) VALUES (8, 'Verified', '10/10/2018');
 
-INSERT INTO "content" (id,votes,text,created)
-VALUES (11,123,'Vestibulum accumsan neque et nunc.','2018/04/04 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (7,136,'facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa.
+INSERT INTO "content" (votes,text,created)
+VALUES (123,'Vestibulum accumsan neque et nunc.','2018/04/04 10:45:12');
+INSERT INTO "content" (votes,text,created)
+VALUES (136,'facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa.
 Mauris vestibulum, neque sed dictum eleifend, nunc risus varius','2018/07/04 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (8,51,'dui. Suspendisse ac metus vitae','2019/04/04 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (4,91,'Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper','07/11/2018');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (3,157,'Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla.
+INSERT INTO "content" (votes,text,created)
+VALUES (51,'dui. Suspendisse ac metus vitae','2019/04/04 10:45:12');
+INSERT INTO "content" (votes,text,created)
+VALUES (91,'Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper','07/11/2018');
+INSERT INTO "content" (votes,text,created)
+VALUES (157,'Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla.
 Donec feugiat metus sit amet ante. Vivamus non','2018/04/01 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (1,95,'orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque.','03/12/2018');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (10,152,'Pellentesque habitant morbi','2018/04/01 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (5,156,'ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet,
+INSERT INTO "content" (votes,text,created)
+VALUES (95,'orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque.','03/12/2018');
+INSERT INTO "content" (votes,text,created)
+VALUES (152,'Pellentesque habitant morbi','2018/04/01 10:45:12');
+INSERT INTO "content" (votes,text,created)
+VALUES (156,'ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet,
 libero et tristique pellentesque, tellus sem mollis dui,','2018/01/04 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (2,61,'id risus quis diam luctus lobortis. Class aptent taciti sociosqu
+INSERT INTO "content" (votes,text,created)
+VALUES (61,'id risus quis diam luctus lobortis. Class aptent taciti sociosqu
 ad litora torquent per conubia nostra, per','2018/04/29 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (9,22,'adipiscing lobortis risus. In mi pede, nonummy ut, molestie','2018/04/24 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (6,65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (18,65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (13,65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
-INSERT INTO "content" (id,votes,text,created)
-VALUES (15,65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
+INSERT INTO "content" (votes,text,created)
+VALUES (22,'adipiscing lobortis risus. In mi pede, nonummy ut, molestie','2018/04/24 10:45:12');
+INSERT INTO "content" (votes,text,created)
+VALUES (65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
+INSERT INTO "content" (votes,text,created)
+VALUES (65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
+INSERT INTO "content" (votes,text,created)
+VALUES (65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
+INSERT INTO "content" (votes,text,created)
+VALUES (65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
 
 INSERT INTO "saves" (id_content,id_user) VALUES (6,5);
 INSERT INTO "saves" (id_content,id_user) VALUES (9,10);
@@ -652,35 +652,35 @@ INSERT INTO "content_report" (id_content,id_user,reason,date)
 VALUES (1,2,'nonummy ut, molestie in, tempus eu, ligula. Aenean euismod','2018/04/10 10:45:12');
 
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (4,'ante. Maecenas','Curabitur',62,161,3,FALSE,'2018/10/17 10:45:12');
+VALUES (1,'ante. Maecenas','Curabitur',62,161,3,FALSE,'2018/10/17 10:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (10,'ornare egestas ligula. Nullam','facilisis,',159,186,1,TRUE,'2018/10/17 10:45:12');
+VALUES (2,'ornare egestas ligula. Nullam','facilisis,',159,186,1,TRUE,'2018/10/17 10:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (8,'nascetur ridiculus mus. Donec dignissim','et,',34,174,2,FALSE,'2018/10/17 08:45:12');
+VALUES (3,'nascetur ridiculus mus. Donec dignissim','et,',34,174,2,FALSE,'2018/10/17 08:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (2,'turpis egestas. Fusce aliquet magna','sem',74,83,1,TRUE,'2018/08/17 11:45:12');
+VALUES (4,'turpis egestas. Fusce aliquet magna','sem',74,83,1,TRUE,'2018/08/17 11:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (6,'metus. Vivamus euismod','netus',103,143,1,FALSE,'2018/07/27 10:45:12');
+VALUES (5,'metus. Vivamus euismod','netus',103,143,1,FALSE,'2018/07/27 10:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (9,'risus.','eu,',146,79,3,FALSE,'2018/10/17 10:45:12');
+VALUES (6,'risus.','eu,',146,79,3,FALSE,'2018/10/17 10:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (5,'ipsum ac mi','purus.',124,55,1,FALSE,'2018/10/27 10:45:12');
+VALUES (7,'ipsum ac mi','purus.',124,55,1,FALSE,'2018/10/27 10:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (1,'Nulla dignissim. Maecenas ornare egestas','facilisis',39,2,2,TRUE,'2018/11/17 10:45:12');
+VALUES (8,'Nulla dignissim. Maecenas ornare egestas','facilisis',39,2,2,TRUE,'2018/11/17 10:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (7,'turpis vitae purus gravida sagittis.','Nulla',42,22,5,TRUE,'2018/11/27 10:45:12');
+VALUES (9,'turpis vitae purus gravida sagittis.','Nulla',42,22,5,TRUE,'2018/11/27 10:45:12');
 INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (11,'non, cursus non, egestas','viverra.',54,19,1,FALSE,'2018/10/17 10:45:12');
+VALUES (10,'non, cursus non, egestas','viverra.',54,19,1,FALSE,'2018/10/17 10:45:12');
 
-INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (3,2,2);
-INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (18,7,8);
+INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (11,2,2);
+INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (12,7,8);
 INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (13,1,10);
-INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (15,7,9);
+INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (14,7,9);
 
-INSERT INTO "comment_creation" (id_comment,id_user) VALUES (3,9);
-INSERT INTO "comment_creation" (id_comment,id_user) VALUES (18,10);
+INSERT INTO "comment_creation" (id_comment,id_user) VALUES (11,9);
+INSERT INTO "comment_creation" (id_comment,id_user) VALUES (12,10);
 INSERT INTO "comment_creation" (id_comment,id_user) VALUES (13,5);
-INSERT INTO "comment_creation" (id_comment,id_user) VALUES (15,4);
+INSERT INTO "comment_creation" (id_comment,id_user) VALUES (14,4);
 
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,2,TRUE,'2018/11/17 10:45:12');
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,3,FALSE,null);

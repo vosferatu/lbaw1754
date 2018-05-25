@@ -12,7 +12,6 @@
 */
 
 
-Route::get('/', 'PostController@list');
 
 
 // Static pages
@@ -53,6 +52,12 @@ Route::patch('user/{user}/updateProfile', 'UserController@updateProfile')->name(
 Route::patch('user/{user}/updateEmail', 'UserController@updateEmail')->name('users.update.email');
 Route::patch('user/{user}/updatePassword', 'UserController@updatePassword')->name('users.update.password');
 Route::delete('user/{user}/delete', 'UserController@delete')->name('user.delete');
+
+// Posts
+Route::get('/', 'PostController@index');
+
+Route::get('post/{post}','PostController@show');
+
 
 
 

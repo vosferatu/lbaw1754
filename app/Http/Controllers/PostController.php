@@ -11,12 +11,26 @@ class PostController extends Controller
    *
    * @return Response
    */
-  public function list()
+  public function index()
   {
     //if (!Auth::check()) return redirect('/login');
     //$this->authorize('list', Card::class);
     //$cards = Auth::user()->cards()->orderBy('id')->get();
 
-    return view('posts.list');
+    $posts = Post::all();
+
+    return view('posts.index', compact('posts'));
   }
+
+
+   /**
+     * Show the specific post
+     *
+     * @param  Post  $post
+     * @return Response
+     */
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'));
+    }
 }
