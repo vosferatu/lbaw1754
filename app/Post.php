@@ -14,8 +14,10 @@ class Post extends Content
      */
     protected $table = 'news_post';
 
+    protected $fillable = ['title', 'article', 'tags'];
 
-    /** 
+
+    /**
      * Get the comments for the post.
      */
     public function comments()
