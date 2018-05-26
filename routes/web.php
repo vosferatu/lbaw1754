@@ -53,18 +53,14 @@ Route::patch('user/{user}/updateEmail', 'UserController@updateEmail')->name('use
 Route::patch('user/{user}/updatePassword', 'UserController@updatePassword')->name('users.update.password');
 Route::delete('user/{user}/delete', 'UserController@delete')->name('user.delete');
 
-<<<<<<< HEAD
 // Posts
-Route::get('/', 'PostController@index');
+Route::get('/', 'ContentController@indexPosts');
 
-Route::get('post/{post}','PostController@show');
+// show the post
 
-
-
-
+Route::get('post/{slug}', 'ContentController@showPost')->name('post.show');
 
 
-=======
-Route::get('post/create', 'PostController@showPostForm')->name('post.create');
-Route::post('post/create', 'PostController@create');
->>>>>>> 640972e7647f09ffe12174f323d2821c5a606898
+
+Route::get('api/post/create', 'ContentController@showPostForm')->name('post.create');
+Route::post('api/post/create', 'ContentController@create');

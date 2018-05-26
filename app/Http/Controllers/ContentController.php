@@ -5,26 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Post;
+use App\Content;
 
-class PostController extends Controller
+class ContentController extends Controller
 {
      /**
    * Shows all posts.
    *
    * @return Response
    */
-  public function index()
+  public function indexPosts()
   {
     //if (!Auth::check()) return redirect('/login');
     //$this->authorize('list', Card::class);
     //$cards = Auth::user()->cards()->orderBy('id')->get();
 
+   
     $posts = Post::all();
 
     return view('posts.index', compact('posts'));
   }
 
-<<<<<<< HEAD
 
    /**
      * Show the specific post
@@ -32,17 +33,19 @@ class PostController extends Controller
      * @param  Post  $post
      * @return Response
      */
-    public function show(Post $post)
+    public function showPost($slug)
     {
-        return view('posts.show', compact('post'));
+      $post = Post::find($slug);
+
+      return view('posts.show', compact('post'));
     }
-=======
+    
   public function showPostForm()
   {
     return view('posts.create');
   }
 
-  public function create()
+  public function createPost()
   {
     //dd(request()->all());
 
@@ -60,5 +63,6 @@ class PostController extends Controller
     return redirect('/');
 
   }
->>>>>>> 640972e7647f09ffe12174f323d2821c5a606898
+
+  
 }

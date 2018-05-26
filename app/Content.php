@@ -12,4 +12,22 @@ class Content extends Model
      * @var string
      */
     protected $table = 'content';
+
+    /**
+     * Get the posts of content table.
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Post','id');
+    }
+
+      /**
+     * Get the comments of content table.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment','id');
+    }
+
+
 }

@@ -14,5 +14,5 @@ class CommentCreation extends Model
     protected $table = 'comment_creation';
 
     // Don't add create and update timestamps in database.
-  public $timestamps  = false;
+    public $timestamps  = false;
 }

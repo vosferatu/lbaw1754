@@ -21,5 +21,14 @@ class Comment extends Content
     public function post()
     {
         return $this->belongsTo('App\Post');
+
+    }
+
+      /**
+     * Get the content behind post.
+     */
+    public function content()
+    {
+        return $this->belongsTo('App\Content','id');
     }
 }

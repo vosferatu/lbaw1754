@@ -148,6 +148,7 @@ CREATE TABLE news_post (
    id Integer NOT NULL,
    title text,
    photo text,
+   slug text,
    comments Integer,
    views Integer,
    authors Integer,
@@ -651,26 +652,26 @@ VALUES (9,6,'erat nonummy ultricies ornare, elit elit fermentum','2018/04/18 10:
 INSERT INTO "content_report" (id_content,id_user,reason,date)
 VALUES (1,2,'nonummy ut, molestie in, tempus eu, ligula. Aenean euismod','2018/04/10 10:45:12');
 
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (1,'ante. Maecenas','Curabitur',62,161,3,FALSE,'2018/10/17 10:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (2,'ornare egestas ligula. Nullam','facilisis,',159,186,1,TRUE,'2018/10/17 10:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (3,'nascetur ridiculus mus. Donec dignissim','et,',34,174,2,FALSE,'2018/10/17 08:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (4,'turpis egestas. Fusce aliquet magna','sem',74,83,1,TRUE,'2018/08/17 11:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (5,'metus. Vivamus euismod','netus',103,143,1,FALSE,'2018/07/27 10:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (6,'risus.','eu,',146,79,3,FALSE,'2018/10/17 10:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (7,'ipsum ac mi','purus.',124,55,1,FALSE,'2018/10/27 10:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (8,'Nulla dignissim. Maecenas ornare egestas','facilisis',39,2,2,TRUE,'2018/11/17 10:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (9,'turpis vitae purus gravida sagittis.','Nulla',42,22,5,TRUE,'2018/11/27 10:45:12');
-INSERT INTO "news_post" (id,title,photo,comments,views,authors,published,published_date)
-VALUES (10,'non, cursus non, egestas','viverra.',54,19,1,FALSE,'2018/10/17 10:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (1,'ante. Maecenas','Curabitur','ante-maecenas-1',62,161,3,FALSE,'2018/10/17 10:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (2,'ornare egestas ligula. Nullam','facilisis,','ornare-egestas-ligula-Nullam-2',159,186,1,TRUE,'2018/10/17 10:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (3,'nascetur ridiculus mus. Donec dignissim','et,','nascetur-ridiculus-mus-donec-dignissim-3',34,174,2,FALSE,'2018/10/17 08:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (4,'turpis egestas. Fusce aliquet magna','sem','turpis-egestas-fusce-aliquet-magna-4',74,83,1,TRUE,'2018/08/17 11:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (5,'metus. Vivamus euismod','netus','metus-vivamus-euismod-5',103,143,1,FALSE,'2018/07/27 10:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (6,'risus.','eu,','risus-6',146,79,3,FALSE,'2018/10/17 10:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (7,'ipsum ac mi','purus.','ipsum-ac-mi-7',124,55,1,FALSE,'2018/10/27 10:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (8,'Nulla dignissim. Maecenas ornare egestas','facilisis','nulla-dignissim-maecenas-ornareegestas-8',39,2,2,TRUE,'2018/11/17 10:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (9,'turpis vitae purus gravida sagittis.','Nulla','turpis-vitae-purus-gravida-sagittis-9',42,22,5,TRUE,'2018/11/27 10:45:12');
+INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+VALUES (10,'non, cursus non, egestas','viverra.','non-cursus-non-egestas-10',54,19,1,FALSE,'2018/10/17 10:45:12');
 
 INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (11,2,2);
 INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (12,7,8);
