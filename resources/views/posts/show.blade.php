@@ -33,7 +33,7 @@
                                     <ul class="list-inline my-0 py-0">
 
                                         <li class="list-inline-item">
-                                            <p><i class="far fa-comments"></i> {{  $post->comments }} Comments</p>
+                                            <p><i class="far fa-comments"></i> {{  $post->comments_count }} Comments</p>
                                         </li>
 
                                         <li class="list-inline-item">
@@ -71,6 +71,58 @@
                         </div>
                     </div>
             <!-- end of single post-- -->
+
+            <h1 class="mt-3">Discussion</h1>
+            <hr>
+            
+            @foreach($post->comments as $comment)
+            <!-- single comment -->
+            <div class="row">
+                <div class="col-10">
+                    <div class="card">
+                        <div class="card-body m-0 ">
+                            <div class="row align-items-center ">
+                                <div class="col-sm-1 text-nowrap text-center px-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item borderless"><a href=""><img class="upvote" src={{ url('img/upvote.svg') }}></a></li>
+                                        <li class="list-group-item borderless">{{  $comment->content->votes}}</li>
+                                        <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src={{ url('img/upvote.svg') }}></a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="col-sm-9 pt-2 pl-1">
+                                    {{  $comment->content->text}}
+
+                                    <ul class="list-inline my-0 py-0">
+
+                                        <li class="list-inline-item">
+                                            <p><i class="far fa-clock"></i> {{ $comment->content->created }}</p>
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <p><i class="far fa-user-circle"></i> By {{ $comment->user->username }}</p>
+                                        </li>
+
+                                        <li class="list-inline-item float-right mx-auto">
+                                            <p><i class="fas fa-flag" ></i></p>
+                                        </li>
+                                        <li class="list-inline-item float-right mr-3">
+                                            <p><i class="fas fa-star"></i></p>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of single comment-- -->
+            @endforeach
 
           </div>
       </div>

@@ -55,10 +55,13 @@ Route::delete('user/{user}/delete', 'UserController@delete')->name('user.delete'
 
 // Posts
 Route::get('/', 'ContentController@indexPosts');
+Route::get('/latest', 'ContentController@indexPostsByDate');
+
 
 // show the post
 
-Route::get('post/{slug}', 'ContentController@showPost')->name('post.show');
+Route::get('post/{post}', 'ContentController@showPost')->name('post.show');
+
 
 
 

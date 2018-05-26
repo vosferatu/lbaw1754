@@ -1,7 +1,6 @@
 DROP SCHEMA IF EXISTS public CASCADE;
 CREATE SCHEMA public;
 
-DROP TABLE IF EXISTS comment_creation CASCADE;
 DROP TABLE IF EXISTS content_report CASCADE;
 DROP TABLE IF EXISTS downvotes CASCADE;
 DROP TABLE IF EXISTS upvotes CASCADE;
@@ -149,26 +148,23 @@ CREATE TABLE news_post (
    title text,
    photo text,
    slug text,
-   comments Integer,
+   comments_count Integer,
    views Integer,
    authors Integer,
    published BOOLEAN NOT NULL,
    published_date TIMESTAMP WITH TIME zone,
    CONSTRAINT views_positive CHECK ((views >= 0)),
-   CONSTRAINT comments_positive CHECK ((comments >= 0)),
+   CONSTRAINT comments_positive CHECK ((comments_count >= 0)),
    CONSTRAINT published_date_positive CHECK ((published_date >= now()))
 );
 
 CREATE TABLE "comment" (
    id Integer NOT NULL,
+   user_id Integer NOT NULL,
    parent_comment  Integer,
    parent_news  Integer NOT NULL
 );
 
-CREATE TABLE comment_creation (
-   id_comment Integer NOT NULL,
-   id_user Integer NOT NULL
-);
 
 CREATE TABLE news_creation (
    id_news Integer NOT NULL,
@@ -254,8 +250,6 @@ ALTER TABLE ONLY news_post
 ALTER TABLE ONLY "comment"
    ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
 
-ALTER TABLE ONLY comment_creation
-   ADD CONSTRAINT comment_creation_pkey PRIMARY KEY (id_comment, id_user);
 
 ALTER TABLE ONLY news_creation
    ADD CONSTRAINT news_creation_pkey PRIMARY KEY (id_news, id_user);
@@ -337,8 +331,9 @@ ALTER TABLE ONLY news_post
 ALTER TABLE ONLY "comment"
    ADD CONSTRAINT comment_fkey FOREIGN KEY (id) REFERENCES content(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY comment_creation
-   ADD CONSTRAINT comment_creation_fkey FOREIGN KEY (id_comment) REFERENCES "comment"(id) ON UPDATE CASCADE;
+  ALTER TABLE ONLY "comment"
+   ADD CONSTRAINT comment_user_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE;
+
 
 ALTER TABLE ONLY news_creation
    ADD CONSTRAINT news_creation_fkey FOREIGN KEY (id_news) REFERENCES news_post(id) ON UPDATE CASCADE;
@@ -652,36 +647,31 @@ VALUES (9,6,'erat nonummy ultricies ornare, elit elit fermentum','2018/04/18 10:
 INSERT INTO "content_report" (id_content,id_user,reason,date)
 VALUES (1,2,'nonummy ut, molestie in, tempus eu, ligula. Aenean euismod','2018/04/10 10:45:12');
 
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (1,'ante. Maecenas','Curabitur','ante-maecenas-1',62,161,3,FALSE,'2018/10/17 10:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (2,'ornare egestas ligula. Nullam','facilisis,','ornare-egestas-ligula-Nullam-2',159,186,1,TRUE,'2018/10/17 10:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (3,'nascetur ridiculus mus. Donec dignissim','et,','nascetur-ridiculus-mus-donec-dignissim-3',34,174,2,FALSE,'2018/10/17 08:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (4,'turpis egestas. Fusce aliquet magna','sem','turpis-egestas-fusce-aliquet-magna-4',74,83,1,TRUE,'2018/08/17 11:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (5,'metus. Vivamus euismod','netus','metus-vivamus-euismod-5',103,143,1,FALSE,'2018/07/27 10:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (6,'risus.','eu,','risus-6',146,79,3,FALSE,'2018/10/17 10:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (7,'ipsum ac mi','purus.','ipsum-ac-mi-7',124,55,1,FALSE,'2018/10/27 10:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (8,'Nulla dignissim. Maecenas ornare egestas','facilisis','nulla-dignissim-maecenas-ornareegestas-8',39,2,2,TRUE,'2018/11/17 10:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (9,'turpis vitae purus gravida sagittis.','Nulla','turpis-vitae-purus-gravida-sagittis-9',42,22,5,TRUE,'2018/11/27 10:45:12');
-INSERT INTO "news_post" (id,title,photo,slug,comments,views,authors,published,published_date)
+INSERT INTO "news_post" (id,title,photo,slug,comments_count,views,authors,published,published_date)
 VALUES (10,'non, cursus non, egestas','viverra.','non-cursus-non-egestas-10',54,19,1,FALSE,'2018/10/17 10:45:12');
 
-INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (11,2,2);
-INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (12,7,8);
-INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (13,1,10);
-INSERT INTO "comment" (id,parent_comment,parent_news) VALUES (14,7,9);
-
-INSERT INTO "comment_creation" (id_comment,id_user) VALUES (11,9);
-INSERT INTO "comment_creation" (id_comment,id_user) VALUES (12,10);
-INSERT INTO "comment_creation" (id_comment,id_user) VALUES (13,5);
-INSERT INTO "comment_creation" (id_comment,id_user) VALUES (14,4);
+INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (11,9,2,2);
+INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (12,10,7,8);
+INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (13,5,1,10);
+INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (14,4,7,9);
 
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,2,TRUE,'2018/11/17 10:45:12');
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,3,FALSE,null);

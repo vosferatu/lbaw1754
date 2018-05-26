@@ -38,7 +38,7 @@
                                   </div>
 
                                   <div class="col-sm-9 pt-2 pl-1">
-                                      <h2 class="d-inline"><a href={{ route('post.show',['slug'=>$post->slug])}}>{{ $post->title }}</a></h2>
+                                      <h2 class="d-inline"><a href="/post/{{ $post->slug }}">{{ $post->title }}</a></h2>
                                       <span class="badge badge-pill badge-warning">Photography</span> <span class="badge badge-pill badge-warning">Technology</span>
 
                                       <p>{{ $post->content->text }}</p>
@@ -46,7 +46,7 @@
                                       <ul class="list-inline my-0 py-0">
 
                                           <li class="list-inline-item">
-                                              <p><i class="far fa-comments"></i> {{  $post->comments }} Comments</p>
+                                              <p><i class="far fa-comments"></i> {{  $post->comments_count }} Comments</p>
                                           </li>
 
                                           <li class="list-inline-item">

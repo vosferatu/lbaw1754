@@ -37,4 +37,16 @@ class User extends Authenticatable
      * return $this->hasMany('App\Card');
     *}
     */
+
+     /**
+     * The comments that belong to the user.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+
+
+
 }

@@ -26,6 +26,18 @@ class ContentController extends Controller
     return view('posts.index', compact('posts'));
   }
 
+  public function indexPostsByDate()
+  {
+    //if (!Auth::check()) return redirect('/login');
+    //$this->authorize('list', Card::class);
+    //$cards = Auth::user()->cards()->orderBy('id')->get();
+
+   
+    $posts = Post::orderBy('published_date','desc')->get();
+
+    return view('posts.index', compact('posts'));
+  }
+
 
    /**
      * Show the specific post
@@ -33,9 +45,8 @@ class ContentController extends Controller
      * @param  Post  $post
      * @return Response
      */
-    public function showPost($slug)
+    public function showPost(Post $post)
     {
-      $post = Post::find($slug);
 
       return view('posts.show', compact('post'));
     }

@@ -20,15 +20,22 @@ class Comment extends Content
      */
     public function post()
     {
-        return $this->belongsTo('App\Post');
-
+        return $this->belongsTo('App\Post','parent_news');
     }
 
       /**
-     * Get the content behind post.
+     * Get the content behind comment.
      */
     public function content()
     {
         return $this->belongsTo('App\Content','id');
+    }
+
+          /**
+     * Get the user behind comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }
