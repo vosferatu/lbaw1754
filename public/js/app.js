@@ -83,7 +83,7 @@ function sendUpvoteRequest(event) {
   let voting = this.closest('.voting');
   let voteCount = voting.querySelector('.votesCount');
 
-  if (window.user == 'logged_out') {
+  if (window.user == 0) {
     window.location.replace("/register");
   }
   else {
@@ -105,7 +105,7 @@ function sendDownvoteRequest(event) {
   let voteCount = voting.querySelector('.votesCount');
 
 
-  if (window.user == 'logged_out') {
+  if (window.user == 0) {
     window.location.replace("/register");
   }
   else {
@@ -123,7 +123,7 @@ function voteHandler() {
 }
 
 function openReportModal(event) {
-  if (window.user == 'logged_out') {
+  if (window.user == 0) {
     window.location.replace("/register");
   }
   else {
@@ -145,7 +145,7 @@ function reportHandler() {
 
 function sendSaveRequest(event) {
 
-  if (window.user == 'logged_out') {
+  if (window.user == 0) {
     window.location.replace("/register");
   }
   else {
@@ -280,4 +280,42 @@ function createItem(item) {
   return new_item;
 }
 
+function toggleNavbar(){
+  let nav = document.getElementById('navbarLinks');
+  let liArray = nav.getElementsByTagName("li");
+
+  let trending = liArray[0];
+  let latest = liArray[1];
+  let feed = liArray[2];
+
+  let badges = document.querySelectorAll(".badge");
+  console.log(badges);  
+
+
+  current = window.location.pathname;
+
+  if(current == '/'){
+    trending.classList.add('active');
+    
+    badges.forEach(function(badge){
+        badge.classList.add('badge-warning')
+    });
+  }
+  else if(current == '/latest'){
+    latest.classList.add('active');
+    badges.forEach(function(badge){
+      badge.classList.add('badge-secondary')
+  });
+}
+  else if(current == '/feed'){
+    feed.classList.add('active');
+    badges.forEach(function(badge){
+      badge.classList.add('badge-success')
+  });}
+
+
+
+}
+
 addEventListeners();
+toggleNavbar();

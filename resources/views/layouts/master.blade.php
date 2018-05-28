@@ -37,7 +37,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script>
-      window.user = {!! Auth::check() ? auth()->user() : 'logged_out' !!}
+      window.user = {!! Auth::check() ? auth()->user() : 0 !!}
   </script>
   </body>
 </html>

@@ -11,7 +11,12 @@
 
                       <div class="col-sm-9 pt-2 pl-1">
                           <h2 class="d-inline">{{ $post->title }}</h2>
-                          <p><span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span></p>
+                          
+                          <p>
+                          @foreach ($post->tags as $tag)
+                          <span class="badge badge-pill badge-success">{{ $tag->name }}</span>
+                      @endforeach
+                          </p>
 
                           <ul class="list-inline my-0 py-0">
 

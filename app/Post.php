@@ -65,6 +65,22 @@ class Post extends Model
         return 'slug';
     }
 
+    /**
+     * The tags that belong to the post.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag','tags_post','id_tag','id_post');
+    }
+
+    public function relatedPostsByTag()
+    {
+        return Post::whereHas('tags', function ($query) {
+            $tagIds = $this->tags()->pluck('tags.id')->all();
+            $query->whereIn('tags.id', $tagIds);
+        })->where('id', '<>', $this->id)->get();
+    }
+
     
 
 

@@ -54,6 +54,12 @@ CREATE TABLE tags (
    CONSTRAINT frequency_positive CHECK ((frequency >= 0))
 );
 
+CREATE TABLE tags_post (
+    id SERIAL NOT NULL,
+   id_tag Integer NOT NULL,
+   id_post Integer NOT NULL
+);
+
 CREATE TABLE tags_subscribed (
    id_tag Integer NOT NULL,
    id_user Integer NOT NULL
@@ -200,6 +206,9 @@ ALTER TABLE ONLY tags
 
 ALTER TABLE ONLY tags
    ADD CONSTRAINT tags_ukey_name UNIQUE (name);
+
+   ALTER TABLE ONLY tags_post
+   ADD CONSTRAINT tags_post_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY tags_subscribed
    ADD CONSTRAINT tags_subscribed_pkey PRIMARY KEY (id_tag, id_user);
@@ -514,17 +523,30 @@ VALUES ('Price','UUZ76WQD8AY','Morbi@consectetuermauris.co.uk','Joel Mack','Saud
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Daugherty','MEG47BZI3NY','leo.Vivamus@elit.ca','Felix Robbins','Myanmar','sed, sapien. Nunc','Freeman',178,'2018/06/05 10:45:12');
 
-INSERT INTO "tags" (name,frequency) VALUES ('Duis',159);
-INSERT INTO "tags" (name,frequency) VALUES ('Donec',179);
-INSERT INTO "tags" (name,frequency) VALUES ('semper',140);
-INSERT INTO "tags" (name,frequency) VALUES ('cursus',199);
-INSERT INTO "tags" (name,frequency) VALUES ('fringilla',193);
-INSERT INTO "tags" (name,frequency) VALUES ('ut',10);
-INSERT INTO "tags" (name,frequency) VALUES ('scelerisque',67);
-INSERT INTO "tags" (name,frequency) VALUES ('arcu',57);
-INSERT INTO "tags" (name,frequency) VALUES ('erat',46);
-INSERT INTO "tags" (name,frequency) VALUES ('ante',92);
-INSERT INTO "tags" (name,frequency) VALUES ('lectus,',174);
+INSERT INTO "tags" (name,frequency) VALUES ('World',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Portugal',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Money',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Culture',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Politics',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Tech',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Science',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Health',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Sports',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Arts',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Books',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Style',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Food',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Cinema',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Music',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Opinion',0);
+INSERT INTO "tags" (name,frequency) VALUES ('Other',0);
+
+INSERT INTO "tags_post" (id_tag,id_post) VALUES (1,1);
+INSERT INTO "tags_post" (id_tag,id_post) VALUES (2,1);
+INSERT INTO "tags_post" (id_tag,id_post) VALUES (1,3);
+INSERT INTO "tags_post" (id_tag,id_post) VALUES (2,3);
+
+
 
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (9,2);
 INSERT INTO "tags_subscribed" (id_tag,id_user) VALUES (2,7);

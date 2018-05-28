@@ -15,4 +15,13 @@ class Tag extends Model
 
      // Don't add create and update timestamps in database.
      public $timestamps  = false;
+
+      /**
+     * The posts that belong to the tag.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany('App\Post','tags_post','id_tag','id_post');
+    }
 }
+ 

@@ -54,9 +54,12 @@ Route::patch('user/{user}/updateEmail', 'UserController@updateEmail')->name('use
 Route::patch('user/{user}/updatePassword', 'UserController@updatePassword')->name('users.update.password');
 Route::delete('user/{user}/delete', 'UserController@delete')->name('user.delete');
 
+
+
 // Posts
-Route::get('/', 'ContentController@indexPosts');
-Route::get('/latest', 'ContentController@indexPostsByDate');
+Route::get('/', 'ContentController@indexPosts')->name('trending');
+Route::get('/latest', 'ContentController@indexPostsByDate')->name('postsByDate');
+Route::get('/tag/{tag}', 'ContentController@indexPostsByTag')->name('postsByTag');
 
 
 // show the post

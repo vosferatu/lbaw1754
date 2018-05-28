@@ -9,12 +9,15 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item ml-3 active"><a href="trending.html" class="nav-link"> <i class="fas fa-bolt"></i> Trending</a>
+            
+            
+            <ul id="navbarLinks" class="navbar-nav mr-auto">
+                    
+                <li class="trending nav-item ml-3"><a href={{ route('trending') }} class="nav-link"> <i class="fas fa-bolt"></i> Trending</a>
                 </li>
-                <li class="nav-item ml-3"><a href="latest.html" class="nav-link"><i class="fas fa-clock"></i> Latest</a></li>
+                <li class="latest nav-item ml-3"><a href={{ route('postsByDate') }} class="nav-link"><i class="fas fa-clock"></i> Latest</a></li>
 
-                <li class="nav-item ml-3"><a href="feed.html" class="nav-link"> <i class="fas fa-leaf"></i> Feed</a></li>
+                <li class="feed nav-item ml-3"><a href="feed.html" class="nav-link"> <i class="fas fa-leaf"></i> Feed</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right ml-auto">

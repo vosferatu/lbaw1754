@@ -1,3 +1,5 @@
+
+
 @extends('layouts.master')
 
 @push('styles')
@@ -16,8 +18,12 @@
 
           <!-- Posts here -->
           <div class="col-sm posts">
+                @if (Request::is('latest'))
+                    <h4 class="title"> Sweet breeze, here are the freshest news  <i class="fas fa-clock"></i> </a></li></h4>
+                @else
               <h4 class="title"> Hottest news right now  <i class="fas fa-bolt"></i> </a></li></h4>
-              
+    
+            @endif
               @if(session()->has('message-type'))
               <div class="alert alert-{{ session('message-type') }}"> 
               {!! session('message') !!}

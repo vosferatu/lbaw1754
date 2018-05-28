@@ -13,6 +13,7 @@ use App\Upvote;
 use App\Downvote;
 use App\ContentReport;
 use App\Save;
+use App\Tag;
 
 
 class ContentController extends Controller
@@ -30,8 +31,9 @@ class ContentController extends Controller
 
    
     $posts = Post::all();
+    $tags = Tag::all();
 
-    return view('posts.index', compact('posts'));
+    return view('posts.index', compact('posts','tags'));
   }
 
   public function indexPostsByDate()
@@ -42,8 +44,20 @@ class ContentController extends Controller
 
    
     $posts = Post::orderBy('published_date','desc')->get();
+    $tags = Tag::all();
 
-    return view('posts.index', compact('posts'));
+    return view('posts.index', compact('posts','tags'));
+  }
+
+  public function indexPostsByTag(Tag $tag)
+  {
+    $tags = Tag::all();
+
+    $posts = $tag->posts()
+    ->paginate(6);
+
+
+    return view('posts.index', compact('posts','tags'));
   }
 
 
@@ -55,8 +69,9 @@ class ContentController extends Controller
      */
     public function showPost(Post $post)
     {
+      $tags = Tag::all();
 
-      return view('posts.show', compact('post'));
+      return view('posts.show', compact('post','tags'));
     }
     
   public function showPostForm()
