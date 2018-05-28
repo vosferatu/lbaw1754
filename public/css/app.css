@@ -193,3 +193,10 @@ footer a:hover {
     color:  #76c1ee !important;  
 }
 
+
+.aboutimg img{
+    width: 400px;
+    height: 250px;
+    margin: auto;
+    display: block;
+}
