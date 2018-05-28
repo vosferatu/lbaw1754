@@ -293,6 +293,7 @@ function toggleNavbar(){
 
 
   current = window.location.pathname;
+  
 
   if(current == '/'){
     trending.classList.add('active');
@@ -307,14 +308,23 @@ function toggleNavbar(){
       badge.classList.add('badge-secondary')
   });
 }
-  else if(current == '/feed'){
-    feed.classList.add('active');
-    badges.forEach(function(badge){
-      badge.classList.add('badge-success')
-  });}
+    else if(current == '/feed'){
+      feed.classList.add('active');
+      badges.forEach(function(badge){
+        badge.classList.add('badge-success')
+    });}
 
+    else if(current.match("/tag/*")){
+      let tag = current.split('/')[2];
+      let tagSide = document.getElementById(tag);
+      tagSide.classList.add('sidebarActive');
 
-
+      badges.forEach(function(badge){
+        badge.classList.add('badgeTag')
+    });
+      
+    }
+  
 }
 
 addEventListeners();

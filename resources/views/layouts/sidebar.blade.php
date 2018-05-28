@@ -3,7 +3,7 @@
                     <div class="list-group">
 
                             @foreach ($tags as $tag)
-                            <a href="/tag/{{ $tag->name  }}" class="list-group-item list-group-item-action ">{{ $tag->name }}</a>
+                            <a href="/tag/{{ $tag->name  }}" id="{{ $tag->name  }}" class="list-group-item list-group-item-action ">{{ $tag->name }}</a>
                         @endforeach
                        
                     </div>

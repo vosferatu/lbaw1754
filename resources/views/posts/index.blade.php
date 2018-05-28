@@ -18,12 +18,15 @@
 
           <!-- Posts here -->
           <div class="col-sm posts">
-                @if (Request::is('latest'))
+            
+            @if (Request::is('latest'))
                     <h4 class="title"> Sweet breeze, here are the freshest news  <i class="fas fa-clock"></i> </a></li></h4>
-                @else
-              <h4 class="title"> Hottest news right now  <i class="fas fa-bolt"></i> </a></li></h4>
-    
+            @elseif( Request::is('tag/*'))
+                <h4 class="title"> Posts with tag '{{ Request::segment(2)}}' <i class="fas fa-tag blue-tag"></i> </a> </li></h4>
+            @else
+              <h4 class="title"> Hottest news right now  <i class="fas fa-bolt side"></i> </a></li></h4>
             @endif
+            
               @if(session()->has('message-type'))
               <div class="alert alert-{{ session('message-type') }}"> 
               {!! session('message') !!}

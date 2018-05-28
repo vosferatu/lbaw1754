@@ -179,3 +179,17 @@ footer a:hover {
     height: 10em;
     border-radius: 50%;
 }
+
+.sidebarActive{
+    background: #76c1ee !important;    
+}
+
+.badgeTag{
+    background: #76c1ee !important;  
+    color: white;  
+}
+
+.blue-tag{
+    color:  #76c1ee !important;  
+}
+
