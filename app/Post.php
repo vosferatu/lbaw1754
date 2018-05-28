@@ -70,7 +70,7 @@ class Post extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany('App\Tag','tags_post','id_tag','id_post');
+        return $this->belongsToMany('App\Tag','tags_post','id_post','id_tag');
     }
 
     public function relatedPostsByTag()

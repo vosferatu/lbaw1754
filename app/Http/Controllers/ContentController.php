@@ -53,8 +53,7 @@ class ContentController extends Controller
   {
     $tags = Tag::all();
 
-    $posts = $tag->posts()
-    ->paginate(6);
+    $posts = $tag->posts()->get();
 
 
     return view('posts.index', compact('posts','tags'));

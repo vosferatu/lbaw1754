@@ -16,7 +16,7 @@
 
                     <div class="col-sm-9 pt-2 pl-1">
                         <h2 class="d-inline"><a href="/post/{{ $post->slug }}">{{ $post->title }}</a></h2>
-                                @foreach ($post->tags as $tag)
+                        @foreach ($post->tags as $tag)
                                 <span class="badge badge-pill">{{ $tag->name }}</span>
                             @endforeach
       
