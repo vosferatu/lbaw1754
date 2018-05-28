@@ -20,7 +20,7 @@ class Downvote extends Model
 
 
       /**
-     * Get the content behind upvote.
+     * Get the content behind downvote.
      */
     public function content()
     {
@@ -28,7 +28,7 @@ class Downvote extends Model
     }
 
      /**
-     * Get the user behind upvote.
+     * Get the user behind downvote.
      */
 
     public function user()
