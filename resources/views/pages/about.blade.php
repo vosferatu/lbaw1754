@@ -1,6 +1,8 @@
 
 @extends('layouts.master')
 
+@section('title', "About" )
+
 @push('styles')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
