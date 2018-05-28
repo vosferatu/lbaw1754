@@ -208,7 +208,7 @@ footer a:hover {
 /*********************************************************/
 /* FAQ */
 
-.btn-link{
+.btn-link {
 	text-decoration: none !important;
 }
 
@@ -217,13 +217,62 @@ footer a:hover {
 }
 
 .searchbox {
-	margin-bottom: 2em;
+    margin-bottom: 2em;
 }
 
-h2 {
-	font-size: 50px;
-	margin-bottom: 20px;
+.searchbox .form-inline {
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.faq-help {
+	font-size: 40px;
+    margin-bottom: 20px;
 }
 
 /*********************************************************/
 
+/*********************************************************/
+/* Feed */
+
+.upvote{
+    width: 50%;
+ }
+ 
+ .upvote:hover{
+     width: 70%;
+ }
+ 
+ .downvote{
+     width: 50%;
+     transform: rotate(180deg);
+ }
+ 
+ .downvote:hover{
+     width: 70%;
+ }
+ 
+ 
+ li.borderless { border: none; }
+ 
+ .posts .title {
+     margin-left: 1em;
+ }
+ 
+ .posts .title .fa-leaf {
+     color: #268034;
+ }
+ 
+ .posts .title .fa-clock {
+     color: #a5a5a2;
+ }
+ 
+ .posts .title .fa-bolt {
+     color: #ffaa22;
+ }
+ 
+ .editProfile{
+     margin-top: 2em;
+ }
+ 
+ /*********************************************************/

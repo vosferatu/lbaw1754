@@ -13,7 +13,7 @@
 		<section class="pb-3">
 
 			<div class="container-fluid text-center flex-row searchbox">
-				<h2>How can we help?</h2>
+				<h2 class="faq-help">How can we help?</h2>
 				<form class="form-inline my-2 my-lg-0">
 					<div>
 						<input class="form-control mr-sm-2 inputBig" type="text" placeholder="Search">
