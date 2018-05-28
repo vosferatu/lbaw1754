@@ -29,11 +29,12 @@ Route::get('cards/{id}', 'CardController@show');
 
 // API
 Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
 Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
+
 */
+Route::delete('api/cards/{card_id}', 'CardController@delete');
 
 
 // Authentication
@@ -60,10 +61,21 @@ Route::get('/latest', 'ContentController@indexPostsByDate');
 
 // show the post
 
-Route::get('post/{post}', 'ContentController@showPost')->name('post.show');
+Route::get('/post/{post}', 'ContentController@showPost')->name('post.show');
+
+//comment
+Route::post('/post/{post}/comments', 'ContentController@addComment');
+
+
+// API
+Route::put('/api/content/up/{content}', 'ContentController@upvote');
+Route::put('/api/content/down/{content}', 'ContentController@downvote');
+Route::put('/api/content/report/{content}', 'ContentController@report');
+Route::put('/api/content/save/{content}', 'ContentController@save');
 
 
 
 
-Route::get('api/post/create', 'ContentController@showPostForm')->name('post.create');
-Route::post('api/post/create', 'ContentController@create');
+
+Route::get('/api/post/create', 'ContentController@showPostForm')->name('post.create');
+Route::post('/api/post/create', 'ContentController@create');

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Content
 {
+    // Don't add create and update timestamps in database.
+     public $timestamps  = false;
+
+     protected $fillable = ['id', 'user_id', 'parent_comment','parent_news'];
+
 
     /**
      * The table associated with the model.
@@ -38,4 +43,7 @@ class Comment extends Content
     {
         return $this->belongsTo('App\User');
     }
+
+
+    
 }

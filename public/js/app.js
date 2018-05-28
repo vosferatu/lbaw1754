@@ -1,32 +1,56 @@
 function addEventListeners() {
   let itemCheckers = document.querySelectorAll('article.card li.item input[type=checkbox]');
-  [].forEach.call(itemCheckers, function(checker) {
+  [].forEach.call(itemCheckers, function (checker) {
     checker.addEventListener('change', sendItemUpdateRequest);
   });
 
   let itemCreators = document.querySelectorAll('article.card form.new_item');
-  [].forEach.call(itemCreators, function(creator) {
+  [].forEach.call(itemCreators, function (creator) {
     creator.addEventListener('submit', sendCreateItemRequest);
   });
 
   let itemDeleters = document.querySelectorAll('article.card li a.delete');
-  [].forEach.call(itemDeleters, function(deleter) {
+  [].forEach.call(itemDeleters, function (deleter) {
     deleter.addEventListener('click', sendDeleteItemRequest);
   });
 
   let cardDeleters = document.querySelectorAll('article.card header a.delete');
-  [].forEach.call(cardDeleters, function(deleter) {
+  [].forEach.call(cardDeleters, function (deleter) {
     deleter.addEventListener('click', sendDeleteCardRequest);
   });
 
   let cardCreator = document.querySelector('article.card form.new_card');
   if (cardCreator != null)
     cardCreator.addEventListener('submit', sendCreateCardRequest);
+
+  let upvoteButtons = document.querySelectorAll('.upvote');
+  [].forEach.call(upvoteButtons, function (upvote) {
+    upvote.addEventListener('click', sendUpvoteRequest);
+  });
+
+  let downvoteButtons = document.querySelectorAll('.downvote');
+  [].forEach.call(downvoteButtons, function (downvote) {
+    downvote.addEventListener('click', sendDownvoteRequest);
+  });
+
+  let reportButtons = document.querySelectorAll('.report');
+  [].forEach.call(reportButtons, function (report) {
+    report.addEventListener('click', openReportModal);
+  });
+
+  let saveButtons = document.querySelectorAll('.save');
+  [].forEach.call(saveButtons, function (save) {
+    save.addEventListener('click', sendSaveRequest);
+  });
+
+
+
+
 }
 
 function encodeForAjax(data) {
   if (data == null) return null;
-  return Object.keys(data).map(function(k){
+  return Object.keys(data).map(function (k) {
     return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
   }).join('&');
 }
@@ -46,7 +70,7 @@ function sendItemUpdateRequest() {
   let id = item.getAttribute('data-id');
   let checked = item.querySelector('input[type=checkbox]').checked;
 
-  sendAjaxRequest('post', '/api/item/' + id, {done: checked}, itemUpdatedHandler);
+  sendAjaxRequest('post', '/api/item/' + id, { done: checked }, itemUpdatedHandler);
 }
 
 function sendDeleteItemRequest() {
@@ -55,12 +79,89 @@ function sendDeleteItemRequest() {
   sendAjaxRequest('delete', '/api/item/' + id, null, itemDeletedHandler);
 }
 
+function sendUpvoteRequest(event) {
+  let voting = this.closest('.voting');
+  let voteCount = voting.querySelector('.votesCount');
+
+  if (window.user == 'logged_out') {
+    window.location.replace("/register");
+  }
+  else {
+    let id = this.closest('.card').getAttribute('data-id');
+    sendAjaxRequest('put', '/api/content/up/' + id, null, voteHandler);
+    voteCount.innerHTML = parseInt(voteCount.innerHTML)+1;
+  }
+
+  event.preventDefault();
+}
+
+function voteHandler() {
+  if (this.status != 200) window.location = '/';
+  let response = JSON.parse(this.responseText);
+}
+
+function sendDownvoteRequest(event) {
+  let voting = this.closest('.voting');
+  let voteCount = voting.querySelector('.votesCount');
+
+
+  if (window.user == 'logged_out') {
+    window.location.replace("/register");
+  }
+  else {
+    let id = this.closest('.card').getAttribute('data-id');
+    sendAjaxRequest('put', '/api/content/down/' + id, null, voteHandler);
+    voteCount.innerHTML = parseInt(voteCount.innerHTML)-1;
+  }
+
+  event.preventDefault();
+}
+
+function voteHandler() {
+  //if (this.status != 200) window.location = '/';
+  let response = JSON.parse(this.responseText);
+}
+
+function openReportModal(event) {
+  if (window.user == 'logged_out') {
+    window.location.replace("/register");
+  }
+  else {
+     $("#reportModal").modal();
+     $("button#sendReportButton").click(function(){
+      let id = this.closest('.card').getAttribute('data-id');
+      let reason = document.querySelector('textarea[name=reason]').value;
+
+      sendAjaxRequest('put', '/api/content/report/' + id, {reason: reason}, reportHandler);
+
+     });
+  }
+}
+
+function reportHandler() {
+  if(this.status == 200) location.reload();
+}
+
+
+function sendSaveRequest(event) {
+
+  if (window.user == 'logged_out') {
+    window.location.replace("/register");
+  }
+  else {
+    let id = this.closest('.card').getAttribute('data-id');
+    sendAjaxRequest('put', '/api/content/save/' + id, null, voteHandler);
+  }
+
+  event.preventDefault();
+}
+
 function sendCreateItemRequest(event) {
   let id = this.closest('article').getAttribute('data-id');
   let description = this.querySelector('input[name=description]').value;
 
   if (description != '')
-    sendAjaxRequest('put', '/api/cards/' + id, {description: description}, itemAddedHandler);
+    sendAjaxRequest('put', '/api/cards/' + id, { description: description }, itemAddedHandler);
 
   event.preventDefault();
 }
@@ -75,10 +176,11 @@ function sendCreateCardRequest(event) {
   let name = this.querySelector('input[name=name]').value;
 
   if (name != '')
-    sendAjaxRequest('put', '/api/cards/', {name: name}, cardAddedHandler);
+    sendAjaxRequest('put', '/api/cards/', { name: name }, cardAddedHandler);
 
   event.preventDefault();
 }
+
 
 function itemUpdatedHandler() {
   let item = JSON.parse(this.responseText);
@@ -91,6 +193,7 @@ function itemAddedHandler() {
   if (this.status != 200) window.location = '/';
   let item = JSON.parse(this.responseText);
 
+
   // Create the new item
   let new_item = createItem(item);
 
@@ -100,7 +203,7 @@ function itemAddedHandler() {
   form.previousElementSibling.append(new_item);
 
   // Reset the new item form
-  form.querySelector('[type=text]').value="";
+  form.querySelector('[type=text]').value = "";
 }
 
 function itemDeletedHandler() {
@@ -113,7 +216,7 @@ function itemDeletedHandler() {
 function cardDeletedHandler() {
   if (this.status != 200) window.location = '/';
   let card = JSON.parse(this.responseText);
-  let article = document.querySelector('article.card[data-id="'+ card.id + '"]');
+  let article = document.querySelector('article.card[data-id="' + card.id + '"]');
   article.remove();
 }
 
@@ -126,7 +229,7 @@ function cardAddedHandler() {
 
   // Reset the new card input
   let form = document.querySelector('article.card form.new_card');
-  form.querySelector('[type=text]').value="";
+  form.querySelector('[type=text]').value = "";
 
   // Insert the new card
   let article = form.parentElement;

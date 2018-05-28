@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Post;
 use App\Content;
+use App\Comment;
+use App\Upvote;
+use App\Downvote;
+use App\ContentReport;
+use App\Save;
+
 
 class ContentController extends Controller
 {
-     /**
+    /**
    * Shows all posts.
    *
    * @return Response
@@ -74,6 +82,83 @@ class ContentController extends Controller
     return redirect('/');
 
   }
+
+  public function addComment(Post $post){
+
+
+      $content = Content::create([
+        "text" => request('text'),
+      ]);
+
+      $this->authorize('createContent', $content);
+
+      
+      Comment::create([
+        'id' => $content->id,
+        'user_id' => Auth::user()->id,
+        'parent_comment' => 0,
+        'parent_news' => $post->id
+      ]);
+
+      return back();
+  }
+
+
+  public function upvote(Content $content)
+  {
+
+    Upvote::create([
+      'id_content' => $content->id,
+      'id_user' => Auth::user()->id,
+    ]);
+
+    return $content;
+  }
+
+  public function downvote(Content $content)
+  {
+
+    Downvote::create([
+      'id_content' => $content->id,
+      'id_user' => Auth::user()->id,
+    ]);
+
+    return $content;
+  }
+
+
+  public function report(Content $content, Request $request)
+  {
+
+    $this->validate(request(), [
+      'reason' => 'required',
+  ]);
+  
+
+    $report = ContentReport::create([
+      'reason' => $request->input('reason'),
+      'id_content' => $content->id,
+      'id_user' => Auth::user()->id,
+    ]);
+
+    $request->session()->flash('message', 'The report was sent.');
+    $request->session()->flash('message-type', 'success');
+
+    return response()->json(['status'=>'Success']);
+  }
+
+  public function save(Content $content)
+  {
+
+    Save::create([
+      'id_content' => $content->id,
+      'id_user' => Auth::user()->id,
+    ]);
+
+    return $content;
+  }
+
+
 
   
 }

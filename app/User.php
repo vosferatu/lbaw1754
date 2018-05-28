@@ -46,6 +46,29 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
+     /**
+     * Get the upvotes of user.
+     */
+    public function upvotes()
+    {
+        return $this->hasMany('App\Upvote','id_user');
+    }
+
+    /**
+     * Get the reports of user.
+     */
+    public function reports()
+    {
+        return $this->hasMany('App\Reports','id_user');
+    }
+
+        /**
+     * Get the saves of user.
+     */
+    public function saves()
+    {
+        return $this->hasMany('App\Save','id_user');
+    }
 
 
 

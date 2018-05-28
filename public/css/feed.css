@@ -6,9 +6,15 @@
     width: 70%;
 }
 
-.rotate{
+.downvote{
+    width: 50%;
     transform: rotate(180deg);
 }
+
+.downvote:hover{
+    width: 70%;
+}
+
 
 li.borderless { border: none; }
 

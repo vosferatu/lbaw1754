@@ -114,33 +114,38 @@ CREATE TABLE verified (
    CONSTRAINT verified_date CHECK ((verified > now()))
 );
 
-CREATE TABLE content (
-   id SERIAL NOT NULL,
-   votes Integer,
-   "text" Text NOT NULL,
-   created TIMESTAMP WITH TIME zone DEFAULT now()
-);
 
 CREATE TABLE saves (
+  id SERIAL NOT NULL,
    id_content Integer NOT NULL,
    id_user Integer NOT NULL
 );
 
 CREATE TABLE upvotes (
+    id SERIAL NOT NULL,
    id_content Integer NOT NULL,
    id_user Integer NOT NULL
 );
 
 CREATE TABLE downvotes (
+    id SERIAL NOT NULL,
    id_content Integer NOT NULL,
    id_user Integer NOT NULL
 );
 
 CREATE TABLE content_report (
+   id SERIAL NOT NULL,
    id_content Integer NOT NULL,
    id_user Integer NOT NULL,
    reason text,
    "date" TIMESTAMP WITH TIME zone DEFAULT now()
+);
+
+CREATE TABLE content (
+   id SERIAL NOT NULL,
+   votes Integer DEFAULT 1,
+   "text" Text NOT NULL,
+   created TIMESTAMP WITH TIME zone DEFAULT now()
 );
 
 CREATE TABLE news_post (
@@ -233,16 +238,16 @@ ALTER TABLE ONLY content
    ADD CONSTRAINT content_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY saves
-   ADD CONSTRAINT saves_pkey PRIMARY KEY (id_content, id_user);
+   ADD CONSTRAINT saves_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY upvotes
-   ADD CONSTRAINT upvotes_pkey PRIMARY KEY (id_content, id_user);
+   ADD CONSTRAINT upvotes_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY downvotes
-   ADD CONSTRAINT downvotes_pkey PRIMARY KEY (id_content, id_user);
+   ADD CONSTRAINT downvotes_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY content_report
-   ADD CONSTRAINT content_report_pkey PRIMARY KEY (id_content, id_user);
+   ADD CONSTRAINT content_report_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY news_post
    ADD CONSTRAINT news_post_pkey PRIMARY KEY (id);
