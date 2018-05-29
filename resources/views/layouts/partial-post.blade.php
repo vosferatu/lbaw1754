@@ -20,7 +20,8 @@
                                 <span class="badge badge-pill">{{ $tag->name }}</span>
                             @endforeach
       
-                        <p>{{ $post->content->text }}</p>
+                            {!! $post->content->text !!}
+
 
                         <ul class="list-inline my-0 py-0">
 
@@ -33,7 +34,14 @@
                             </li>
 
                             <li class="list-inline-item">
-                                <p><i class="far fa-user-circle"></i> By Kevin</p>
+                                <p><i class="far fa-user-circle"></i> By 
+                                    @for ($i = 0; $i < $post->users->count(); $i++)
+                                        @if (($post->users->count() == 1) || $i== $post->users->count()-1)
+                                        {{ $post->users[$i]->username }}
+                                        @else
+                                        {{ $post->users[$i]->username }}, 
+                                        @endif
+                                    @endfor</p>
                             </li>
 
                             <li class="list-inline-item float-right mx-auto report"><p><a href="#"><i class="fas fa-flag"></i></p></li></a>

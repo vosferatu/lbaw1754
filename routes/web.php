@@ -72,6 +72,10 @@ Route::post('/post/{post}/comments', 'ContentController@addComment');
 
 // API
 Route::put('/api/content/up/{content}', 'ContentController@upvote');
+Route::get('/api/content/up/{content}', 'ContentController@getupvotesbyuser'); //<----
+Route::delete('/api/content/up/{content}', 'ContentController@deleteupvote');
+Route::get('/api/content/up/{content}', 'ContentController@getdownvotesbyuser'); //<----
+Route::delete('/api/content/up/{content}', 'ContentController@deletedownvote');
 Route::put('/api/content/down/{content}', 'ContentController@downvote');
 Route::put('/api/content/report/{content}', 'ContentController@report');
 Route::put('/api/content/save/{content}', 'ContentController@save');
@@ -81,4 +85,4 @@ Route::put('/api/content/save/{content}', 'ContentController@save');
 
 
 Route::get('/api/post/create', 'ContentController@showPostForm')->name('post.create');
-Route::post('/api/post/create', 'ContentController@create');
+Route::post('/api/post/create', 'ContentController@createPost');

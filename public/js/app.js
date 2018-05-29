@@ -80,19 +80,41 @@ function sendDeleteItemRequest() {
 }
 
 function sendUpvoteRequest(event) {
-  let voting = this.closest('.voting');
-  let voteCount = voting.querySelector('.votesCount');
-
   if (window.user == 0) {
     window.location.replace("/register");
-  }
-  else {
-    let id = this.closest('.card').getAttribute('data-id');
-    sendAjaxRequest('put', '/api/content/up/' + id, null, voteHandler);
-    voteCount.innerHTML = parseInt(voteCount.innerHTML)+1;
+    return;
   }
 
+  let voting = this.closest('.voting');
+  let id = this.closest('.card').getAttribute('data-id');
+
+  sendAjaxRequest('get', '/api/content/up/' + id, null, function(){ return userUpvoteHandler(voting, id, this); });
+
   event.preventDefault();
+}
+
+function userUpvoteHandler(voting, id, obj) {
+
+  let response = JSON.parse(obj.responseText);
+  let voteCount = voting.querySelector('.votesCount');
+  console.log(response);
+
+  switch(response.state){
+    case 'Empty': 
+      sendAjaxRequest('put', '/api/content/up/' + id, null, voteHandler);
+      voteCount.innerHTML = parseInt(voteCount.innerHTML)+1;
+    break;
+    case 'Double':
+      sendAjaxRequest('put', '/api/content/up/' + id, null, voteHandler);
+      voteCount.innerHTML = parseInt(voteCount.innerHTML)+2;
+    break;
+    case 'Full':
+      sendAjaxRequest('DELETE', '/api/content/up/' + id, null, voteHandler);
+      voteCount.innerHTML = parseInt(voteCount.innerHTML)-1;
+    break;
+    default:
+    break;
+  }
 }
 
 function voteHandler() {
@@ -101,20 +123,42 @@ function voteHandler() {
 }
 
 function sendDownvoteRequest(event) {
-  let voting = this.closest('.voting');
-  let voteCount = voting.querySelector('.votesCount');
-
 
   if (window.user == 0) {
     window.location.replace("/register");
-  }
-  else {
-    let id = this.closest('.card').getAttribute('data-id');
-    sendAjaxRequest('put', '/api/content/down/' + id, null, voteHandler);
-    voteCount.innerHTML = parseInt(voteCount.innerHTML)-1;
+    return;
   }
 
+  let voting = this.closest('.voting');
+  let id = this.closest('.card').getAttribute('data-id');
+
+  sendAjaxRequest('get', '/api/content/down/' + id, null, function(){ return userDownvoteHandler(voting, id, this); });
+
   event.preventDefault();
+}
+
+
+function userDownvoteHandler(voting, id, obj) {
+
+  let response = JSON.parse(obj.responseText);
+  let voteCount = voting.querySelector('.votesCount');
+
+  switch(response.state){
+    case 'Empty': 
+      sendAjaxRequest('put', '/api/content/down/' + id, null, voteHandler);
+      voteCount.innerHTML = parseInt(voteCount.innerHTML)-1;
+    break;
+    case 'Double':
+      sendAjaxRequest('delete', '/api/content/down/' + id, null, voteHandler);
+      voteCount.innerHTML = parseInt(voteCount.innerHTML)-2;
+    break;
+    case 'Full':
+      sendAjaxRequest('delete', '/api/content/down/' + id, null, voteHandler);
+      voteCount.innerHTML = parseInt(voteCount.innerHTML)+1;
+    break;
+    default:
+    break;
+  }
 }
 
 function voteHandler() {
@@ -320,7 +364,7 @@ function toggleNavbar(){
       tagSide.classList.add('sidebarActive');
 
       badges.forEach(function(badge){
-        badge.classList.add('badgeTag')
+        badge.classList.add('badgeTag');
     });
       
     }
@@ -329,3 +373,5 @@ function toggleNavbar(){
 
 addEventListeners();
 toggleNavbar();
+
+

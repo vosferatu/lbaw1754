@@ -13,7 +13,12 @@ class Post extends Model
      */
     protected $table = 'news_post';
 
-    protected $fillable = ['title', 'article', 'tags'];
+    protected $fillable = ['title', 'id','photo','slug','comments_count','views','authors','published'];
+
+    // Don't add create and update timestamps in database.
+    public $timestamps  = false;
+
+
 
     /**
      * Get the content behind post.
@@ -63,7 +68,7 @@ class Post extends Model
     public function getRouteKeyName()
     {
         return 'slug';
-    }
+    } 
 
     /**
      * The tags that belong to the post.
@@ -79,6 +84,14 @@ class Post extends Model
             $tagIds = $this->tags()->pluck('tags.id')->all();
             $query->whereIn('tags.id', $tagIds);
         })->where('id', '<>', $this->id)->get();
+    }
+
+    /**
+     * The users that belong to the post.
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'news_creation', 'id_news', 'id_user')->withPivot('ready', 'approval_date');
     }
 
     
