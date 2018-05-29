@@ -15,6 +15,8 @@ use App\ContentReport;
 use App\Save;
 use App\Tag;
 
+use Carbon\Carbon;
+
 
 class ContentController extends Controller
 {
@@ -86,11 +88,11 @@ class ContentController extends Controller
   public function createPost(Request $request){
 
     $content = Content::create([
-      'text' => $request->input('text')
+      'text' => $request->input('text'),
+      'created' => Carbon::now('Europe/Lisbon')
     ]);
 
     $slug = str_slug($request->input('title'),"-") . "-" . $content->id;
-
 
 
     $post = Post::create([
@@ -113,11 +115,13 @@ class ContentController extends Controller
 
     foreach ($tags_names as $tag){
       $tagModel = Tag::where('name', $tag)->first();
-      $post->tags()->sync(['id_post' => $post->id, 'id_tag' =>$tagModel->id]);
+      $post->tags()->attach($tagModel->id);
     }
 
-    return redirect('/');
+    $post->users()->attach(Auth::user()->id, ['ready'=> 1, 'approval_date' => Carbon::now('Europe/Lisbon')]);
 
+
+    return response()->json(['slug'=>$post->slug]);
   }
 
   public function addComment(Post $post){

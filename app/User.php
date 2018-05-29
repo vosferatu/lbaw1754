@@ -58,7 +58,7 @@ class User extends Authenticatable
      * Get the reports of user.
      */
     public function reports()
-    {
+    { 
         return $this->hasMany('App\Reports','id_user');
     }
 
@@ -75,7 +75,7 @@ class User extends Authenticatable
      */
     public function posts()
     {
-        return $this->belongsToMany('App\Post', 'news_creation', 'id_user', 'id_post')->withPivot('ready', 'approval_date');
+        return $this->belongsToMany('App\Post', 'news_creation', 'id_user', 'id_news')->as('creation')->withPivot('ready', 'approval_date');
     }
 
 

@@ -4,7 +4,6 @@ function addEventListeners() {
 
   let tagsAnchor = document.querySelectorAll('#sidebar .list-group a');
 
-
   tagsAnchor.forEach(function(tag){
     tag.setAttribute("href",'#');
   });
@@ -13,6 +12,14 @@ function addEventListeners() {
   [].forEach.call(tagsAnchor, function (tagAction) {
     tagAction.addEventListener('click', function() {return selectTag(tags)});
   });
+
+
+  let ready = document.querySelector('input[type=checkbox]');
+
+  if (ready != null)
+  ready.addEventListener('change', readyCheck);
+
+
 
   let postCreator = document.querySelector('.publish');
   if (postCreator != null)
@@ -76,9 +83,42 @@ function sendCreateDraftRequest(tags){
 }
 
 function postCreatedHandler(){
+    if (this.status != 200) window.location = '/';
+    let response = JSON.parse(this.responseText);
+    window.location = '/post/' + response['slug'];
+}
 
+function readyCheck(){
+   
+    let own = document.querySelector('#own');
+   
+    let span = document.createElement("span");
+    span.setAttribute("class", "badge badge-primary badge-pill checkOwn");
+    span.setAttribute("id", "checkOwn");
+
+    span.innerHTML= "&#10004";   
+
+    
+    if(this.checked) {
+        own.appendChild(span);
+    } else {// Checkbox is not checked..
+        let spaned = document.querySelector('#checkOwn');
+       spaned.parentNode.removeChild(spaned);
+    }
+}
+
+function addAuthorsList(){
+   let ul = document.querySelector('#authorsList');
+
+
+   let li = document.createElement("li");
+    li.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
+    span.innerHTML= event.target.id;   
+  
 }
 
 
 addEventListeners();
+
+addAuthorsList();
 

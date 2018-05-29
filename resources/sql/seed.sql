@@ -165,8 +165,7 @@ CREATE TABLE news_post (
    published BOOLEAN NOT NULL,
    published_date TIMESTAMP WITH TIME zone,
    CONSTRAINT views_positive CHECK ((views >= 0)),
-   CONSTRAINT comments_positive CHECK ((comments_count >= 0)),
-   CONSTRAINT published_date_positive CHECK ((published_date >= now()))
+   CONSTRAINT comments_positive CHECK ((comments_count >= 0))
 );
 
 CREATE TABLE "comment" (
@@ -183,7 +182,6 @@ CREATE TABLE news_creation (
    ready BOOLEAN NOT NULL,
    approval_date TIMESTAMP WITH TIME zone,
    CONSTRAINT approval_date_positive CHECK ((approval_date >= now()))
-
 );
 
 

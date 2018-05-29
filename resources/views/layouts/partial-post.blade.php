@@ -30,7 +30,7 @@
                             </li>
 
                             <li class="list-inline-item">
-                                <p><i class="far fa-clock"></i> {{  $post->published_date }}</p>
+                                <p><i class="far fa-clock"></i> {{  $post->published_date->diffForHumans() }}</p>
                             </li>
 
                             <li class="list-inline-item">

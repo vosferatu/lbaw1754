@@ -13,7 +13,13 @@ class Post extends Model
      */
     protected $table = 'news_post';
 
-    protected $fillable = ['title', 'id','photo','slug','comments_count','views','authors','published'];
+    protected $fillable = ['title', 'id','photo','slug','comments_count','views','authors','published','published_date'];
+
+    protected $dates = ['published_date'];
+
+    protected $dateFormat = 'Y-m-d H:i:sO';
+
+
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
@@ -91,7 +97,7 @@ class Post extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\User', 'news_creation', 'id_news', 'id_user')->withPivot('ready', 'approval_date');
+        return $this->belongsToMany('App\User', 'news_creation', 'id_news', 'id_user')->as('news_creation')->withPivot('ready', 'approval_date');
     }
 
     

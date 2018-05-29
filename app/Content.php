@@ -23,7 +23,7 @@ class Content extends Model
      * @var array
      */
     protected $fillable = [
-        'text'
+        'text', 'created'
     ];
 
 
