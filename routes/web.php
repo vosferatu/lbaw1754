@@ -42,6 +42,18 @@ Route::get('admin', function(){
 	return view('admin.admin');
 });
 
+Route::get('admin-users', function(){
+	return view('admin.admin-users');
+});
+
+Route::get('admin-posts', function(){
+	return view('admin.admin-posts');
+});
+
+Route::get('admin-reports', function(){
+	return view('admin.admin-reports');
+});
+
 
 // Authentication
 

@@ -26,26 +26,26 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="admin.html">
+                        <a class="nav-link" href="{{url('/admin')}}">
                             <span data-feather="home"></span>
                             Dashboard <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin-users.html">
+                        <a class="nav-link" href="{{url('/admin-users')}}">
                             <span data-feather="users"></span>
                             Users <span class="badge badge-success">1</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin-posts.html">
+                        <a class="nav-link" href="{{url('/admin-posts')}}">
                             <span data-feather="file-text"></span>
                             Posts
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="admin-reports.html">
+                        <a class="nav-link active" href="{{url('/admin-reports')}}">
                             <span data-feather="flag"></span>
                             Reports <span class="badge badge-warning">3</span>
                         </a>
