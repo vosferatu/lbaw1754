@@ -81,4 +81,4 @@ Route::put('/api/content/save/{content}', 'ContentController@save');
 
 
 Route::get('/api/post/create', 'ContentController@showPostForm')->name('post.create');
-Route::post('/api/post/create', 'ContentController@create');
+Route::post('/api/post/create', 'ContentController@createPost');

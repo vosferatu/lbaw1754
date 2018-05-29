@@ -70,6 +70,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Save','id_user');
     }
 
+      /**
+     * The posts that belong to the user.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany('App\Post', 'news_creation', 'id_user', 'id_post')->withPivot('ready', 'approval_date');
+    }
+
 
 
 }
