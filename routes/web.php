@@ -37,6 +37,12 @@ Route::delete('api/item/{id}', 'ItemController@delete');
 Route::delete('api/cards/{card_id}', 'CardController@delete');
 
 
+// Administration
+Route::get('admin', function(){
+	return view('admin.admin');
+});
+
+
 // Authentication
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
