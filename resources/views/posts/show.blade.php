@@ -7,7 +7,7 @@
 @endif
 
 @push('styles')
-<link href="{{ asset('css/feed.css') }}" rel="stylesheet"> @endpush @section('content')
+<link href="{{ asset('css/app.css') }}" rel="stylesheet"> @endpush @section('content')
 
 <div class="container-fluid">
     <div class="row">

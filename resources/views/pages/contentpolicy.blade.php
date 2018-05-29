@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', "Content Policy" )
+
 @section('content')
 <div class="container-fluid">
 
