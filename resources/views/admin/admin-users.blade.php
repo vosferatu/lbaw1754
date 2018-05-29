@@ -1,0 +1,595 @@
+@extends('auth.master')
+
+    <!-- Bootstrap core CSS
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">-->
+
+@push('styles')
+	<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+@endpush
+
+@section('content')
+
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Ditto Admin</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/admin')}}">
+                            <span data-feather="home"></span>
+                            Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="users"></span>
+                            Users <span class="badge badge-success">1</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/admin-posts')}}">
+                            <span data-feather="file-text"></span>
+                            Posts
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/admin-reports')}}">
+                            <span data-feather="flag"></span>
+                            Reports <span class="badge badge-warning">3</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>Users</h2>
+            <div class="content-wrapper">
+                <div class="container-fluid">
+                    <!-- Breadcrumbs-->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active">Users</li>
+                    </ol>
+                    <!-- Example DataTables Card-->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-table"></i> Authenticated Users in the system
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Username</th>
+                                        <th>Register Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Username</th>
+                                        <th>Register Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>admin</td>
+                                        <td>01/02/2018 12:34</td>
+                                        <td>Administrator</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                                <span data-feather="check-circle" style="color: gray"></span>
+                                                <span data-feather="award" style="color: gray"></span>
+                                                <span data-feather="slash" style="color: gray"></span>
+                                                <span data-feather="trash-2" style="color: gray"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>goodGuy</td>
+                                        <td>12/02/2018 13:42</td>
+                                        <td>Normal</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user" style=" text-decoration: none;"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="trash-2"
+                                                      style="color: black;  text-decoration: none;"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash"
+                                                      style="color: rgba(250,40,0,0.69); text-decoration: none;"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2"
+                                                      style="color: red; text-decoration: none;"></span>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>003</td>
+                                        <td>GoodMod</td>
+                                        <td>12/02/2018 13:45</td>
+                                        <td>Moderator</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Remove Moderation">
+                                                <span data-feather="award" style="color: green"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>004</td>
+                                        <td>Publico</td>
+                                        <td>13/02/2018 11:45</td>
+                                        <td>Verified Account</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Remove Verified Account">
+                                                <span data-feather="check-circle" style="color: green"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>005</td>
+                                        <td>goncaloD2</td>
+                                        <td>14/02/2018 20:45</td>
+                                        <td>Normal</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>006</td>
+                                        <td>Spammer2000</td>
+                                        <td>14/02/2018 22:45</td>
+                                        <td>Permanently Banned</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                                <span data-feather="check-circle" style="color: gray"></span>
+                                                <span data-feather="award" style="color: gray"></span>
+                                                <span data-feather="slash" style="color:gray"></span>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>007</td>
+                                        <td>teresaGomes</td>
+                                        <td>15/02/2018 09:54</td>
+                                        <td>Normal</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+
+
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>008</td>
+                                        <td>troll990</td>
+                                        <td>15/02/2018 10:22</td>
+                                        <td>Temporarily Banned</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>009</td>
+                                        <td>sad_orange</td>
+                                        <td>15/02/2018 10:22</td>
+                                        <td>Inactive</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                                <span data-feather="check-circle" style="color: gray"></span>
+                                                <span data-feather="award" style="color: gray"></span>
+                                                <span data-feather="slash" style="color: gray"></span>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>010</td>
+                                        <td>chefWiggum</td>
+                                        <td>15/02/2018 10:22</td>
+                                        <td>Moderator</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Remove Moderator">
+                                                <span data-feather="award" style="color: green"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>011</td>
+                                        <td>joseRocha</td>
+                                        <td>15/02/2018 16:12</td>
+                                        <td>Author</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>012</td>
+                                        <td>Kevin</td>
+                                        <td>16/02/2018 17:54</td>
+                                        <td>Author</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>013</td>
+                                        <td>goncalo8989</td>
+                                        <td>28/02/2018 17:54</td>
+                                        <td>Normal</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>014</td>
+                                        <td>BragaOnline</td>
+                                        <td>01/03/2018 12:33</td>
+                                        <td>Verified Account</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Remove Verified Account">
+                                                <span data-feather="check-circle" style="color: green"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>015</td>
+                                        <td>conceicao1</td>
+                                        <td>02/03/2018 20:00</td>
+                                        <td>Author</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>016</td>
+                                        <td>quinhentosescutos</td>
+                                        <td>03/03/2018 23:15</td>
+                                        <td>Normal</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Verified Account">
+                                                <span data-feather="check-circle" style="color: black"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>017</td>
+                                        <td>JN</td>
+                                        <td>03/03/2018 23:15</td>
+                                        <td>Pending Verified Account Request</td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="View User Profile">
+                                                <span data-feather="user"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Pending Verified Account Request">
+                                                <span data-feather="check-circle" style="color: #ff834e"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Turn Moderator">
+                                                <span data-feather="award" style="color: black"></span>
+                                            </a>
+
+                                            <a href="#" data-toggle="tooltip" title="Ban User">
+                                                <span data-feather="slash" style="color: rgba(250,40,0,0.69)"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Delete Account">
+                                                <span data-feather="trash-2" style="color: red"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-table"></i> Pending Verified Account Requests </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Username</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Files</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Username</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Files</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>JN</td>
+                                        <td>02/02/2018 12:34</td>
+                                        <td>We are JN (Jornal de Noticias), a well-known portuguese news agency.</td>
+                                        <td> <a href="#" data-toggle="tooltip" title="View Document" style="text-decoration: none">
+                                            <span data-feather="file"></span> proof.pdf
+                                        </a></td>
+                                        <td>
+                                            <a href="#" data-toggle="tooltip" title="Approve Request">
+                                                <span data-feather="check" style="color: green;"></span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" title="Refuse Request">
+                                                <span data-feather="x" style="color: red;"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    </div>
+
+
+                </div>
+                <!-- /.container-fluid-->
+                <!-- /.content-wrapper-->
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+<!-- Bootstrap core JavaScript-->
+<script src="../../../Desktop/ditto%20admin/js/vendor/bootstrap.min.js"></script>
+<script src="../../../Desktop/ditto%20admin/js/vendor/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Bootstrap core JavaScript-->
+<!-- Core plugin JavaScript-->
+<script src="../../../Desktop/ditto%20admin/js/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="../../../Desktop/ditto%20admin/js/vendor/datatables/jquery.dataTables.js"></script>
+<script src="../../../Desktop/ditto%20admin/js/vendor/datatables/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="../../../Desktop/ditto%20admin/js/sb-admin.min.js"></script>
+<!-- Custom scripts for this page-->
+<script src="../../../Desktop/ditto%20admin/js/sb-admin-datatables.min.js"></script>
+</body>
+</html>
+@endsection

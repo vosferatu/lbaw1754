@@ -45,7 +45,7 @@ class ContentController extends Controller
     //$cards = Auth::user()->cards()->orderBy('id')->get();
 
    
-    $posts = Post::orderBy('published_date','desc')->get();
+    $posts = Post::orderBy('published_date','asc')->get();
     $tags = Tag::all();
 
     return view('posts.index', compact('posts','tags'));

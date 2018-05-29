@@ -1,6 +1,6 @@
 <div class="card">
         <div class="card-block">
-            <form method="POST" action="/post/{{  $post->slug }}/comments">
+            <form method="post" action="/post/{{  $post->slug }}/comments">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <textarea name="text" class="form-control" placeholder="Your comment here."></textarea>
