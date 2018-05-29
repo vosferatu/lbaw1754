@@ -15,6 +15,7 @@ use App\ContentReport;
 use App\Save;
 use App\Tag;
 use App\Admin;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -29,6 +30,10 @@ class AdminController extends Controller
 	}
 
 	public function getRecentUsers(){
+		$timeNow = ((string)now()->subDays(10)).'+00';
+		return User::where('registered', '>=', $timeNow)
+			     ->orderBy('registered','DESC')
+			     ->get();
 	}
 	public function getUsers(){
 	}
@@ -41,8 +46,8 @@ class AdminController extends Controller
 		if(null==$this->verifyUserIsAdmin()){
 			return view('errors.404');
 		}
-		$this->getRecentUsers();
-		return view('admin.admin');
+		$recentUsers = $this->getRecentUsers();
+		return view('admin.admin', compact('recentUsers'));
 	}
 	   
 	public function showUsersPage(){
