@@ -21,9 +21,9 @@
                 <label class="custom-control-label" for="readyCheck">Ready to publish?</label>
             </div>
     </div>
-    <div class="card-footer">
-        <button type="button" class="btn btn-outline-success">Save</button>
-        <input type="button" class="btn btn-outline-primary publish" value="Publish">
+    <div class="card-footer text-right">
+        <button type="button" class="btn btn-success">Save</button>
+        <input type="button" class="btn btn-primary publish" value="Publish">
     </div>
 </div>
 
@@ -42,7 +42,7 @@
     <div class="card-footer">
 
          <input name="author" type="text" class="form-control form-control-lg" id="author" placeholder="Author">
-        <button type="button" class="btn btn-outline-dark mr-auto">
+        <button type="button" class="btn btn-outline-dark mr-auto addAuthorButton">
             <i class="fas fa-user-plus"></i> Add Author</button>
     </div>
 </div>

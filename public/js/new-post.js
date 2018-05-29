@@ -1,4 +1,8 @@
-function addEventListeners() {
+    let warn_on_unload = "You have unsaved changes!"
+
+    let authors = [];
+
+function addEventListeners() { 
    
     let tags = [];
 
@@ -19,16 +23,99 @@ function addEventListeners() {
   if (ready != null)
   ready.addEventListener('change', readyCheck);
 
-
-
   let postCreator = document.querySelector('.publish');
   if (postCreator != null)
-   postCreator.addEventListener('click', function() {return sendCreatePostRequest(tags)});
+   postCreator.addEventListener('click', function() {
+    return sendCreatePostRequest(tags)});
 
    let postDraft = document.querySelector('.save');
    if (postDraft != null)
     postDraft.addEventListener('click', function() {return sendDraftPostRequest(tags)});
+
+
+   let addAuthorButton = document.querySelector('.addAuthorButton');
+   if (addAuthorButton != null)
+   addAuthorButton.addEventListener('click', sendAuthorAddRequest );
+
+
+   window.onbeforeunload = function () {
+    if (warn_on_unload != "") {
+        return warn_on_unload;
+    }
 }
+
+}
+
+function  sendAuthorAddRequest(){
+
+    let inputBox = document.querySelector('input[name=author]');
+    let username  = inputBox.value;
+    inputBox.value = "";
+
+    sendAjaxRequest('post', '/api/user/search/' + username, null, authorAddHandler);
+    
+}
+
+function authorAddHandler(){
+    let inputBox = document.querySelector('input[name=author]');
+
+    console.log(authors);
+    //if (this.status != 200) window.location = '/';
+    let user = JSON.parse(this.responseText);
+    
+    console.log(user);
+
+    switch(user['user']) {
+        case 'dontExist':{
+            inputBox.style.borderColor = "red";
+            inputBox.placeholder = "Couldn't find that user.";
+        break;
+    }
+        case 'owner':{
+            inputBox.style.borderColor = "red";
+            inputBox.placeholder = "You can't add yourself as an author twice.";
+        break;
+    }
+        default:{
+            inputBox.placeholder = "Author";
+            inputBox.style.borderColor = null;
+
+            if (authors.includes(user['user']['id'])){
+                inputBox.style.borderColor = "red";
+                inputBox.placeholder = "Author already added.";
+                return;
+            }
+
+            let ul = document.querySelector('#authorsList');
+
+            let li = document.createElement("li");
+            li.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
+            li.innerHTML= user['user']['username']; 
+                let close = document.createElement("button");
+                close.setAttribute=("type","button");
+                close.setAttribute=("class","close");
+                close.setAttribute=("aria-label","Close");
+
+                let spanClose =document.createElement("span");
+                spanClose.setAttribute=("aria-hidden","true");
+                spanClose.innerHTML = "&times;";
+
+                close.appendChild(spanClose);
+
+                li.appendChild(close);
+
+            ul.appendChild(li);
+
+
+            authors.push(user['user']['id']);
+
+            let button = document.querySelector('.publish');
+            button.disabled = true;
+        }
+    }
+}
+
+
 
 function selectTag(tags){
 
@@ -65,6 +152,8 @@ function selectTag(tags){
 }
 
 function sendCreatePostRequest(tags){
+        warn_on_unload = "";   
+        console.log(warn_on_unload);
     let form = document.querySelector('.card-body');
 
     let title = document.querySelector('input[type=text]').value;
@@ -107,18 +196,7 @@ function readyCheck(){
     }
 }
 
-function addAuthorsList(){
-   let ul = document.querySelector('#authorsList');
-
-
-   let li = document.createElement("li");
-    li.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
-    span.innerHTML= event.target.id;   
-  
-}
-
 
 addEventListeners();
 
-addAuthorsList();
 

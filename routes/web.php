@@ -76,6 +76,9 @@ Route::get('/api/content/down/{content}', 'ContentController@putdownvote'); //<-
 Route::put('/api/content/report/{content}', 'ContentController@report');
 Route::put('/api/content/save/{content}', 'ContentController@save');
 
+Route::post('/api/user/search/{username}', 'UserController@searchByUsername');
+
+
 
 
 

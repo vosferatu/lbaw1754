@@ -11,12 +11,9 @@
         </button>
       </div>
       <div class="modal-body">
-             <form method="POST" action="/post/{{  $post->slug }}/comments">
-                {{ csrf_field() }}
               <div class="form-group">
                <textarea class="form-control" rows="10" id="reason" name="reason" placeholder="Please explain the reason for your report. Moderation will act if justified."></textarea>
               </div>            
-            </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

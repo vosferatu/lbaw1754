@@ -84,5 +84,14 @@ class UserController extends Controller
       return redirect('/');
     }
 
-
+    public function searchByUsername($username){
+        $user = User::where('username', $username)->first();
+    
+        if($user == null)
+        return response()->json(['user'=>'dontExist']); 
+        else if($user->id == Auth::user()->id)
+        return response()->json(['user'=>'owner']); 
+        else
+        return response()->json(['user'=>$user]); 
+    }
 }
