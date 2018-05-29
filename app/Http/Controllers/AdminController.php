@@ -14,12 +14,18 @@ use App\Downvote;
 use App\ContentReport;
 use App\Save;
 use App\Tag;
-
+use App\Admin;
 
 class AdminController extends Controller
 {
 
 	public function verifyUserIsAdmin(){
+	
+		if(!Auth::check()){
+			return null;
+		}
+	
+		return Admin::find(Auth::user()->id);
 	}
 
 	public function getRecentUsers(){
@@ -32,7 +38,9 @@ class AdminController extends Controller
 	}
 
 	public function showPage(){
-		$this->verifyUserIsAdmin();
+		if(null==$this->verifyUserIsAdmin()){
+			return view('errors.404');
+		}
 		$this->getRecentUsers();
 		return view('admin.admin');
 	}
