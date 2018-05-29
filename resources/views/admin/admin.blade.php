@@ -15,7 +15,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" href="{{ route('logout') }}">Sign out</a>
         </li>
     </ul>
 </nav>
@@ -78,25 +78,20 @@
                     <tr>
                         <th>#</th>
                         <th>Username</th>
-                        <th>Date</th>
+                        <th>{{((string)now()).'+00'}}</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>014</td>
-                        <td>sofa203</td>
-                        <td>10/2/2018 12:32</td>
-                    </tr>
-                    <tr>
-                        <td>013</td>
-                        <td>joseMe</td>
-                        <td>9/2/2018 17:13</td>
-                    </tr>
-                    <tr>
-                        <td>012</td>
-                        <td>gonncalinho</td>
-                        <td>9/2/2018 10:13</td>
-                    </tr>
+
+		    @foreach ($recentUsers as $recentUser)
+ 			<tr>
+                        	<td>{{$recentUser->id}}</td>
+                        	<td>{{$recentUser->username}}</td>
+                        	<td>{{$recentUser->registered}}</td>
+                    	</tr>
+		    @endforeach
+
+
                     </tbody>
                 </table>
             </div>
