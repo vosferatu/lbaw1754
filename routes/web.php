@@ -38,21 +38,13 @@ Route::delete('api/cards/{card_id}', 'CardController@delete');
 
 
 // Administration
-Route::get('admin', function(){
-	return view('admin.admin');
-});
+Route::get('admin', 'AdminController@showPage');
 
-Route::get('admin-users', function(){
-	return view('admin.admin-users');
-});
+Route::get('admin-users', 'AdminController@showUsersPage');
 
-Route::get('admin-posts', function(){
-	return view('admin.admin-posts');
-});
+Route::get('admin-posts', 'AdminController@showPostsPage');
 
-Route::get('admin-reports', function(){
-	return view('admin.admin-reports');
-});
+Route::get('admin-reports', 'AdminController@showReportsPage');
 
 
 // Authentication
