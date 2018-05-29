@@ -20,7 +20,7 @@
                     <p>Currently available websites don’t allow the users to manage the content displayed nor the
                         advertisements.</p>
                     <p>Our goal is to build a platform where users can post their news and get recognition by rewarding
-                        them with site exposure. he idea is that we intend to give users freedom in posting/deleting,
+                        them with site exposure. The idea is that we intend to give users freedom in posting/deleting,
                         commenting, upvoting/downvoting and tagging posts.</p>
                 </div>
                 <div class="col-md-6 aboutimg">

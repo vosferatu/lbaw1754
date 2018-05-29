@@ -36,7 +36,7 @@
 
 					<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 						<div class="card-body">
-							Ditto is web application where people can create articles about any topic and can cooperate with other people to write those same articles. It's like a social network for journalists and enthusiasts.
+							Ditto is a web application where people can create articles about any topic and can cooperate with other people to write those same articles. It's like a social network for journalists and enthusiasts.
 						</div>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 					<div class="card-header" id="headingTwo">
 						<h5 class="mb-0">
 							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								Can i eliminate a post?
+								Can I eliminate a post?
 							</button>
 						</h5>
 					</div>
@@ -89,7 +89,7 @@
 					<div class="card-header" id="headingSeven">
 						<h5 class="mb-0">
 							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-								There's a limit for how much authors i can associate to a post?
+								There's a limit for how much authors I can associate to a post?
 							</button>
 						</h5>
 					</div>
@@ -104,7 +104,7 @@
           <div class="card-header" id="headingFour">
             <h5 class="mb-0">
               <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                How can i change my information?
+                How can I change my information?
               </button>
             </h5>
           </div>
@@ -148,7 +148,7 @@
         <div class="card-header" id="headingEight">
           <h5 class="mb-0">
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseheadingEight" aria-expanded="false" aria-controls="collapseheadingEight">
-              I'm banned, what can i do now?
+              I'm banned, what can I do now?
             </button>
           </h5>
         </div>

@@ -63,9 +63,9 @@
           <h2 class="my-4">International Users </h2>
           <hr>
 
-          <p> Ditto and its Services are based in the Portugal.
-          <p>Please be aware that information you provide to Ditto that it obtains as a result of your use of the Services may be processed and transferred to the Portugal and be subject to Portugal law. </p>
-          <p>By using the Website, providing Ditto with your information, you consent to this collection, transfer, storage, and processing of information to and in the Portugal. </p>
+          <p> Ditto and its Services are based in Portugal.
+          <p>Please be aware that information you provide to Ditto that it obtains as a result of your use of the Services may be processed and transferred to Portugal and be subject to the Portuguese law's. </p>
+          <p>By using the Website, providing Ditto with your information, you consent to this collection, transfer, storage, and processing of information to and in Portugal. </p>
           <p>Ditto will take all steps reasonably necessary to ensure that your data is treated securely in accordance with this Content Policy.</p>
 
       </section>
