@@ -32,9 +32,10 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         @foreach($user->posts as $post)
-                        <div class="row col-10">
-                             @include('layouts.partial-post')
+                        <div class="row col-10"> 
+                            @include('layouts.partial-post')
                         </div>
+                        @endforeach
                     </div>
     
     
@@ -43,32 +44,36 @@
                         <div class="row col-10">
                              @include('layouts.comment')
                         </div>
+                        @endforeach
 
                     </div>
 
                 
                     <div class="tab-pane fade" id="pills-subscribe" role="tabpanel" aria-labelledby="pills-subscribe-tab">
-                       /* @foreach($user->tags as $tag)
+                       {{--@foreach($user->tags as $tag)
                         <div class="row col-10">
                              @include('layouts.partial-post')
-                        </div>*/
+                        </div>
+                        @endforeach --}}
 
                     </div>
                                     
                     <div class="tab-pane fade" id="pills-savedpost" role="tabpanel" aria-labelledby="pills-savedpost-tab">
-                        @foreach($user->saved as $post)
+                        {{-- @foreach($user->saved as $post)
                         <div class="row col-10">
                              @include('layouts.partial-post')
                         </div>
+                        @endforeach --}}
 
                     </div>
 
                                     
                     <div class="tab-pane fade" id="pills-savedcomment" role="tabpanel" aria-labelledby="pills-savedcomment-tab">
-                        @foreach($user->saved as $comment)
+                       {{-- @foreach($user->saved as $comment)
                         <div class="row col-10">
                              @include('layouts.comment')
                         </div>
+                        @endforeach --}}
 
                     </div>
 
