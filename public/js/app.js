@@ -97,22 +97,14 @@ function userUpvoteHandler(voting, id, obj) {
 
   let response = JSON.parse(obj.responseText);
   let voteCount = voting.querySelector('.votesCount');
+  let votes = response.votes;
   console.log(response);
 
-  switch(response.state){
-    case 'Empty': 
-      sendAjaxRequest('put', '/api/content/up/' + id, null, voteHandler);
-      voteCount.innerHTML = parseInt(voteCount.innerHTML)+1;
-    break;
-    case 'Double':
-      sendAjaxRequest('put', '/api/content/up/' + id, null, voteHandler);
-      voteCount.innerHTML = parseInt(voteCount.innerHTML)+2;
-    break;
-    case 'Full':
-      sendAjaxRequest('DELETE', '/api/content/up/' + id, null, voteHandler);
-      voteCount.innerHTML = parseInt(voteCount.innerHTML)-1;
-    break;
+  switch(votes){
+    case null: 
+      return;
     default:
+      voteCount.innerHTML = votes;
     break;
   }
 }
@@ -139,24 +131,16 @@ function sendDownvoteRequest(event) {
 
 
 function userDownvoteHandler(voting, id, obj) {
-
   let response = JSON.parse(obj.responseText);
   let voteCount = voting.querySelector('.votesCount');
+  let votes = response.votes;
+  console.log(response);
 
-  switch(response.state){
-    case 'Empty': 
-      sendAjaxRequest('put', '/api/content/down/' + id, null, voteHandler);
-      voteCount.innerHTML = parseInt(voteCount.innerHTML)-1;
-    break;
-    case 'Double':
-      sendAjaxRequest('delete', '/api/content/down/' + id, null, voteHandler);
-      voteCount.innerHTML = parseInt(voteCount.innerHTML)-2;
-    break;
-    case 'Full':
-      sendAjaxRequest('delete', '/api/content/down/' + id, null, voteHandler);
-      voteCount.innerHTML = parseInt(voteCount.innerHTML)+1;
-    break;
+  switch(votes){
+    case null: 
+      return;
     default:
+      voteCount.innerHTML = votes;
     break;
   }
 }

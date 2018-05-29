@@ -201,65 +201,46 @@ class ContentController extends Controller
 
   /*************************************************************** */
 
-  public function getupvotesbyuser(Content $content)
+  public function putupvote(Content $content)
   {
     $upvote = $content->upvotes->where('id_user', Auth::user()->id)->first();
 
     $downvote = $content->downvotes->where('id_user', Auth::user()->id)->first();
-
-    $res = 'Empty';
 
     if($downvote){
+      $this->upvote($content);
       $downvote->delete();
-      $res = 'Double';
-    }
+    } else if(!$upvote){
+              $this->upvote($content);
+          } else {
+            $upvote->delete;
+          }
 
-    if(!$upvote)//if(empty($upvote->items))
-      return response()->json(['state'=>$res]);
-    return response()->json(['state'=>'Full']);
+    $num = $content->votes;
+
+    return response()->json(['votes'=>$num]);
   }
   
-  public function deleteupvote(Content $content)
-  {
-    $upvote = $content->upvotes->where('id_user', Auth::user()->id)->first();
-    
-    if($upvote)
-      $upvote->delete();
-
-    //ddump($upvote);
-
-    return response()->json(['status'=>'Success']);
-  }
-
   /********************************************************** */
 
-  public function getdownvotesbyuser(Content $content)
+  public function putdownvote(Content $content)
   {
     $downvote = $content->downvotes->where('id_user', Auth::user()->id)->first();
 
     $upvote = $content->upvotes->where('id_user', Auth::user()->id)->first();
 
-    //print_r($upvote);
-
-    $res = 'Empty';
-
     if($upvote){
+      $this->downvote($content);
       $upvote->delete();
-      $res = 'Double';
-    }
+    } else if(!$downvote){
+              $this->downvote($content);
+          } else {
+              $downvote->delete;
+          }
 
-    if(!$downvote)//if(empty($downvote->items))
-      return response()->json(['state'=>$res]);
-    return response()->json(['state'=>'Full']);
+    $num = $content->votes;
+
+    return response()->json(['votes'=>$num]);
   }
   
-  public function deletedownvote(Content $content)
-  {
-    $downvote = $content->downvotes->where('id_user', Auth::user()->id)->first();
-
-    if($downvote)
-      $downvote->delete();
-
-    return response()->json(['status'=>'Success']);
-  }
 }

@@ -363,15 +363,21 @@ CREATE INDEX dinamic_search_content ON content USING GIST ( to_tsvector('english
 CREATE FUNCTION news_post_upvote() RETURNS TRIGGER AS
 $BODY$
 BEGIN
+IF EXISTS (SELECT * FROM downvotes WHERE NEW.id_content = downvotes.id_content AND NEW.id_user = downvotes.id_user) THEN
+ UPDATE content SET votes = votes + 2
+   WHERE content.id = NEW.id_content;
+   RETURN NEW;
+ELSE
  UPDATE content SET votes = votes + 1
    WHERE content.id = NEW.id_content;
    RETURN NEW;
+END IF;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER content_upvote_trigger
- AFTER INSERT ON upvotes
+ BEFORE INSERT ON upvotes
  FOR EACH ROW
    EXECUTE PROCEDURE news_post_upvote();
 
@@ -380,15 +386,21 @@ CREATE TRIGGER content_upvote_trigger
 CREATE FUNCTION news_post_downvote() RETURNS TRIGGER AS
 $BODY$
 BEGIN
+IF EXISTS (SELECT * FROM upvotes WHERE NEW.id_content = upvotes.id_content AND NEW.id_user = upvotes.id_user) THEN
+ UPDATE content SET votes = votes - 2
+   WHERE content.id = NEW.id_content;
+   RETURN NEW;
+ELSE
  UPDATE content SET votes = votes - 1
    WHERE content.id = NEW.id_content;
    RETURN NEW;
+END IF;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER content_downvote_trigger
- AFTER INSERT ON downvotes
+ BEFORE INSERT ON downvotes
  FOR EACH ROW
    EXECUTE PROCEDURE news_post_downvote();
 
