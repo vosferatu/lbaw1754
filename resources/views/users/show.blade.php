@@ -9,13 +9,16 @@
                         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Comments</a>
+                        <a class="nav-link" id="pills-comment-tab" data-toggle="pill" href="#pills-comment" role="tab" aria-controls="pills-comment" aria-selected="false">Comments</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Subscriptions</a>
+                        <a class="nav-link" id="pills-subscribe-tab" data-toggle="pill" href="#pills-subscribe" role="tab" aria-controls="pills-subscribe" aria-selected="false">Subscriptions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Saved</a>
+                        <a class="nav-link" id="pills-savedpost-tab" data-toggle="pill" href="#pills-savedpost" role="tab" aria-controls="pills-savedpost" aria-selected="false">Saved Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-savedcomment-tab" data-toggle="pill" href="#pills-savedcomment" role="tab" aria-controls="pills-savedcomment" aria-selected="false">Saved Comments</a>
                     </li>
 
                     @if ($user->id == Auth::id())
@@ -27,183 +30,49 @@
 
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
-                        <!-- single post -->
-                        <div class="row">
-                            <div class="col-12 col-sm-12 mx-3 my-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center my-auto">
-                                            <div class="col-sm-1 text-nowrap text-center px-0">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item borderless"><a href=""><img class="upvote" src= {{url('/img/upvote.svg')}} ></a></li>
-                                                    <li class="list-group-item borderless">112</li>
-                                                    <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src={{url('/img/upvote.svg')}}></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-2  pl-1">
-                                                <a href="">
-                                                    <img class="img-fluid rounded" src={{url('/img/waves.jpg')}}>
-                                                </a>
-                                            </div>
-    
-                                            <div class="col-sm-9 pt-2 pl-1">
-                                                <h2 class="d-inline"><a href="post.html">ADSactly Fun - Oh Brother</a></h2>
-                                                <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
-    
-                                                <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
-    
-                                                <ul class="list-inline my-0 py-0">
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-comments"></i> 44 Comments</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-clock"></i> 1h20min ago</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-user-circle"></i> By Kevin</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item float-right mx-auto">
-                                                        <p><i class="fas fa-flag" ></i></p>
-                                                    </li>
-                                                    <li class="list-inline-item float-right mr-3">
-                                                        <p><i class="fas fa-star"></i></p>
-                                                    </li>
-    
-                                                </ul>
-    
-                                            </div>
-    
-    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        @foreach($user->posts as $post)
+                        <div class="row col-10">
+                             @include('layouts.partial-post')
                         </div>
-                        <!-- end of single post-- -->
-                        <!-- single post -->
-                        <div class="row">
-                            <div class="col-12 col-sm-12 mx-3 my-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center my-auto">
-                                            <div class="col-sm-1 text-nowrap text-center px-0">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item borderless"><a href=""><img class="upvote" src={{url('/img/upvote.svg')}}></a></li>
-                                                    <li class="list-group-item borderless">112</li>
-                                                    <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src={{url('/img/upvote.svg')}}></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-2  pl-1">
-                                                <a href="">
-                                                    <img class="img-fluid rounded" src={{url('/img/waves.jpg')}}>
-                                                </a>
-                                            </div>
-    
-                                            <div class="col-sm-9 pt-2 pl-1">
-                                                <h2 class="d-inline"><a href="post.html">ADSactly Fun - Oh Brother</a></h2>
-                                                <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
-    
-                                                <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
-    
-                                                <ul class="list-inline my-0 py-0">
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-comments"></i> 44 Comments</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-clock"></i> 1h20min ago</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-user-circle"></i> By Kevin</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item float-right mx-auto">
-                                                        <p><i class="fas fa-flag" ></i></p>
-                                                    </li>
-                                                    <li class="list-inline-item float-right mr-3">
-                                                        <p><i class="fas fa-star"></i></p>
-                                                    </li>
-    
-                                                </ul>
-    
-                                            </div>
-    
-    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end of single post-- -->
-                        <!-- single post -->
-                        <div class="row">
-                            <div class="col-12 col-sm-12 mx-3 my-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row align-items-center my-auto">
-                                            <div class="col-sm-1 text-nowrap text-center px-0">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item borderless"><a href=""><img class="upvote" src={{url('/img/upvote.svg')}}></a></li>
-                                                    <li class="list-group-item borderless">112</li>
-                                                    <li class="list-group-item borderless"><a href=""><img class="upvote rotate" src={{url('/img/upvote.svg')}}></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-2  pl-1">
-                                                <a href="">
-                                                    <img class="img-fluid rounded" src={{url('/img/waves.jpg')}}>
-                                                </a>
-                                            </div>
-    
-                                            <div class="col-sm-9 pt-2 pl-1">
-                                                <h2 class="d-inline"><a href="post.html">ADSactly Fun - Oh Brother</a></h2>
-                                                <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
-    
-                                                <p>Even if Even if Steem Dollar (SBD) gets pegged or locked up or lassoed to $1 mark; unbridled demand will not allow it to be confined in valuation. </p>
-    
-                                                <ul class="list-inline my-0 py-0">
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-comments"></i> 44 Comments</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-clock"></i> 1h20min ago</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item">
-                                                        <p><i class="far fa-user-circle"></i> By Kevin</p>
-                                                    </li>
-    
-                                                    <li class="list-inline-item float-right mx-auto">
-                                                        <p><i class="fas fa-flag" ></i></p>
-                                                    </li>
-                                                    <li class="list-inline-item float-right mr-3">
-                                                        <p><i class="fas fa-star"></i></p>
-                                                    </li>
-    
-                                                </ul>
-    
-                                            </div>
-    
-    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end of single post-- -->
                     </div>
     
     
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"></div>
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"></div>
+                    <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
+                        @foreach($user->comments as $comment)
+                        <div class="row col-10">
+                             @include('layouts.comment')
+                        </div>
+
+                    </div>
+
+                
+                    <div class="tab-pane fade" id="pills-subscribe" role="tabpanel" aria-labelledby="pills-subscribe-tab">
+                       /* @foreach($user->tags as $tag)
+                        <div class="row col-10">
+                             @include('layouts.partial-post')
+                        </div>*/
+
+                    </div>
+                                    
+                    <div class="tab-pane fade" id="pills-savedpost" role="tabpanel" aria-labelledby="pills-savedpost-tab">
+                        @foreach($user->saved as $post)
+                        <div class="row col-10">
+                             @include('layouts.partial-post')
+                        </div>
+
+                    </div>
+
+                                    
+                    <div class="tab-pane fade" id="pills-savedcomment" role="tabpanel" aria-labelledby="pills-savedcomment-tab">
+                        @foreach($user->saved as $comment)
+                        <div class="row col-10">
+                             @include('layouts.comment')
+                        </div>
+
+                    </div>
+
+                        
                 </div>
             </div>
         </div>
