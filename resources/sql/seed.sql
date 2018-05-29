@@ -712,14 +712,14 @@ INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (12,10,7,8)
 INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (13,5,1,10);
 INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (14,4,7,9);
 
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,2,TRUE,'2018/11/17 10:45:12');
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,3,FALSE,null);
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,5,TRUE,'2018/11/18 10:45:12');
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (10,6,TRUE,'2018/10/17 10:45:12');
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (8,8,TRUE,'2018/10/16 11:45:12');
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (8,7,FALSE,null);
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (2,5,TRUE,'2018/10/17 11:45:12');
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (9,3,FALSE,null);
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (9,2,TRUE,'2018/10/10 11:45:12');
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (1,2,TRUE,'2018/11/17 10:45:12');
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (1,3,FALSE,null);
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (2,5,TRUE,'2018/11/18 10:45:12');
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (3,6,TRUE,'2018/10/17 10:45:12');
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (4,8,TRUE,'2018/10/16 11:45:12');
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (5,7,FALSE,null);
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (6,5,TRUE,'2018/10/17 11:45:12');
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (7,3,FALSE,null);
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (8,2,TRUE,'2018/10/10 11:45:12');
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (9,9,FALSE,null);
-INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (5,6,FALSE,null);
+INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (10,6,FALSE,null);

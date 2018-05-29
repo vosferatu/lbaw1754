@@ -348,7 +348,7 @@ function toggleNavbar(){
       tagSide.classList.add('sidebarActive');
 
       badges.forEach(function(badge){
-        badge.classList.add('badgeTag')
+        badge.classList.add('badgeTag');
     });
       
     }
@@ -357,3 +357,5 @@ function toggleNavbar(){
 
 addEventListeners();
 toggleNavbar();
+
+

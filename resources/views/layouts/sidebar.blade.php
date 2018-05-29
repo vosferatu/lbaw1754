@@ -1,8 +1,7 @@
 <div class="col-sm-2">
                 <nav id="sidebar">
                     <div class="list-group">
-
-                            @foreach ($tags as $tag)
+                        @foreach ($tags as $tag)
                             <a href="/tag/{{ $tag->name  }}" id="{{ $tag->name  }}" class="list-group-item list-group-item-action ">{{ $tag->name }}</a>
                         @endforeach
                        

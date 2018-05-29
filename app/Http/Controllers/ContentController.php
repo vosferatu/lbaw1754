@@ -69,29 +69,52 @@ class ContentController extends Controller
     public function showPost(Post $post)
     {
       $tags = Tag::all();
+      $type = "show";
 
-      return view('posts.show', compact('post','tags'));
+      return view('posts.show', compact('post','tags','type'));
     }
     
   public function showPostForm()
   {
-    return view('posts.create');
+
+    $tags = Tag::all();
+    $type = "create";
+
+    return view('posts.show',compact('tags','type'));
   }
 
-  public function createPost()
-  {
-    //dd(request()->all());
+  public function createPost(Request $request){
 
-    Post::create([
-
-      'title' => request('title'),
-
-      'article' => request('article'),
-
-      'tags' => request('tags'),
-
+    $content = Content::create([
+      'text' => $request->input('text')
     ]);
 
+    $slug = str_slug($request->input('title'),"-") . "-" . $content->id;
+
+
+
+    $post = Post::create([
+      'id' => $content->id,
+      'title' => $request->input('title'),
+      'photo' => "test",
+      'slug' => $slug,
+      'comments_count' => 0,
+      'views' => 0,
+      'authors' => 1,
+      'published' => $request->input('published'),
+      'published_date' => $content->created
+    ]);
+
+
+    $tags_string = $request->input('tags');
+    $tags_names = explode(",", $tags_string);
+
+    $tags = array();
+
+    foreach ($tags_names as $tag){
+      $tagModel = Tag::where('name', $tag)->first();
+      $post->tags()->sync(['id_post' => $post->id, 'id_tag' =>$tagModel->id]);
+    }
 
     return redirect('/');
 

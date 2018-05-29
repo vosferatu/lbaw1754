@@ -21,6 +21,7 @@
     </script>
     <script type="text/javascript" src={{ asset('js/app.js') }} defer>
       
+      
 </script>
   </head>
   <body>
@@ -36,8 +37,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
     <script>
       window.user = {!! Auth::check() ? auth()->user() : 0 !!}
   </script>
+
+  <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'editor' );
+</script>
+
   </body>
 </html>

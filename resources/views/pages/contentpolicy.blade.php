@@ -30,22 +30,12 @@
           </ul>
 
       </section>
-
       <section class="pb-3">
-          <h2 class="my-4">Information You Provide to Us</h2>
+          <h2 class="my-4">Information We Collect</h2>
           <hr>
 
-         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis justo id ligula porttitor vestibulum nec at massa. </p>
-          <p>In hac habitasse platea dictumst. Aliquam velit turpis, placerat non mauris vitae, scelerisque faucibus arcu. Aenean faucibus tellus interdum purus tempus luctus. Nam ultrices odio quis urna ultrices, vitae congue nunc cursus.</p>
-
-      </section>
-
-      <section class="pb-3">
-          <h2 class="my-4">Information We Collect Automatically</h2>
-          <hr>
-
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis justo id ligula porttitor vestibulum nec at massa. </p>
-          <p>In hac habitasse platea dictumst. Aliquam velit turpis, placerat non mauris vitae, scelerisque faucibus arcu. Aenean faucibus tellus interdum purus tempus luctus. Nam ultrices odio quis urna ultrices, vitae congue nunc cursus.</p>
+          <p>The visitors are free to navigate through our website without providing any personally identifiable information if they do not want to register with us.</p>
+          <p>To use all the functionality of our web application you need to register to our site. We do not collect more information than is absolutely necessary to allow your participation in an activity on the website.</p>
 
       </section>
 
@@ -53,17 +43,7 @@
           <h2 class="my-4">How We Use Information About You</h2>
           <hr>
 
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis justo id ligula porttitor vestibulum nec at massa. </p>
-          <p>In hac habitasse platea dictumst. Aliquam velit turpis, placerat non mauris vitae, scelerisque faucibus arcu. Aenean faucibus tellus interdum purus tempus luctus. Nam ultrices odio quis urna ultrices, vitae congue nunc cursus.</p>
-
-      </section>
-
-      <section class="pb-3">
-          <h2 class="my-4">How We Share Information</h2>
-          <hr>
-
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis justo id ligula porttitor vestibulum nec at massa. </p>
-          <p>In hac habitasse platea dictumst. Aliquam velit turpis, placerat non mauris vitae, scelerisque faucibus arcu. Aenean faucibus tellus interdum purus tempus luctus. Nam ultrices odio quis urna ultrices, vitae congue nunc cursus.</p>
+          <p>We do not sell your personal information to others. The personally identifiable Information you submit to receive information and services from our website will never be disclosed to any third party. We use this personally identifiable information to register you to access our services and verify your authority to access the courses and services.</p>
 
       </section>
 
@@ -71,27 +51,22 @@
           <h2 class="my-4">Security</h2>
           <hr>
 
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis justo id ligula porttitor vestibulum nec at massa. </p>
-          <p>In hac habitasse platea dictumst. Aliquam velit turpis, placerat non mauris vitae, scelerisque faucibus arcu. Aenean faucibus tellus interdum purus tempus luctus. Nam ultrices odio quis urna ultrices, vitae congue nunc cursus.</p>
+          <p>We store all the collected information on our secure servers. As a registered user, you can access your account with a unique user name and a password as selected by you. You are responsible for keeping your password confidential. To ensure better security, we recommend that you choose a strong password containing alphabets, numbers, and special characters, and that you change your password periodically.</p>
 
-      </section>
+          <p>We employ the best mechanisms possible to protect your Personal Information, however we cannot be held responsible for any breach of security unless it is caused as a direct result of our negligence. Unfortunately data transmission over the internet is not 100% secure and as a registered user of this website, you agree that we are not accountable for any data loss due to the limitations of the internet which are beyond our control.</p>
 
-
-      <section class="pb-3">
-          <h2 class="my-4">Your Choices</h2>
-          <hr>
-
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis justo id ligula porttitor vestibulum nec at massa. </p>
-          <p>In hac habitasse platea dictumst. Aliquam velit turpis, placerat non mauris vitae, scelerisque faucibus arcu. Aenean faucibus tellus interdum purus tempus luctus. Nam ultrices odio quis urna ultrices, vitae congue nunc cursus.</p>
+          <p>In the unlikely event of a breach in security systems, we may notify you through email so that you can take suitable protective measures.</p>
 
       </section>
 
       <section class="pb-3">
-          <h2 class="my-4">Changes</h2>
+          <h2 class="my-4">International Users </h2>
           <hr>
 
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis justo id ligula porttitor vestibulum nec at massa. </p>
-          <p>In hac habitasse platea dictumst. Aliquam velit turpis, placerat non mauris vitae, scelerisque faucibus arcu. Aenean faucibus tellus interdum purus tempus luctus. Nam ultrices odio quis urna ultrices, vitae congue nunc cursus.</p>
+          <p> Ditto and its Services are based in the Portugal.
+          <p>Please be aware that information you provide to Ditto that it obtains as a result of your use of the Services may be processed and transferred to the Portugal and be subject to Portugal law. </p>
+          <p>By using the Website, providing Ditto with your information, you consent to this collection, transfer, storage, and processing of information to and in the Portugal. </p>
+          <p>Ditto will take all steps reasonably necessary to ensure that your data is treated securely in accordance with this Content Policy.</p>
 
       </section>
 
@@ -99,8 +74,7 @@
           <h2 class="my-4">Contact Us</h2>
           <hr>
 
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis justo id ligula porttitor vestibulum nec at massa. </p>
-          <p>In hac habitasse platea dictumst. Aliquam velit turpis, placerat non mauris vitae, scelerisque faucibus arcu. Aenean faucibus tellus interdum purus tempus luctus. Nam ultrices odio quis urna ultrices, vitae congue nunc cursus.</p>
+          <p> If you have any question feel free to <a href="{{ url("/contact") }}">contact us</a>. </p>
 
       </section>
 

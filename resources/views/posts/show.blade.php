@@ -1,7 +1,10 @@
-
 @extends('layouts.master') 
 
+@if($type == "show")
 @section('title', $post->title )
+@elseif ($type == "create")
+@section('title', 'Create New Post' )
+@endif
 
 @push('styles')
 <link href="{{ asset('css/app.css') }}" rel="stylesheet"> @endpush @section('content')
@@ -12,24 +15,29 @@
         @include('layouts.sidebar')
         
         <div class="col-sm posts">
-        @include('layouts.full-post')
-        </div>
-
-        <h1 class="mt-3">Discussion</h1>
-        <hr> 
+         @if($type == "show")
+             @include('layouts.full-post')
+             <h1 class="mt-3">Discussion</h1>
+             <hr> 
         
-        @foreach($post->comments as $comment)
-        <div class="row">
+            @foreach($post->comments as $comment)
+            <div class="row">
             <div class="col-10"> 
              @include('layouts.comment') 
-            </div>
-        </div>
+              </div>
+          </div>
         @endforeach 
         
         @if (Auth::check())
         @include('layouts.comment-creation')
         @endif
 
+        @elseif ($type == "create")
+        @include('layouts.create-post')
+        @endif
+        </div>
+
+        
     </div>
 </div>
 </div>
