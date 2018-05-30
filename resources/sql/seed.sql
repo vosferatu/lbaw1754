@@ -537,6 +537,10 @@ INSERT INTO users (username,password,email,name,country,introduction,photo,follo
 VALUES ('Price','UUZ76WQD8AY','Morbi@consectetuermauris.co.uk','Joel Mack','Saudi Arabia','ac','Mclaughlin',81,'2018/06/11 14:45:13');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Daugherty','MEG47BZI3NY','leo.Vivamus@elit.ca','Felix Robbins','Myanmar','sed, sapien. Nunc','Freeman',178,'2018/06/05 10:45:12');
+INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
+VALUES ('Joao','DMEG47BZI3NY','jon.Vivamus@elit.ca','Joao Lago','Lago','sed, sopien. Nunc','Gordan',1,'2018/05/29 10:45:12');
+INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
+VALUES ('Jason','$2y$10$LnNSHQ3Qs77ymNqYAl.XJeDxS/ARi.pce16DmSiSkFxnk5u0uC.DG','jan.Vivamus@elit.ca','Jason Lago','LAago','sed, sopien. Nunc','Gordaan',1,'2018/05/28 10:45:12');
 
 INSERT INTO "tags" (name,frequency) VALUES ('World',0);
 INSERT INTO "tags" (name,frequency) VALUES ('Portugal',0);
@@ -609,6 +613,7 @@ INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (5,6);
 INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (2,10);
 
 INSERT INTO "administrator" (id,started) VALUES (5, '2018/06/04 10:45:12');
+INSERT INTO "administrator" (id,started) VALUES (12, '2018/05/30 10:45:12');
 
 INSERT INTO "moderator" (id,started) VALUES (4, '2018/04/04 10:45:12');
 INSERT INTO "moderator" (id,started) VALUES (7, '2018/04/03 10:45:12');
