@@ -39,6 +39,8 @@ Route::delete('api/cards/{card_id}', 'CardController@delete');
 
 // Administration
 Route::get('admin', 'AdminController@showPage');
+Route::get('user/{id}/verify', 'AdminController@verifyUser');
+Route::get('user/{id}/moderator', 'AdminController@moderatorUser');
 
 Route::get('admin-users', 'AdminController@showUsersPage');
 
@@ -96,3 +98,4 @@ Route::post('/api/user/search/{username}', 'UserController@searchByUsername');
 
 Route::get('/api/post/create', 'ContentController@showPostForm')->name('post.create');
 Route::post('/api/post/create', 'ContentController@createPost');
+Route::post('/api/post/saveDraft', 'ContentController@saveDraft');

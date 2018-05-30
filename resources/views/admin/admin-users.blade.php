@@ -34,7 +34,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="#">
                             <span data-feather="users"></span>
-                            Users <span class="badge badge-success">1</span>
+                            Users <!--<span class="badge badge-success">1</span>-->
                         </a>
                     </li>
                     <li class="nav-item">
@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin-reports')}}">
                             <span data-feather="flag"></span>
-                            Reports <span class="badge badge-warning">3</span>
+                            Reports <!--<span class="badge badge-warning">3</span>-->
                         </a>
                     </li>
                 </ul>
@@ -101,10 +101,22 @@
 				        	<td>{{$user[2]}}</td>
 				        	<td>{{$user[3]}}</td>
 						<td>
-                                            	<a href="#" data-toggle="tooltip" title="View User Profile">
+                                            	<a href="{{ url('user/'.$user[0]) }}" data-toggle="tooltip" title="View User Profile">
                                                 	<span data-feather="user"></span>
                                            	</a>
-                                                <span data-feather="check-circle" style="color: gray"></span>
+							
+						
+						
+						<a href="{{'user/' . $user[0] . '/verify'}}" data-toggle="tooltip" title="View User Profile">
+							@if($user[4]=='Verified')
+						
+								<span data-feather="check-circle" style="color: red"></span>
+							@else
+								<span data-feather="check-circle" style="color: green"></span>
+							@endif
+                                           	</a>
+
+                                                
                                                 <span data-feather="award" style="color: gray"></span>
                                                 <span data-feather="slash" style="color: gray"></span>
                                                 <span data-feather="trash-2" style="color: gray"></span>
