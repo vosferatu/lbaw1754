@@ -36,7 +36,7 @@ class AdminController extends Controller
 	}
 
 	public function getRecentUsers(){
-		$timeNow = ((string)now()->subDays(10)).'+00';
+		$timeNow = ((string)now()->subDays(9)).'+00';
 		return User::where('registered', '>=', $timeNow)
 			     ->orderBy('registered','DESC')
 			     ->get();
@@ -142,20 +142,28 @@ class AdminController extends Controller
 
 
 	public function getRegsN(){
+		$week = array(0 => 'Monday',
+				1 => 'Tuesday',
+				2 => 'Wednesday',
+				3 => 'Thursday',
+				4 => 'Friday',
+				5 => 'Saturday',
+				6 => 'Sunday'
+			);
 		$daysOfTheWeek = array();
 		$numberRegs = array();
 		$startDay = Carbon::now()->subWeeks(1);
-		for($i = 0; i< 6; $i++){
-			array_push($daysOfTheWeek, Carbon::parse($startDay)->dayOfWeek);
+		for($i = 0; $i< 7; $i++){
+			array_push($daysOfTheWeek, $week[$startDay->dayOfWeek]);
 				
-			$endDay = $startDay->format('Y-m-d');
-			$startDay->addDays(1)->format('Y-m-d');
+			$endDay = $startDay;
+			
 
-			array_push($numberRegs, User::whereDate('registered','>',$endDay)
-				->whereDate('registered','<',$startDay)->count());
-
+			array_push($numberRegs, User::whereBetween('registered',array($endDay . '+00', $startDay->addDays(1) . '+00'))
+						->get()->count());
 			
 		}
+		return array($daysOfTheWeek, $numberRegs);
 	}
 
 	public function showPage(){
@@ -164,7 +172,7 @@ class AdminController extends Controller
 		}
 		$recentUsers = $this->getRecentUsers();
 		$countRegsDays = $this->getRegsN();
-		return view('admin.admin', compact('recentUsers'));
+		return view('admin.admin', compact('recentUsers','countRegsDays'));
 	}
 	   
 	public function showUsersPage(){
