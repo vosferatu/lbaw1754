@@ -11,7 +11,7 @@
 |
 */
 
-
+Auth::routes();
 
 
 // Static pages
