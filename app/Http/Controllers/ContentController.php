@@ -126,12 +126,6 @@ class ContentController extends Controller
       $post->tags()->attach($tagModel->id);
     }
 
-    $users_id = $request->input('authors');
-
-    foreach ($users_id as $user){
-      $userModel = Tag::where('name', $tag)->first();
-      $post->tags()->attach($tagModel->id);
-    }
 
     $post->users()->attach(Auth::user()->id, ['ready'=> 1, 'approval_date' => Carbon::now('Europe/Lisbon')]);
 
@@ -141,13 +135,6 @@ class ContentController extends Controller
 
 
   public function createDraft(Request $request){
-
-    $this->validate(request(), [
-      'title' => 'required',
-      'text' => 'required',
-      'tags' => 'required'
-  ]);
-
 
     $content = Content::create([
       'text' => $request->input('text'),
@@ -166,7 +153,7 @@ class ContentController extends Controller
       'views' => 0,
       'authors' => 1,
       'published' => $request->input('published'),
-      'published_date' => $content->created
+      'published_date' => null
     ]);
 
 
