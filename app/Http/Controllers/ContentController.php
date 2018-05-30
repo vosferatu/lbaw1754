@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 use App\Post;
@@ -243,4 +244,29 @@ class ContentController extends Controller
     return response()->json(['votes'=>$num]);
   }
   
+  public function searchByName(Request $request) {
+    $searchText = $request->input('text');
+    
+    $hi_posts = DB::select("SELECT * from news_post
+     WHERE textsearchable_name_col @@ to_tsquery('english',?)
+     ORDER BY title DESC LIMIT 20",[$searchText]);
+
+    $contents = DB::select("SELECT * from content
+    WHERE textsearchable_name_col @@ to_tsquery('english',?)
+    ORDER BY text DESC LIMIT 20",[$searchText]);
+
+    $posts = Post::hydrate($hi_posts);
+
+    $contents = Content::hydrate($contents);
+
+    foreach ( $contents as $content){
+        $var = $content->posts()->first();
+
+        $posts->push($var);
+    }
+
+
+    $tags = Tag::all();
+    return view('posts.index', compact('posts','tags'));    }
+
 }

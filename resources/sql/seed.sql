@@ -721,3 +721,39 @@ INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (7,3,FA
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (8,2,TRUE,'2018/10/10 11:45:12');
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (9,9,FALSE,null);
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (10,6,FALSE,null);
+
+
+ALTER TABLE news_post ADD COLUMN textsearchable_name_col tsvector;
+UPDATE news_post SET textsearchable_name_col = to_tsvector('english', title);
+
+ALTER TABLE content ADD COLUMN textsearchable_name_col tsvector;
+UPDATE content SET textsearchable_name_col = to_tsvector('english', text);
+
+/*
+ALTER TABLE "question" ADD COLUMN textsearchable_index_col tsvector;
+UPDATE "question" SET textsearchable_index_col =
+ to_tsvector('english', coalesce(short_message,'')||' '|| coalesce(long_message,''));
+CREATE OR REPLACE FUNCTION question_search_update() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        NEW.textsearchable_index_col = to_tsvector('english', coalesce(NEW.short_message,'')||' '|| coalesce(NEW.long_message,''));
+    END IF;
+    IF TG_OP = 'UPDATE' THEN
+        IF NEW.short_message <> OLD.short_message THEN
+            NEW.textsearchable_index_col = to_tsvector('english', coalesce(NEW.short_message,'')||' '|| coalesce(OLD.long_message,''));
+        END IF;
+        IF NEW.long_message <> OLD.long_message THEN
+            NEW.textsearchable_index_col = to_tsvector('english', coalesce(OLD.short_message,'')||' '|| coalesce(NEW.long_message,''));
+        END IF;
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+CREATE TRIGGER question_search_update
+    AFTER INSERT OR UPDATE ON question
+    FOR EACH ROW 
+        EXECUTE PROCEDURE question_search_update();
+
+*/

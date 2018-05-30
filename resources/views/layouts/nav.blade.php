@@ -22,8 +22,9 @@
 
             <ul class="nav navbar-nav navbar-right ml-auto">
                 <li class="nav-item ml-3">
-                    <form id="demo-2">
-                        <input type="search" placeholder="Search">
+                    <form id="demo-2" action="{{route('searchpost')}}" method="post">
+                            {{ csrf_field() }}
+                        <input name="text" type="search" placeholder="Search">
                     </form>
                 </li>
 
