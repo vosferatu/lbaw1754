@@ -583,32 +583,32 @@ CREATE TRIGGER check_unique_value_tags
    EXECUTE PROCEDURE check_unique_value_tags_f();
 
  INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
-VALUES ('Kevin','$2y$10$RtncNiOZF3.Nd2KVqefXi.iAanZOkpo4JJmsqLktuTdW6TJRidV1q','kevin@jevin.com','Kevin Maria Fonseca','BR','I love collaborative news and I want to improve the quality of them!','default.jpg',8,'2018/06/21 10:45:12');
+VALUES ('Kevin','$2y$10$RtncNiOZF3.Nd2KVqefXi.iAanZOkpo4JJmsqLktuTdW6TJRidV1q','kevin@jevin.com','Kevin Maria Fonseca','BR','I love collaborative news and I want to improve the quality of them!','default.jpg',8,'2018/05/21 10:45:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Knowles','HFW83FAD8FZ','dapibus@malesuadavelvenenatis.edu','Addison Duffy',
-'Afghanistan','volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam','Nielsen',87,'2018/06/20 10:45:12');
+'Afghanistan','volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam','Nielsen',87,'2018/05/20 10:45:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Mckee','OTO55ZHO5UR','nonummy@necmalesuadaut.co.uk','Chandler Mack','Tonga',
-'urna. Nullam lobortis quam a felis','Mcneil',156,'03/04/2019');
+'urna. Nullam lobortis quam a felis','Mcneil',156,'03/04/2018');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Jordan','FJG13CFB0FM','quis.accumsan@augueSedmolestie.com','Steel Hicks','Greece',
-'nisl. Maecenas malesuada fringilla est. Mauris','Strong',4,'04/08/2018');
+'nisl. Maecenas malesuada fringilla est. Mauris','Strong',4,'04/05/2018');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Barron','FQF22VDM5NP','dolor.sit.amet@Cras.edu','Perry Sosa','Cape Verde',
-'natoque penatibus et magnis dis','Parrish',119,'2018/06/15 10:45:12');
+'natoque penatibus et magnis dis','Parrish',119,'2018/05/15 10:45:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Powers','VRL89XUY3HE','enim.sit.amet@sollicitudinorci.com','Herman Torres',
-'Latvia','tortor at risus. Nunc ac','Harrell',165,'2018/06/26 11:45:12');
+'Latvia','tortor at risus. Nunc ac','Harrell',165,'2018/05/26 11:45:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Hooper','EUR33HTL9TK','elit.a@semegestasblandit.edu','Colin Cote',
-'Heard Island and Mcdonald Islands','feugiat placerat velit.','Bailey',14,'2018/10/22 08:45:12');
+'Heard Island and Mcdonald Islands','feugiat placerat velit.','Bailey',14,'2018/01/22 08:45:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Sawyer','XSB27PUS6OC','ac.arcu.Nunc@Fuscemilorem.co.uk','Arthur Kerr',
-'Malta','tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec','Klein',34,'2018/06/30 10:30:12');
+'Malta','tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec','Klein',34,'2018/05/30 10:30:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
-VALUES ('Price','UUZ76WQD8AY','Morbi@consectetuermauris.co.uk','Joel Mack','Saudi Arabia','ac','Mclaughlin',81,'2018/06/11 14:45:13');
+VALUES ('Price','UUZ76WQD8AY','Morbi@consectetuermauris.co.uk','Joel Mack','Saudi Arabia','ac','Mclaughlin',81,'2018/05/11 14:45:13');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
-VALUES ('Daugherty','MEG47BZI3NY','leo.Vivamus@elit.ca','Felix Robbins','Myanmar','sed, sapien. Nunc','Freeman',178,'2018/06/05 10:45:12');
+VALUES ('Daugherty','MEG47BZI3NY','leo.Vivamus@elit.ca','Felix Robbins','Myanmar','sed, sapien. Nunc','Freeman',178,'2018/05/05 10:45:12');
 
 INSERT INTO "tags" (name,frequency) VALUES ('World',0);
 INSERT INTO "tags" (name,frequency) VALUES ('Portugal',0);
@@ -700,13 +700,13 @@ INSERT INTO "content" (votes,text,created)
 VALUES (123,'<p>O F. C. Porto apresentou esta quarta-feira o equipamento principal para a próxima época 2018/19, numa publicação nas redes sociais.
 A publicação foi feita na conta oficial do Twitter da equipa do F. C. Porto e na fotografia aparecem Gonçalo Paciência, Óliver Torres e José Sá.</p>','2018/04/04 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (136,'<p>De acordo com o programa oficial do gabinete do primeiro-ministro, Merkel chega às 15 horas ao Aeroporto Francisco Sá Carneiro, no Porto, onde será recebida com honras militares, partindo para Braga às 15.15 horas.</p>','2018/07/04 10:45:12');
+VALUES (136,'<p>De acordo com o programa oficial do gabinete do primeiro-ministro, Merkel chega às 15 horas ao Aeroporto Francisco Sá Carneiro, no Porto, onde será recebida com honras militares, partindo para Braga às 15.15 horas.</p>','2018/04/04 10:45:12');
 INSERT INTO "content" (votes,text,created)
 VALUES (51,'<p>Conheça a chave vencedora do sorteio do Euromilhões desta terça-feira.
 
-Os números vencedores são: 6, 11, 20, 38, 43 e as estrelas 2 e 4.</p>','2019/04/04 10:45:12');
+Os números vencedores são: 6, 11, 20, 38, 43 e as estrelas 2 e 4.</p>','2018/04/04 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (91,'<p>A Assembleia da República discute e vota esta terça-feira os projetos de lei sobre a despenalização da morte medicamente assistida, numa pouco habitual votação deputado a deputado e de resultado imprevisível.</p>','07/11/2018');
+VALUES (91,'<p>A Assembleia da República discute e vota esta terça-feira os projetos de lei sobre a despenalização da morte medicamente assistida, numa pouco habitual votação deputado a deputado e de resultado imprevisível.</p>','07/01/2018');
 INSERT INTO "content" (votes,text,created)
 VALUES (157,'<p>O estudo, realizado por Manuel Pedro Carrapatoso sob a coordenação do professor Rui Nunes, inquiriu 405 estudantes do sexto ano de todas as universidades portuguesas em 2017. E revela uma posição contrária à da Ordem dos Médicos.</p>','2018/04/01 10:45:12');
 INSERT INTO "content" (votes,text,created)
@@ -720,15 +720,19 @@ VALUES (156,'<p>A morte medicamente assistida é crime em Portugal, mas há port
 INSERT INTO "content" (votes,text,created)
 VALUES (61,'<p>Segundo o Instituto Português do Mar e da Atmosfera (IPMA), os distritos de Bragança, Guarda, Vila Real e Castelo Branco vão estar entre as 12 horas e as 21 horas sob aviso amarelo devido à previsão de aguaceiros por vezes fortes, de granizo e acompanhados de trovoada.</p>','2018/04/29 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (22,'<p>adipiscing lobortis risus. In mi pede, nonummy ut, molestie</p>','2018/04/24 10:45:12');
+VALUES (22,'<p>Nestes concelhos do sul do distrito de Vila Real, a chuva forte chegou na segunda-feira acompanhada de granizo, deixando um cenário, em algumas vinhas, de folhas esfarrapadas, galhos quebrados e bagos no chão, muros caídos e deslizamentos de terras.</p>','2018/04/24 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'<p>Mauris vel turpis. Aliquam adipiscing lobortis</p>','2018/07/17 10:45:12');
+VALUES (65,'<p>Um jovem de 25 anos sofreu ferimentos considerados muito graves, esta terça-feira, após cair de uma altura de "cerca de três a quatro metros" quando estava em cima de um carregador frontal a cortar árvores em Pondras, Montalegre.
+
+O comandante dos bombeiros de Salto, Hernâni Carvalho, explicou que "a vítima estava a trabalhar com uma máquina agrícola quando sofreu a queda". "Ele estava a cortar árvores com uma motosserra em cima do frontal. Estaria a uma altura de cerca de três a quatro metros", explicou o comandante dos voluntários de Salto.</p>','2018/05/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'<p>Mauris vel turpis. Aliquam adipiscing lobortis</p>','2018/07/17 10:45:12');
+VALUES (65,'<p>Um homem de 72 anos ficou preso debaixo de um trator durante cerca de uma hora, esta terça-feira, na sequência de um capotamento, na localidade de Adães, em Chaves.
+
+O septuagenário conseguiu libertar-se depois de escavar um buraco com as mãos e com a ajuda de um vizinho que apareceu, mais tarde, no local do acidente.</p>','2018/05/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'<p>Mauris vel turpis. Aliquam adipiscing lobortis</p>','2018/07/17 10:45:12');
+VALUES (65,'<p>O Ministério Público (MP) acusou um homem de 19 anos por quatro crimes de tentativas de violação e um crime de violação consumada, na cidade de Faro, no Algarve, anunciou esta terça-feira a Procuradoria da Comarca de Faro.</p>','2018/05/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'<p>Mauris vel turpis. Aliquam adipiscing lobortis</p>','2018/07/17 10:45:12');
+VALUES (65,'<p>A Associação Portuguesa para a Defesa do Consumidor (DECO) anunciou esta quarta-feira que vai avançar com uma ação em tribunal contra o Facebook para garantir que os portugueses com conta naquela rede social sejam indemnizados pelo uso indevido de dados.</p>','2018/05/17 10:45:12');
 
 INSERT INTO "saves" (id_content,id_user) VALUES (6,5);
 INSERT INTO "saves" (id_content,id_user) VALUES (9,10);
@@ -756,32 +760,32 @@ INSERT INTO "downvotes" (id_content,id_user) VALUES (8,10);
 INSERT INTO "downvotes" (id_content,id_user) VALUES (3,3);
 
 INSERT INTO "content_report" (id_content,id_user,reason,date)
-VALUES (3,2,'sem. Nulla interdum. Curabitur dictum. Phasellus','2018/04/19 10:45:12');
+VALUES (3,2,'Vile language','2018/04/19 10:45:12');
 INSERT INTO "content_report" (id_content,id_user,reason,date)
-VALUES (9,6,'erat nonummy ultricies ornare, elit elit fermentum','2018/04/18 10:45:12');
+VALUES (9,6,'not constructive','2018/04/18 10:45:12');
 INSERT INTO "content_report" (id_content,id_user,reason,date)
-VALUES (1,2,'nonummy ut, molestie in, tempus eu, ligula. Aenean euismod','2018/04/10 10:45:12');
+VALUES (1,2,'very good. i love the idea','2018/04/10 10:45:12');
 
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (1,'ante. Maecenas','Curabitur','ante-maecenas-1',62,161,3,FALSE,'2018/10/17 10:45:12');
+VALUES (1,'F.C.Porto','Camisolas','fcporto-shirts',0,161,3,FALSE,'2017/10/17 10:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (2,'ornare egestas ligula. Nullam','facilisis,','ornare-egestas-ligula-Nullam-2',159,186,1,TRUE,'2018/10/17 10:45:12');
+VALUES (2,'Primeiro-ministro português e Merkel','Receção no Aeroporto','merkel-no-porto',0,186,1,TRUE,'2017/10/17 10:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (3,'nascetur ridiculus mus. Donec dignissim','et,','nascetur-ridiculus-mus-donec-dignissim-3',34,174,2,FALSE,'2018/10/17 08:45:12');
+VALUES (3,'Chave euromilhoes','saiba se é um milionário','euromilhoes-chave',0,174,2,FALSE,'2017/10/17 08:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (4,'turpis egestas. Fusce aliquet magna','sem','turpis-egestas-fusce-aliquet-magna-4',74,83,1,TRUE,'2018/08/17 11:45:12');
+VALUES (4,'Discussão na Assembleia','politicos defrontam-se fervorosamente','assembleia-discussao',0,83,1,TRUE,'2017/08/17 11:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (5,'metus. Vivamus euismod','netus','metus-vivamus-euismod-5',103,143,1,FALSE,'2018/07/27 10:45:12');
+VALUES (5,'Estudo sobre estudantes e a eutanásia','Posição dos jovens médicos','eutanasia-estudantes',0,143,1,FALSE,'2017/07/27 10:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (6,'risus.','eu,','risus-6',146,79,3,FALSE,'2018/10/17 10:45:12');
+VALUES (6,'Eutanásia e os seguros de vida','Seguradores discutem a controvérsia','entanasia-seguradoras',0,79,3,FALSE,'2017/10/17 10:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (7,'ipsum ac mi','purus.','ipsum-ac-mi-7',124,55,1,FALSE,'2018/10/27 10:45:12');
+VALUES (7,'Cuidados paliativos na saúde pública','Falta de camas no centro','saude-publica',0,55,1,FALSE,'2017/10/27 10:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (8,'Nulla dignissim. Maecenas ornare egestas','facilisis','nulla-dignissim-maecenas-ornareegestas-8',39,2,2,TRUE,'2018/11/17 10:45:12');
+VALUES (8,'Morte medicamente assistida no estrangeiro','Portugueses recorrem ao estrangeiro','eutanasia-solucoes',0,2,2,TRUE,'2017/11/17 10:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (9,'turpis vitae purus gravida sagittis.','Nulla','turpis-vitae-purus-gravida-sagittis-9',42,22,5,TRUE,'2018/11/27 10:45:12');
+VALUES (9,'Meteorologia: GRAVE','Risco de tempestade no Norte do país','tempo-norte',0,22,5,TRUE,'2017/11/27 10:45:12');
 INSERT INTO "news_post" (id,title,"description",slug,comments_count,views,authors,published,published_date)
-VALUES (10,'non, cursus non, egestas','viverra.','non-cursus-non-egestas-10',54,19,1,FALSE,'2018/10/17 10:45:12');
+VALUES (10,'Meterologia: chuvas fortes','Vila Real passou um mau bocado','tempo-chuva',0,19,1,FALSE,'2017/10/17 10:45:12');
 
 INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (11,9,2,2);
 INSERT INTO "comment" (id,user_id,parent_comment,parent_news) VALUES (12,10,7,8);
