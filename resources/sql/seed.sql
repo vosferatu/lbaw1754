@@ -365,17 +365,43 @@ CREATE INDEX dinamic_search_content ON content USING GIST ( to_tsvector('english
 
 -- TRIGGERS and UDFs
 
+CREATE FUNCTION increment_comment() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+
+IF EXISTS (SELECT * FROM news_post WHERE NEW.parent_news = news_post.id) THEN
+ UPDATE news_post SET comments_count = comments_count + 1
+   WHERE news_post.id = NEW.parent_news;
+   RETURN NEW;
+END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER comentar_post
+ AFTER INSERT ON "comment"
+ FOR EACH ROW
+    EXECUTE PROCEDURE increment_comment();
+
 CREATE FUNCTION news_post_upvote() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-IF EXISTS (SELECT * FROM downvotes WHERE NEW.id_content = downvotes.id_content AND NEW.id_user = downvotes.id_user) THEN
+IF EXISTS (SELECT * FROM upvotes WHERE NEW.id_content = upvotes.id_content AND NEW.id_user = upvotes.id_user) AND 
+  NOT  EXISTS (SELECT * FROM downvotes WHERE NEW.id_content = downvotes.id_content AND NEW.id_user = downvotes.id_user) THEN
  UPDATE content SET votes = votes + 2
    WHERE content.id = NEW.id_content;
    RETURN NEW;
-ELSE
- UPDATE content SET votes = votes + 1
+ELSIF NOT EXISTS (SELECT * FROM upvotes WHERE NEW.id_content = upvotes.id_content AND NEW.id_user = upvotes.id_user) AND 
+  NOT EXISTS (SELECT * FROM downvotes WHERE NEW.id_content = downvotes.id_content AND NEW.id_user = downvotes.id_user)  THEN
+  UPDATE content SET votes = votes + 1
    WHERE content.id = NEW.id_content;
    RETURN NEW;
+ELSIF EXISTS (SELECT * FROM upvotes WHERE NEW.id_content = upvotes.id_content AND NEW.id_user = upvotes.id_user) AND 
+  NOT EXISTS (SELECT * FROM downvotes WHERE NEW.id_content = downvotes.id_content AND NEW.id_user = downvotes.id_user) THEN
+    UPDATE content SET votes = votes - 1
+   WHERE content.id = NEW.id_content;
+   RETURN NEW;
+else RETURN NULL;
 END IF;
 END
 $BODY$
@@ -391,14 +417,22 @@ CREATE TRIGGER content_upvote_trigger
 CREATE FUNCTION news_post_downvote() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-IF EXISTS (SELECT * FROM upvotes WHERE NEW.id_content = upvotes.id_content AND NEW.id_user = upvotes.id_user) THEN
+IF EXISTS (SELECT * FROM upvotes WHERE NEW.id_content = upvotes.id_content AND NEW.id_user = upvotes.id_user) AND 
+  NOT EXISTS (SELECT * FROM downvotes WHERE NEW.id_content = downvotes.id_content AND NEW.id_user = downvotes.id_user) THEN
  UPDATE content SET votes = votes - 2
    WHERE content.id = NEW.id_content;
    RETURN NEW;
-ELSE
- UPDATE content SET votes = votes - 1
+ELSIF NOT EXISTS (SELECT * FROM downvotes WHERE NEW.id_content = downvotes.id_content AND NEW.id_user = downvotes.id_user) AND
+   NOT EXISTS (SELECT * FROM upvotes WHERE NEW.id_content = upvotes.id_content AND NEW.id_user = upvotes.id_user) THEN
+  UPDATE content SET votes = votes - 1
    WHERE content.id = NEW.id_content;
    RETURN NEW;
+ELSIF EXISTS (SELECT * FROM downvotes WHERE NEW.id_content = downvotes.id_content AND NEW.id_user = downvotes.id_user) AND
+   NOT EXISTS (SELECT * FROM upvotes WHERE NEW.id_content = upvotes.id_content AND NEW.id_user = upvotes.id_user)   THEN
+   UPDATE content SET votes = votes + 1
+   WHERE content.id = NEW.id_content;
+   RETURN NEW;
+  else  RETURN NULL;
 END IF;
 END
 $BODY$
@@ -432,6 +466,44 @@ CREATE TRIGGER news_publication_trigger
    EXECUTE PROCEDURE check_if_news_is_published();
 
 --
+
+/*
+CREATE FUNCTION news_delete_downvote() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+IF EXISTS (SELECT * FROM content WHERE OLD.id_content = content.id) THEN
+ UPDATE content SET votes = votes + 1
+   WHERE content.id = OLD.id_content;
+   RETURN NEW;
+END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER content_downvote_delete
+ BEFORE DELETE ON downvotes
+ FOR EACH ROW
+   EXECUTE PROCEDURE news_delete_downvote();
+
+
+
+CREATE FUNCTION news_delete_upvote() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+IF EXISTS (SELECT * FROM content WHERE OLD.id_content = content.id) THEN
+ UPDATE content SET votes = votes - 1
+   WHERE content.id = OLD.id_content;
+   RETURN NEW;
+END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER content_upvote_delete
+ BEFORE DELETE ON upvotes
+ FOR EACH ROW
+   EXECUTE PROCEDURE news_delete_upvote();
+*/
 
 CREATE FUNCTION set_user_published() RETURNS TRIGGER AS
 $BODY$
@@ -727,13 +799,6 @@ INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (8,2,TR
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (9,9,FALSE,null);
 INSERT INTO "news_creation" (id_news,id_user,ready,approval_date) VALUES (10,6,FALSE,null);
 
-
-ALTER TABLE news_post ADD COLUMN textsearchable_name_col tsvector;
-UPDATE news_post SET textsearchable_name_col = to_tsvector('english', title);
-
-ALTER TABLE content ADD COLUMN textsearchable_name_col tsvector;
-UPDATE content SET textsearchable_name_col = to_tsvector('english', text);
-
 /*
 ALTER TABLE "question" ADD COLUMN textsearchable_index_col tsvector;
 UPDATE "question" SET textsearchable_index_col =
@@ -762,3 +827,42 @@ CREATE TRIGGER question_search_update
         EXECUTE PROCEDURE question_search_update();
 
 */
+
+ALTER TABLE news_post ADD COLUMN textsearchable_name_col tsvector;
+UPDATE news_post SET textsearchable_name_col = to_tsvector('english', title);
+
+ALTER TABLE content ADD COLUMN textsearchable_name_col tsvector;
+UPDATE content SET textsearchable_name_col = to_tsvector('english', text);
+
+
+CREATE FUNCTION post_search() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+IF NEW.textsearchable_name_col is null THEN
+  NEW.textsearchable_name_col = to_tsvector('english', NEW.title);
+END IF;  
+RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER news_post
+BEFORE INSERT ON news_post
+FOR EACH ROW
+  EXECUTE PROCEDURE post_search();
+
+CREATE FUNCTION content_search() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+IF NEW.textsearchable_name_col is null THEN
+  NEW.textsearchable_name_col = to_tsvector('english', NEW.text);
+END IF;  
+RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER content
+BEFORE INSERT ON content
+FOR EACH ROW
+  EXECUTE PROCEDURE content_search();

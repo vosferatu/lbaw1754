@@ -209,6 +209,13 @@ class ContentController extends Controller
       return;
     }
 
+    $var = $content->saves->where('id_user', Auth::user()->id)->first();
+    
+    if($var){
+      $var->delete();
+      return;
+    }
+
     Save::create([
       'id_content' => $content->id,
       'id_user' => Auth::user()->id,
@@ -228,13 +235,15 @@ class ContentController extends Controller
     if($downvote){
       $this->upvote($content);
       $downvote->delete();
-    } else if(!$upvote){
+    } else {
+            if(!$downvote && !$upvote){
               $this->upvote($content);
-          } else {
-            $upvote->delete;
+          } else if ($upvote && !$downvote) {
+            $upvote->delete();
           }
+    }
 
-    $num = $content->votes;
+    $num = Content::find($content->id)->votes;
 
     return response()->json(['votes'=>$num]);
   }
@@ -250,13 +259,15 @@ class ContentController extends Controller
     if($upvote){
       $this->downvote($content);
       $upvote->delete();
-    } else if(!$downvote){
+    } else {
+        if(!$downvote && !$upvote){
               $this->downvote($content);
-          } else {
-              $downvote->delete;
+          } else if ($downvote && !$upvote) {
+              $downvote->delete();
           }
-
-    $num = $content->votes;
+      }
+      
+    $num = Content::find($content->id)->votes;
 
     return response()->json(['votes'=>$num]);
   }
