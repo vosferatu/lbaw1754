@@ -22,7 +22,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -98,66 +99,32 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    <tr>
-                                        <td>001</td>
-                                        <td>Oscars 2018: What to expect from this year's ceremony</td>
-                                        <td>The Oscars are taking place later, in the shadow of the sexual assault scandal that has rocked the industry in recent months.</td>
-                                        <td>4/3/2018 12:45</td>
-                                        <td>Publico</td>
-                                        <td>10</td>
-                                        <td>2</td>
-                                        <td>
-                                            <a href="#" data-toggle="tooltip" title="View Thread">
-                                                <span data-feather="book-open"></span>
-                                            </a>
-                                            <a href="#" data-toggle="tooltip" title="Close Discussion">
-                                                <span data-feather="message-circle" style="color: red"></span>
-                                            </a>
-                                            <a href="#" data-toggle="tooltip" title="Delete Post">
-                                                <span data-feather="trash" style="color: red"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    <td>002</td>
-                                    <td>Davide Astori: Fiorentina captain and Italy international dies at the age of 31 </td>
-                                    <td>Fiorentina captain and Italy international Davide Astori has died at the age of 31.</td>
-                                    <td>4/3/2018 12:00</td>
-                                    <td>kevin</td>
-                                        <td>9</td>
-                                        <td>3</td>
-                                        <td>
-                                            <a href="#" data-toggle="tooltip" title="View Thread">
-                                                <span data-feather="book-open"></span>
-                                            </a>
-                                            <a href="#" data-toggle="tooltip" title="Close Discussion">
-                                                <span data-feather="message-circle" style="color: red"></span>
-                                            </a>
-                                            <a href="#" data-toggle="tooltip" title="Delete Post">
-                                                <span data-feather="trash" style="color: red"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>003</td>
-                                        <td>AI finds novel way to beat classic Q*bert Atari video game</td>
-                                        <td>Atari video game Q*bert has been beaten by an Artificial Intelligence program, which exploited a loophole that had never previously been discovered.</td>
-                                        <td>4/3/2018 9:00</td>
-                                        <td>joseRocha, conceicao1</td>
-                                        <td>15</td>
-                                        <td>10</td>
-                                        <td>
-                                            <a href="#" data-toggle="tooltip" title="View Thread">
-                                                <span data-feather="book-open"></span>
-                                            </a>
-                                            <a href="#" data-toggle="tooltip" title="Close Discussion">
-                                                <span data-feather="message-circle" style="color: red"></span>
-                                            </a>
-                                            <a href="#" data-toggle="tooltip" title="Delete Post">
-                                                <span data-feather="trash" style="color: red"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    
+
+					@foreach($posts as $post)
+						<tr>
+		                                <td>{{$post[0]}}</td>
+		                                <td>{{$post[1]}}</td>
+		                                <td>{{$post[2]}}</td>
+		                                <td>{{$post[3]}}</td>
+		                                <td>@foreach($post[4] as $author)
+							{{$author.' '}}
+						@endforeach</td>
+		                                <td>{{$post[5]}}</td>
+		                                <td>{{$post[6]}}</td>
+		                                <td>
+		                                    <a href="#" data-toggle="tooltip" title="View Thread">
+		                                        <span data-feather="book-open"></span>
+		                                    </a>
+		                                    <a href="#" data-toggle="tooltip" title="Close Discussion">
+		                                        <span data-feather="message-circle" style="color: red"></span>
+		                                    </a>
+		                                    <a href="#" data-toggle="tooltip" title="Delete Post">
+		                                        <span data-feather="trash" style="color: red"></span>
+		                                    </a>
+		                                </td>
+		                            	</tr>
+					@endforeach
                                     </tbody>
                                 </table>
                             </div>

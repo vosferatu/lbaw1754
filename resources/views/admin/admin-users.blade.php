@@ -22,6 +22,7 @@
 
 <div class="container-fluid">
     <div class="row">
+
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
@@ -32,7 +33,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="{{url('/admin-users')}}">
                             <span data-feather="users"></span>
                             Users <!--<span class="badge badge-success">1</span>-->
                         </a>
@@ -107,7 +108,7 @@
 							
 						
 						
-						<a href="{{'user/' . $user[0] . '/verify'}}" data-toggle="tooltip" title="View User Profile">
+						<a href="{{'user/' . $user[0] . '/verify'}}" data-toggle="tooltip" title="Change Verified Account">
 							@if($user[4]=='Verified')
 						
 								<span data-feather="check-circle" style="color: red"></span>
@@ -116,10 +117,31 @@
 							@endif
                                            	</a>
 
-                                                
-                                                <span data-feather="award" style="color: gray"></span>
-                                                <span data-feather="slash" style="color: gray"></span>
-                                                <span data-feather="trash-2" style="color: gray"></span>
+						<a href="{{'user/' . $user[0] . '/moderator'}}" data-toggle="tooltip" title="Change Moderator">
+							@if($user[5]=='Moderator')
+								<span data-feather="award" style="color: red"></span>
+							@else
+								<span data-feather="award" style="color: green"></span>
+							@endif
+                                           	</a>
+
+
+						<a href="{{'user/' . $user[0] . '/ban'}}" data-toggle="tooltip" title="Ban">
+							@if($user[6]=='Banned')
+								<span data-feather="slash" style="color: red"></span>
+							@else
+								<span data-feather="slash" style="color: green"></span>
+							@endif
+                                           	</a>
+
+
+						<form method="delete" style="display: inline-block;" data-toggle="tooltip" action="{{'user/' . $user[0] . '/admin/delete'}}">    
+						            {{ csrf_field() }}
+						            {{ method_field('delete') }}
+
+						    <button type="submit" style="color: red; background: none; border:none; padding: 0; font:inherit; outline: inherit;  cursor: pointer;" title="Delete"><span data-feather="trash-2" style="color: red; background: none; border:none; padding: 0; font:inherit; outline: inherit;"></span></button>
+						</form>
+
                                         	</td>
 				    	</tr>
 				    @endforeach
