@@ -20,7 +20,7 @@
                                 <span class="badge badge-pill">{{ $tag->name }}</span>
                             @endforeach
       
-                            {!! $post->content->text !!}
+                            <p> {{  $post->description }} </p>
 
 
                         <ul class="list-inline my-0 py-0">

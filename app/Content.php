@@ -26,6 +26,10 @@ class Content extends Model
         'text', 'created'
     ];
 
+    protected $dates = ['created'];
+
+    protected $dateFormat = 'Y-m-d H:i:sO';
+
 
     /**
      * Get the posts of content table.

@@ -39,7 +39,7 @@
                       alt="Avatar"> {{ Auth::user()->username }} <b class="caret"></b></a>
               <ul class="dropdown-menu">
                   <li><a href="/user/{{ Auth::user()->id  }}" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a></li>
-                  <li><a href="drafts.html" class="dropdown-item"><i class="fas fa-edit"></i> My Drafts</a></li>
+                  <li><a href="/user/{{ Auth::user()->id  }}/drafts" class="dropdown-item"><i class="fas fa-edit"></i> My Drafts</a></li>
                   <li class="divider dropdown-divider"></li>
                   <li><a href="{{ route('logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
               </ul>
@@ -57,43 +57,4 @@
             </ul>
         </div>
 
-
-        <!-- New Post Modal -->
-<!--
-        <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">New Post</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" id="title" placeholder="Title">
-                            </div>
-
-                            <div class="form-group">
-                            <textarea name="editor" id="editor" rows="10" cols="80" placeholder="Article"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" id="tags" placeholder="Add Tags"> <span class="badge badge-pill badge-success">Photography</span> <span class="badge badge-pill badge-success">Technology</span>
-
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark mr-auto"><i class="fas fa-user-plus"></i> Add Author</button>
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-outline-success">Save</button>
-                        <button type="button" class="btn btn-outline-primary">Publish</button>
-                    </div>
-                </div>
-            </div>
-        </div>
--->
     </nav>

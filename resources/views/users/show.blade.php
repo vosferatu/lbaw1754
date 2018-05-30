@@ -59,21 +59,26 @@
                     </div>
                                     
                     <div class="tab-pane fade" id="pills-savedpost" role="tabpanel" aria-labelledby="pills-savedpost-tab">
-                        {{-- @foreach($user->saved as $post)
+                        @foreach($user->saves as $save)
+                            @foreach($save->content->posts as $post)
                         <div class="row col-10">
                              @include('layouts.partial-post')
                         </div>
-                        @endforeach --}}
+                        @endforeach
+                        @endforeach
+
 
                     </div>
 
                                     
-                    <div class="tab-pane fade" id="pills-savedcomment" role="tabpanel" aria-labelledby="pills-savedcomment-tab">
-                       {{-- @foreach($user->saved as $comment)
+                    <div class="tab-pane fade" id="pills-savedcomment" role="tabpanel" aria-labelledby="pills-savedcomment-tab" >
+                            @foreach($user->saves as $save)
+                            @foreach($save->content->comments as $comment)
                         <div class="row col-10">
                              @include('layouts.comment')
                         </div>
-                        @endforeach --}}
+                        @endforeach
+                        @endforeach
 
                     </div>
 

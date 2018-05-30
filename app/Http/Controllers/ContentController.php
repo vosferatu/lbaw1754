@@ -33,7 +33,7 @@ class ContentController extends Controller
     //$cards = Auth::user()->cards()->orderBy('id')->get();
 
    
-    $posts = Post::all();
+    $posts = Post::all()->where('published',1);
     $tags = Tag::all();
 
     return view('posts.index', compact('posts','tags'));
@@ -46,7 +46,7 @@ class ContentController extends Controller
     //$cards = Auth::user()->cards()->orderBy('id')->get();
 
    
-    $posts = Post::orderBy('published_date','asc')->get();
+    $posts = Post::orderBy('published_date','asc')->where('published',1)->get();
     $tags = Tag::all();
 
     return view('posts.index', compact('posts','tags'));
@@ -56,8 +56,7 @@ class ContentController extends Controller
   {
     $tags = Tag::all();
 
-    $posts = $tag->posts()->get();
-
+    $posts = $tag->posts()->where('published',1)->get();
 
     return view('posts.index', compact('posts','tags'));
   }
@@ -101,12 +100,14 @@ class ContentController extends Controller
     ]);
 
     $slug = str_slug($request->input('title'),"-") . "-" . $content->id;
+    
+    $this->authorize('createContent', $content);
 
 
     $post = Post::create([
       'id' => $content->id,
       'title' => $request->input('title'),
-      'photo' => "test",
+      'description' => $request->input('description'),
       'slug' => $slug,
       'comments_count' => 0,
       'views' => 0,
@@ -130,61 +131,16 @@ class ContentController extends Controller
     $post->users()->attach(Auth::user()->id, ['ready'=> 1, 'approval_date' => Carbon::now('Europe/Lisbon')]);
 
 
-    return response()->json(['slug'=>$post->slug]);
+    return response()->json(['published'=> $request->input('published'), 'slug'=>$post->slug, 'user_id'=> Auth::user()->id]);
   }
 
-
-  public function createDraft(Request $request){
-
-    $content = Content::create([
-      'text' => $request->input('text'),
-      'created' => Carbon::now('Europe/Lisbon')
-    ]);
-
-    $slug = str_slug($request->input('title'),"-") . "-" . $content->id;
-
-
-    $post = Post::create([
-      'id' => $content->id,
-      'title' => $request->input('title'),
-      'photo' => "test",
-      'slug' => $slug,
-      'comments_count' => 0,
-      'views' => 0,
-      'authors' => 1,
-      'published' => $request->input('published'),
-      'published_date' => null
-    ]);
-
-
-    $tags_string = $request->input('tags');
-    $tags_names = explode(",", $tags_string);
-
-    $tags = array();
-
-    foreach ($tags_names as $tag){
-      $tagModel = Tag::where('name', $tag)->first();
-      $post->tags()->attach($tagModel->id);
-    }
-
-    $users_id = $request->input('authors');
-
-    foreach ($users_id as $user){
-      $userModel = User::where('id', $user)->first();
-      $post->users()->attach($tagModel->id);
-    }
-
-    $post->users()->attach(Auth::user()->id, ['ready'=> 1, 'approval_date' => Carbon::now('Europe/Lisbon')]);
-
-
-    return response()->json(['slug'=>$post->slug]);
-  }
 
   public function addComment(Post $post){
 
 
       $content = Content::create([
         "text" => request('text'),
+        "created" => Carbon::now('Europe/Lisbon')
       ]);
 
       $this->authorize('createContent', $content);

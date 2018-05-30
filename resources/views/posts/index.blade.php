@@ -25,6 +25,8 @@
                 <h4 class="title"> Posts with tag '{{ Request::segment(2)}}' <i class="fas fa-tag blue-tag"></i> </a> </li></h4>
             @elseif (Request::is('searchpost'))
                 <h4 class="title"> Your results from search <i class="fas fa-leaf"> </i> </a> </li></h4>
+            @elseif (Request::is('user/*/drafts'))
+                <h4 class="title"> Drafts <i class="fas fa-edit"> </i> </a> </li></h4>
             @else
               <h4 class="title"> Hottest news right now  <i class="fas fa-bolt side"></i> </a></li></h4>
             @endif
@@ -42,6 +44,12 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
+    </div>
+    @endif  
+
+    @if($posts->count() == 0)
+    <div class="ml-5 mt-4 engraved"> 
+        <p> There are no posts to display.</p>
     </div>
     @endif
               @foreach($posts as $post)
