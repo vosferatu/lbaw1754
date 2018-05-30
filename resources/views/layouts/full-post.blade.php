@@ -35,7 +35,7 @@
 
                     <li class="list-inline-item">
                         <p>
-                            <i class="far fa-clock"></i> {{ $post->published_date }}</p>
+                            <i class="far fa-clock"></i> {{ $post->published_date->diffForHumans()  }}</p>
                     </li>
 
                     <li class="list-inline-item">
@@ -66,14 +66,6 @@
 
             </div>
 
-        </div>
-
-        <div class="post-pic">
-            <div class="pl-5 pr-5 pt-3 pb-3">
-                <a href="">
-                    <img class="img-fluid rounded" src={{ url( 'img/waves.jpg') }}>
-                </a>
-            </div>
         </div>
 
         <div class="post-text">

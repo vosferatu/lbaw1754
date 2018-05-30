@@ -1,199 +1,56 @@
-    let warn_on_unload = "You have unsaved changes!"
-
-    let authors = [];
-
-    let ready = document.querySelector('input[type=checkbox]');
+let warn_on_unload = "You have unsaved changes!"
 
 
-function addEventListeners() { 
-   
-    
+let ready = document.querySelector('input[type=checkbox]');
+
+
+function addEventListeners() {
     let tags = [];
 
-  let tagsAnchor = document.querySelectorAll('#sidebar .list-group a');
+    let tagsAnchor = document.querySelectorAll('#sidebar .list-group a');
 
-  tagsAnchor.forEach(function(tag){
-    tag.setAttribute("href",'#');
-  });
-  
-
-  [].forEach.call(tagsAnchor, function (tagAction) {
-    tagAction.addEventListener('click', function() {return selectTag(tags)});
-  });
+    tagsAnchor.forEach(function (tag) {
+        tag.setAttribute("href", '#');
+    });
 
 
-
-  if (ready != null)
-  ready.addEventListener('change', readyCheck);
-
-  let postCreator = document.querySelector('.publish');
-  if (postCreator != null)
-   postCreator.addEventListener('click', function() {return sendCreatePostRequest(tags)});
+    [].forEach.call(tagsAnchor, function (tagAction) {
+        tagAction.addEventListener('click', function () { return selectTag(tags) });
+    });
 
 
-   let postDraft = document.querySelector('.save');
-   if (postDraft != null)
-    postDraft.addEventListener('click', function() {return sendDraftPostRequest(tags)});
+
+    if (ready != null)
+        ready.addEventListener('change', readyCheck);
+
+    let postCreator = document.querySelector('.publish');
+    if (postCreator != null)
+        postCreator.addEventListener('click', function () { return sendCreatePostRequest(tags) });
 
 
-   let addAuthorButton = document.querySelector('.addAuthorButton');
-   if (addAuthorButton != null)
-   addAuthorButton.addEventListener('click', sendAuthorAddRequest );
+    let postDraft = document.querySelector('.saveDraft');
+    if (postDraft != null)
+        postDraft.addEventListener('click', function () { return sendCreatePostRequest(tags) });
 
 
-   window.onbeforeunload = function () {
-    if (warn_on_unload != "") {
-        return warn_on_unload;
-    }
-}
-
-}
-
-
-function sendDraftPostRequest(tags){
-        alert('oi');
-
-    warn_on_unload = "";   
-    let form = document.querySelector('.card-body');
-
-    let title = document.querySelector('input[type=text]').value;
-
-    let card = document.querySelector(' #errors');
-
-    if(title == ""){
-        let divWarn = document.createElement("div");
-        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
-        You must write a title.
-      </div>`;
-      card.appendChild(divWarn);
-    }
-
-  
-
-
-    let text = CKEDITOR.instances["editor"].getData();
-
-
-    if(text == ""){
-        let divWarn = document.createElement("div");
-        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
-        You must write the text.
-      </div>`;
-      card.appendChild(divWarn);
-    }
-
-    let readyValue = 0;
-
-    if(ready.checked){
-        readyValue = 1;
-       
-    sendAjaxRequest('post', '/api/post/saveDraft', { title: title, text: text, tags: tags, authors: authors, published: 0, ready: readyValue }, postSavedHandler);
-
-}
-}
-
-
-function postSavedHandler(){
-    let response = JSON.parse(this.responseText);
-}
-
-function  sendAuthorAddRequest(){
-
-    let inputBox = document.querySelector('input[name=author]');
-    let username  = inputBox.value;
-    inputBox.value = "";
-
-    sendAjaxRequest('post', '/api/user/search/' + username, null, authorAddHandler);
-    
-}
-
-function authorAddHandler(){
-    let inputBox = document.querySelector('input[name=author]');
-
-    //if (this.status != 200) window.location = '/';
-    let user = JSON.parse(this.responseText);
-    
-    console.log(user);
-
-    switch(user['user']) {
-        case 'dontExist':{
-            inputBox.style.borderColor = "red";
-            inputBox.placeholder = "Couldn't find that user.";
-        break;
-    }
-        case 'owner':{
-            inputBox.style.borderColor = "red";
-            inputBox.placeholder = "You can't add yourself as an author twice.";
-        break;
-    }
-        default:{
-            inputBox.placeholder = "Author";
-            inputBox.style.borderColor = null;
-
-            if (authors.includes(user['user']['id'])){
-                inputBox.style.borderColor = "red";
-                inputBox.placeholder = "Author already added.";
-                return;
-            }
-
-            let ul = document.querySelector('#authorsList');
-
-            let li = document.createElement("li");
-            li.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
-            li.innerHTML= user['user']['username']; 
-                let close = document.createElement("span");
-                close.innerHTML = `<button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>`;
-                li.setAttribute("id",user['user']['id']);
-                li.appendChild(close);
-
-                close.addEventListener('click', removeAuthorFromList)
-
-            ul.appendChild(li);
-
-
-            authors.push(user['user']['id']);
-            let button = document.querySelector('.publish');
-
-            if(authors.length != 0 )
-                button.disabled = true;
-            else 
-             button.disabled = false;
+    window.onbeforeunload = function () {
+        if (warn_on_unload != "") {
+            return warn_on_unload;
         }
     }
-}
 
-function removeAuthorFromList(){
-   let liAuthor =  this.closest('li');
-   let authorId = liAuthor.id;
-   
-   console.log(authorId);
-   console.log(authors);
-
-   let index = authors.indexOf(authorId);
-   console.log("index - "+index);
-   authors.splice(index, 1);
-
-   liAuthor.parentNode.removeChild(liAuthor);
-   let button = document.querySelector('.publish');
-
-   if(authors.length != 0 )
-        button.disabled = true;
-    else 
-        button.disabled = false;
 }
 
 
-function selectTag(tags){
+function selectTag(tags) {
 
     let tagSection = document.querySelector('.tagSection');
 
     console.log(event.target);
-  
-    if( !tags.includes(event.target.id)){ // nao existe
 
-        if(tags.length > 2){
+    if (!tags.includes(event.target.id)) { // nao existe
+
+        if (tags.length > 2) {
             return;
         }
         event.target.innerHTML += "  &#10004";
@@ -201,107 +58,91 @@ function selectTag(tags){
 
         let span = document.createElement("span");
         span.setAttribute("class", "badge badge-pill badge-success ml-1 " + event.target.id);
-        span.innerHTML= event.target.id;   
-        tagSection.appendChild(span);    
+        span.innerHTML = event.target.id;
+        tagSection.appendChild(span);
         tags.push(event.target.id);
- 
+
     }
     else { // ja existe la
         var index = tags.indexOf(event.target.id);
         if (index > -1) {
-          tags.splice(index, 1);
+            tags.splice(index, 1);
         }
-        event.target.innerHTML =event.target.id;
+        event.target.innerHTML = event.target.id;
 
-        let node = document.querySelector('.'+event.target.id);
+        let node = document.querySelector('.' + event.target.id);
         node.parentNode.removeChild(node);
     }
-  
+
 }
 
-function sendCreatePostRequest(tags){
-    warn_on_unload = "";   
+function sendCreatePostRequest(tags) {
+    warn_on_unload = "";
+   
+    let published = 0;
+
+    if(event.target.classList.contains("publish"))  
+        published =1;
+
+
     let form = document.querySelector('.card-body');
 
-    let title = document.querySelector('input[type=text]').value;
+    let title = document.querySelector('input[name=title]').value;
+    let description = document.querySelector('input[name=description]').value;
+
 
     let card = document.querySelector(' #errors');
 
-    if(title == ""){
+    if (title == "") {
         let divWarn = document.createElement("div");
-        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        divWarn.innerHTML = `<div class="alert alert-danger my-2" role="alert">
         You must write a title.
       </div>`;
-      card.appendChild(divWarn);
+        card.appendChild(divWarn);
     }
 
-    if(tags.length == 0){
+    if (tags.length == 0) {
         let divWarn = document.createElement("div");
-        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        divWarn.innerHTML = `<div class="alert alert-danger my-2" role="alert">
         You must select at least 1 tag.
       </div>`;
-      card.appendChild(divWarn);
+        card.appendChild(divWarn);
     }
 
 
     let text = CKEDITOR.instances["editor"].getData();
 
 
-    if(text == ""){
+    if (text == "") {
         let divWarn = document.createElement("div");
-        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        divWarn.innerHTML = `<div class="alert alert-danger my-2" role="alert">
         You must write the text.
       </div>`;
-      card.appendChild(divWarn);
+        card.appendChild(divWarn);
     }
 
-    if(ready.checked){
-        sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, published: 1 }, postCreatedHandler);
-    }
-    else{
+    if (description == "") {
         let divWarn = document.createElement("div");
-       divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
-       You must set <b>ready to publish</b> before publishing.
-     </div>`;
-     card.appendChild(divWarn);
+        divWarn.innerHTML = `<div class="alert alert-danger my-2" role="alert">
+        You must write the description.
+      </div>`;
+        card.appendChild(divWarn);
     }
 
+        sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, description: description, published: published }, postCreatedHandler);
+
 }
 
-function sendCreateDraftRequest(tags){
-    let form = document.querySelector('.card-body');
-
-    let title = document.querySelector('input[type=text]').value;
-    let text = CKEDITOR.instances["editor"].getData();
-
-    sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, published: 0 }, postCreatedHandler);
-}
-
-function postCreatedHandler(){
+function postCreatedHandler() {
     if (this.status != 200) window.location = '/';
     let response = JSON.parse(this.responseText);
+        
+    if(response['published'] == 1 )
     window.location = '/post/' + response['slug'];
+    else(response['published'] == 0 )
+    window.location = '/user/' + response['user_id']+'/drafts';
 }
 
-function readyCheck(){
-   
-    let own = document.querySelector('#own');
-   
-    let span = document.createElement("span");
-    span.setAttribute("class", "badge badge-primary badge-pill checkOwn");
-    span.setAttribute("id", "checkOwn");
-
-    span.innerHTML= "&#10004";   
-
-    
-    if(this.checked) {
-        own.appendChild(span);
-
-    } else {// Checkbox is not checked..
-        let spaned = document.querySelector('#checkOwn');
-       spaned.parentNode.removeChild(spaned);
-    }
-}
 
 
 addEventListeners();

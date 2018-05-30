@@ -10,6 +10,8 @@ class Comment extends Content
      public $timestamps  = false;
 
      protected $fillable = ['id', 'user_id', 'parent_comment','parent_news'];
+     
+    
 
 
     /**

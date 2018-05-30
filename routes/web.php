@@ -41,6 +41,8 @@ Route::delete('api/cards/{card_id}', 'CardController@delete');
 Route::get('admin', 'AdminController@showPage');
 Route::get('user/{id}/verify', 'AdminController@verifyUser');
 Route::get('user/{id}/moderator', 'AdminController@moderatorUser');
+Route::get('user/{id}/ban', 'AdminController@banUser');
+Route::get('user/{id}/admin/delete', 'AdminController@deleteUser');
 
 Route::get('admin-users', 'AdminController@showUsersPage');
 
@@ -65,6 +67,8 @@ Route::patch('user/{user}/updateProfile', 'UserController@updateProfile')->name(
 Route::patch('user/{user}/updateEmail', 'UserController@updateEmail')->name('users.update.email');
 Route::patch('user/{user}/updatePassword', 'UserController@updatePassword')->name('users.update.password');
 Route::delete('user/{user}/delete', 'UserController@delete')->name('user.delete');
+Route::get('user/{user}/drafts', 'UserController@getUserDrafts')->name('user.drafts');
+
 
 
 
@@ -93,9 +97,5 @@ Route::post('/api/user/search/{username}', 'UserController@searchByUsername');
 
 
 
-
-
-
 Route::get('/api/post/create', 'ContentController@showPostForm')->name('post.create');
 Route::post('/api/post/create', 'ContentController@createPost');
-Route::post('/api/post/saveDraft', 'ContentController@saveDraft');

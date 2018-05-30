@@ -242,6 +242,10 @@ footer a:hover {
  .upvote:hover{
      width: 70%;
  }
+
+ .upvoted{
+    width: 70%;
+ }
  
  .downvote{
      width: 50%;
@@ -274,5 +278,14 @@ footer a:hover {
  .editProfile{
      margin-top: 2em;
  }
+
+ .engraved{
+    color: #3B5957;
+    font-size: 20px;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, .5);
+}
+
+
  
  /*********************************************************/
+ 

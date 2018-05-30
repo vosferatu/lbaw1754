@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image as Image;
 
 use App\User;
+use App\Tag;
+
 
 
 class UserController extends Controller
@@ -21,6 +23,15 @@ class UserController extends Controller
     public function show(User $user)
     {   
         return view('users.show', compact('user'));
+    }
+    
+    public function getUserDrafts(User $user)
+    {   
+        $tags = Tag::all();
+
+        $posts = $user->posts()->where('published',0)->get();
+    
+        return view('posts.index', compact('posts','tags'));
     }
 
     public function edit(User $user)

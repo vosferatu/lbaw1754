@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Post;
 use App\Content;
 use App\Comment;
+use App\NewsCreation;
 use App\Upvote;
 use App\Downvote;
 use App\ContentReport;
@@ -18,6 +19,8 @@ use App\Tag;
 use App\Admin;
 use App\User;
 use App\Verified;
+use App\Moderator;
+use App\Ban;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -45,28 +48,36 @@ class AdminController extends Controller
 		$allUsers = User::all();
 		foreach ($allUsers as $user){
 			$userID = $user->id;
-			$userVeri = 'Not Verified';
 			#Status Order: Inactive, Banned, Kicked, Admin, Mod, Verified
+			$userVeri = 'Not Verified';
+			$userMod = 'Not Moderator';
+			$userBan = 'Not Banned';
 			$Status = "";
 			if(DB::table('inactive')->find($userID) != null){
 				$Status = 'Inactive';
-			}else
+			}
+			
+
 			if(DB::table('banned')->find($userID) != null){
-				$Status = 'Permanently Banned';
+				if($Status=="")
+					$Status = 'Permanently Banned';
+				$userBan = 'Banned';
 			}else
 			if(DB::table('kicked')->find($userID) != null){
 				$Status = 'Temporarily Banned';
 			}else
 			if(DB::table('administrator')->find($userID) != null){
 				$Status = 'Administrator';
-			}else
-			if(DB::table('moderator')->find($userID) != null){
-				$Status = 'Moderator';
+			}			
+
+			if(Moderator::find($userID) != null){
+				if($Status=="")
+					$Status = 'Moderator';
+				$userMod = 'Moderator';
 			}
 
 			if(($VeriSt = Verified::find($userID)) != null){
 				if($VeriSt->status=='Pending'){
-
 					if($Status=="")
 						$Status = 'Pending Verified Account Request';
 
@@ -90,14 +101,61 @@ class AdminController extends Controller
 						 $user->username,
 						 (new Carbon($user->registered))->format('d/m/y h:m'),
 						 $Status,
-						 $userVeri));
+						 $userVeri,
+						 $userMod,
+ 						 $userBan));
 		}
 		return array($users, $pendingUsers);
 	}
 
 	public function getPosts(){
+		
+		$posts = array();
+
+		$news = Post::all();
+
+		foreach($news as $newsPost){
+			$id = $newsPost->id;
+			$content = Content::find($id);
+			$authors = NewsCreation::where('id_news', $id)->get();
+			$authorsNames = array();
+			foreach($authors as $authorID){
+				array_push($authorsNames,User::find($authorID->id_user)->username);
+			}
+			$NDownvotes = Downvote::where('id_content', $id)->count();
+			$NUpvotes = Upvote::where('id_content', $id)->count();
+			$NComments= Comment::where('parent_news',$id)->count();
+			array_push($posts, array($id,
+						$newsPost->title,
+						substr($content->text, 0, 30),
+						$content->created,
+						$authorsNames,
+						$NUpvotes-$NDownvotes,
+						$NComments
+						));
+		}
+		return $posts;
+
 	}
 	public function getReports(){
+	}
+
+
+	public function getRegsN(){
+		$daysOfTheWeek = array();
+		$numberRegs = array();
+		$startDay = Carbon::now()->subWeeks(1);
+		for($i = 0; i< 6; $i++){
+			array_push($daysOfTheWeek, Carbon::parse($startDay)->dayOfWeek);
+				
+			$endDay = $startDay->format('Y-m-d');
+			$startDay->addDays(1)->format('Y-m-d');
+
+			array_push($numberRegs, User::whereDate('registered','>',$endDay)
+				->whereDate('registered','<',$startDay)->count());
+
+			
+		}
 	}
 
 	public function showPage(){
@@ -105,6 +163,7 @@ class AdminController extends Controller
 			return view('errors.404');
 		}
 		$recentUsers = $this->getRecentUsers();
+		$countRegsDays = $this->getRegsN();
 		return view('admin.admin', compact('recentUsers'));
 	}
 	   
@@ -122,8 +181,8 @@ class AdminController extends Controller
 		if(null==$this->checkUser()){
 			return view('errors.404');
 		}
-		$this->getPosts();
-		return view('admin.admin-posts');
+		$posts = $this->getPosts();
+		return view('admin.admin-posts', compact('posts'));
 	}
 	   
 	public function showReportsPage(){
@@ -170,8 +229,46 @@ class AdminController extends Controller
 	
 		if(User::find($id)==null)
 			return back()->with('failure', 'Account doesn\'exist!');
+
+		if(($modSt = Moderator::find($id)) != null){
+			$modSt->delete();
+			return back()->with('success', 'Account is no longer moderator!');
+		}
+
+		Moderator::create(array('id' => $id, 
+				        'started'=> ((string)now()->addHour() .'+00')));
+
+		return back()->with('success', 'Account is now moderator!');
+	}
+
+	public function banUser($id){
+		if(null==$this->checkUser()){
+			return view('errors.404');
+		}
+	
+		if(User::find($id)==null)
+			return back()->with('failure', 'Account doesn\'exist!');
+
+		if(($banSt = Ban::find($id)) != null){
+			$banSt->delete();
+			return back()->with('success', 'Account is no longer banned!');
+		}
+
+		Ban::create(array('id' => $id));
+
+		return back()->with('success', 'Account is now banned!');
+	}
+
+	public function deleteUser($id){
+		if(null==$this->checkUser()){
+			return view('errors.404');
+		}
+	
+		if(($userSt=User::find($id))==null)
+			return back()->with('failure', 'Account doesn\'exist!');
 		
-		
+		$userSt->delete();
+		return back()->with('success', 'Account is no longer banned!');
 	}
 
 }

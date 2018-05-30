@@ -1,5 +1,5 @@
-<div class="card" data-id="{{ $comment->id }}">
-    <div class="card-body m-0 ">
+<div class="card m-2" data-id="{{ $comment->id }}">
+    <div class="card-body">
         <div class="row align-items-center ">
             <div class="col-sm-1 text-nowrap text-center px-0">
                 <ul class="list-group voting">
@@ -13,11 +13,11 @@
             <div class="col-sm-9 pt-2 pl-1">
                 {{ $comment->content->text}}
 
-                <ul class="list-inline my-0 py-0">
+                <ul class="list-inline my-0 py-0 mt-3">
 
                     <li class="list-inline-item">
                         <p>
-                            <i class="far fa-clock"></i> {{ $comment->content->created }}</p>
+                            <i class="far fa-clock"></i> {{ $comment->content->created->diffForHumans() }}</p>
                     </li>
 
                     <li class="list-inline-item">
