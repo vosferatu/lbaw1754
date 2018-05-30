@@ -17,12 +17,13 @@ use App\Save;
 use App\Tag;
 use App\Admin;
 use App\User;
+use App\Verified;
 use Carbon\Carbon;
 
 class AdminController extends Controller
 {
 
-	public function verifyUser(){
+	public function checkUser(){
 	
 		if(!Auth::check()){
 			return null;
@@ -44,8 +45,9 @@ class AdminController extends Controller
 		$allUsers = User::all();
 		foreach ($allUsers as $user){
 			$userID = $user->id;
+			$userVeri = 'Not Verified';
 			#Status Order: Inactive, Banned, Kicked, Admin, Mod, Verified
-
+			$Status = "";
 			if(DB::table('inactive')->find($userID) != null){
 				$Status = 'Inactive';
 			}else
@@ -60,42 +62,54 @@ class AdminController extends Controller
 			}else
 			if(DB::table('moderator')->find($userID) != null){
 				$Status = 'Moderator';
-			}else
-			if(($VeriSt = DB::table('verified')->find($userID)) != null){
+			}
+
+			if(($VeriSt = Verified::find($userID)) != null){
 				if($VeriSt->status=='Pending'){
-					$Status = 'Pending Verified Account Request';
+
+					if($Status=="")
+						$Status = 'Pending Verified Account Request';
+
 					array_push($pendingUsers, array($user->id,
 									$user->username,
 									(new Carbon($user->registered))->format('d/m/y h:m'),
 									$VeriSt->description));
 				}
-				else
-					$Status = 'Verified Account';
-			}else
+				else{
+					if($Status=="")
+						$Status = 'Verified Account';
+
+					$userVeri = 'Verified';
+				}
+			}
+
+			if($Status=="")
 				$Status = 'Normal';
 
 			array_push($users, array($user->id,
 						 $user->username,
 						 (new Carbon($user->registered))->format('d/m/y h:m'),
-						 $Status));
+						 $Status,
+						 $userVeri));
 		}
 		return array($users, $pendingUsers);
 	}
+
 	public function getPosts(){
 	}
 	public function getReports(){
 	}
 
 	public function showPage(){
-		if(null==$this->verifyUser()){
+		if(null==$this->checkUser()){
 			return view('errors.404');
 		}
-		$users = $this->getRecentUsers();
-		return view('admin.admin', compact('users'));
+		$recentUsers = $this->getRecentUsers();
+		return view('admin.admin', compact('recentUsers'));
 	}
 	   
 	public function showUsersPage(){
-		if(null==$this->verifyUser()){
+		if(null==$this->checkUser()){
 			return view('errors.404');
 		}
 		$arrUsers = $this->getUsers();
@@ -105,7 +119,7 @@ class AdminController extends Controller
 	}
 
 	public function showPostsPage(){
-		if(null==$this->verifyUser()){
+		if(null==$this->checkUser()){
 			return view('errors.404');
 		}
 		$this->getPosts();
@@ -113,10 +127,51 @@ class AdminController extends Controller
 	}
 	   
 	public function showReportsPage(){
-		if(null==$this->verifyUser()){
+		if(null==$this->checkUser()){
 			return view('errors.404');
 		}
 		$this->getReports();
 		return view('admin.admin-reports');
 	}
+	
+	public function verifyUser($id){
+
+		if(null==$this->checkUser()){
+			return view('errors.404');
+		}
+
+		if(User::find($id)==null)
+			return back()->with('failure', 'Account doesn\'exist!');
+		
+		
+		if(($VeriSt = Verified::find($id)) != null){
+			if($VeriSt->status=='Pending'){
+				$VeriSt->status = 'Verified';
+				$VeriSt->save();
+			}else{
+				$VeriSt->delete();
+				return back()->with('success', 'Deleted verification!');
+			}
+		}
+		
+		Verified::create(array('id' => $id, 
+						    'status'=> 'Verified', 
+						    'verified'=> ((string)now()->addHour() .'+00'),
+						    'description' => 'Request verified'));
+
+		return back()->with('success', 'Verified account!');
+	}
+
+	public function moderatorUser($id){
+
+		if(null==$this->checkUser()){
+			return view('errors.404');
+		}
+	
+		if(User::find($id)==null)
+			return back()->with('failure', 'Account doesn\'exist!');
+		
+		
+	}
+
 }
