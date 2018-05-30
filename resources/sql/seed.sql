@@ -608,15 +608,11 @@ VALUES ('Sawyer','XSB27PUS6OC','ac.arcu.Nunc@Fuscemilorem.co.uk','Arthur Kerr',
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Price','UUZ76WQD8AY','Morbi@consectetuermauris.co.uk','Joel Mack','Saudi Arabia','ac','Mclaughlin',81,'2018/05/11 14:45:13');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
-<<<<<<< HEAD
-VALUES ('Daugherty','MEG47BZI3NY','leo.Vivamus@elit.ca','Felix Robbins','Myanmar','sed, sapien. Nunc','Freeman',178,'2018/05/05 10:45:12');
-=======
 VALUES ('Daugherty','MEG47BZI3NY','leo.Vivamus@elit.ca','Felix Robbins','Myanmar','sed, sapien. Nunc','Freeman',178,'2018/06/05 10:45:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Joao','DMEG47BZI3NY','jon.Vivamus@elit.ca','Joao Lago','Lago','sed, sopien. Nunc','Gordan',1,'2018/05/29 10:45:12');
 INSERT INTO users (username,password,email,name,country,introduction,photo,followers,registered)
 VALUES ('Jason','$2y$10$LnNSHQ3Qs77ymNqYAl.XJeDxS/ARi.pce16DmSiSkFxnk5u0uC.DG','jan.Vivamus@elit.ca','Jason Lago','LAago','sed, sopien. Nunc','Gordaan',1,'2018/05/28 10:45:12');
->>>>>>> 7f507889ca333f429e124084d057b8f0dc98eef8
 
 INSERT INTO "tags" (name,frequency) VALUES ('World',0);
 INSERT INTO "tags" (name,frequency) VALUES ('Portugal',0);
@@ -731,17 +727,17 @@ VALUES (61,'<p>Segundo o Instituto Português do Mar e da Atmosfera (IPMA), os d
 INSERT INTO "content" (votes,text,created)
 VALUES (22,'<p>Nestes concelhos do sul do distrito de Vila Real, a chuva forte chegou na segunda-feira acompanhada de granizo, deixando um cenário, em algumas vinhas, de folhas esfarrapadas, galhos quebrados e bagos no chão, muros caídos e deslizamentos de terras.</p>','2018/04/24 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'<p>Um jovem de 25 anos sofreu ferimentos considerados muito graves, esta terça-feira, após cair de uma altura de "cerca de três a quatro metros" quando estava em cima de um carregador frontal a cortar árvores em Pondras, Montalegre.
+VALUES (65,'Um jovem de 25 anos sofreu ferimentos considerados muito graves, esta terça-feira, após cair de uma altura de "cerca de três a quatro metros" quando estava em cima de um carregador frontal a cortar árvores em Pondras, Montalegre.
 
-O comandante dos bombeiros de Salto, Hernâni Carvalho, explicou que "a vítima estava a trabalhar com uma máquina agrícola quando sofreu a queda". "Ele estava a cortar árvores com uma motosserra em cima do frontal. Estaria a uma altura de cerca de três a quatro metros", explicou o comandante dos voluntários de Salto.</p>','2018/05/17 10:45:12');
+O comandante dos bombeiros de Salto, Hernâni Carvalho, explicou que "a vítima estava a trabalhar com uma máquina agrícola quando sofreu a queda". "Ele estava a cortar árvores com uma motosserra em cima do frontal. Estaria a uma altura de cerca de três a quatro metros", explicou o comandante dos voluntários de Salto.','2018/05/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'<p>Um homem de 72 anos ficou preso debaixo de um trator durante cerca de uma hora, esta terça-feira, na sequência de um capotamento, na localidade de Adães, em Chaves.
+VALUES (65,'Um homem de 72 anos ficou preso debaixo de um trator durante cerca de uma hora, esta terça-feira, na sequência de um capotamento, na localidade de Adães, em Chaves.
 
-O septuagenário conseguiu libertar-se depois de escavar um buraco com as mãos e com a ajuda de um vizinho que apareceu, mais tarde, no local do acidente.</p>','2018/05/17 10:45:12');
+O septuagenário conseguiu libertar-se depois de escavar um buraco com as mãos e com a ajuda de um vizinho que apareceu, mais tarde, no local do acidente.','2018/05/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
 VALUES (65,'<p>O Ministério Público (MP) acusou um homem de 19 anos por quatro crimes de tentativas de violação e um crime de violação consumada, na cidade de Faro, no Algarve, anunciou esta terça-feira a Procuradoria da Comarca de Faro.</p>','2018/05/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'<p>A Associação Portuguesa para a Defesa do Consumidor (DECO) anunciou esta quarta-feira que vai avançar com uma ação em tribunal contra o Facebook para garantir que os portugueses com conta naquela rede social sejam indemnizados pelo uso indevido de dados.</p>','2018/05/17 10:45:12');
+VALUES (65,'A Associação Portuguesa para a Defesa do Consumidor (DECO) anunciou esta quarta-feira que vai avançar com uma ação em tribunal contra o Facebook para garantir que os portugueses com conta naquela rede social sejam indemnizados pelo uso indevido de dados.','2018/05/17 10:45:12');
 
 INSERT INTO "saves" (id_content,id_user) VALUES (6,5);
 INSERT INTO "saves" (id_content,id_user) VALUES (9,10);
