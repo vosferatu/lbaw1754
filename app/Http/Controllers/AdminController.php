@@ -140,12 +140,30 @@ class AdminController extends Controller
 	public function getReports(){
 	}
 
+
+	public function getRegsN(){
+		$daysOfTheWeek = array();
+		$numberRegs = array();
+		$startDay = Carbon::now()->subWeeks(1);
+		for($i = 0; i< 6; $i++){
+			array_push($daysOfTheWeek, Carbon::parse($startDay)->dayOfWeek);
+				
+			$endDay = $startDay->format('Y-m-d');
+			$startDay->addDays(1)->format('Y-m-d');
+
+			array_push($numberRegs, User::whereDate('registered','>',$endDay)
+				->whereDate('registered','<',$startDay)->count());
+
+			
+		}
+	}
+
 	public function showPage(){
 		if(null==$this->checkUser()){
 			return view('errors.404');
 		}
 		$recentUsers = $this->getRecentUsers();
-		
+		$countRegsDays = $this->getRegsN();
 		return view('admin.admin', compact('recentUsers'));
 	}
 	   
