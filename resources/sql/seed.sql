@@ -660,19 +660,19 @@ INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (7,9);
 INSERT INTO "tags_blocked" (id_tag,id_user) VALUES (1,3);
 
 INSERT INTO "user_report" (id_reported,id_informer,reason)
-VALUES (6,8,'ipsum porta');
+VALUES (6,8,'o user insultou-me');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
-VALUES (6,4,'viverra. Maecenas iaculis aliquet diam.');
+VALUES (6,4,'VIvaz. Não respeitou a Content Policy.');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
-VALUES (3,3,'eleifend egestas. Sed pharetra, felis eget varius ultrices,');
+VALUES (3,3,'Reportou-me sem motivo aparente.');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
-VALUES (9,4,'Donec egestas. Duis');
+VALUES (9,4,'Favoritou todos os meus posts. Stalker.');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
-VALUES (9,3,'malesuada');
+VALUES (9,3,'Comentários abusivos');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
-VALUES (9,5,'arcu. Vivamus sit');
+VALUES (9,5,'Conteúdo do utilizador não corresponde ao motivo do site.');
 INSERT INTO "user_report" (id_reported,id_informer,reason)
-VALUES (10,9,'dui. Fusce aliquam, enim nec');
+VALUES (10,9,'Não me sinto seguro com este user na comunidade');
 
 INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (2,6);
 INSERT INTO "user_subscribes" (id_followed,id_follower) VALUES (5,3);
@@ -685,8 +685,8 @@ INSERT INTO "administrator" (id,started) VALUES (5, '2018/06/04 10:45:12');
 INSERT INTO "moderator" (id,started) VALUES (4, '2018/04/04 10:45:12');
 INSERT INTO "moderator" (id,started) VALUES (7, '2018/04/03 10:45:12');
 
-INSERT INTO "kicked" (id,ban_date,reason) VALUES (3, '2018/04/02 10:45:12', 'lorem ipsum');
-INSERT INTO "kicked" (id,ban_date,reason) VALUES (6, '2018/04/01 13:45:12', 'lorem ipsum lorem');
+INSERT INTO "kicked" (id,ban_date,reason) VALUES (3, '2018/04/02 10:45:12', 'Abusive comments, swearing too much');
+INSERT INTO "kicked" (id,ban_date,reason) VALUES (6, '2018/04/01 13:45:12', 'Very unhealthy behaviour.');
 
 INSERT INTO "banned" (id) VALUES (3);
 
@@ -697,37 +697,38 @@ INSERT INTO "inactive" (id,deletion_date) VALUES (9, '05/05/2018');
 INSERT INTO "verified" (id,status,verified) VALUES (8, 'Verified', '10/10/2018');
 
 INSERT INTO "content" (votes,text,created)
-VALUES (123,'Vestibulum accumsan neque et nunc.','2018/04/04 10:45:12');
+VALUES (123,'<p>O F. C. Porto apresentou esta quarta-feira o equipamento principal para a próxima época 2018/19, numa publicação nas redes sociais.
+A publicação foi feita na conta oficial do Twitter da equipa do F. C. Porto e na fotografia aparecem Gonçalo Paciência, Óliver Torres e José Sá.</p>','2018/04/04 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (136,'facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa.
-Mauris vestibulum, neque sed dictum eleifend, nunc risus varius','2018/07/04 10:45:12');
+VALUES (136,'<p>De acordo com o programa oficial do gabinete do primeiro-ministro, Merkel chega às 15 horas ao Aeroporto Francisco Sá Carneiro, no Porto, onde será recebida com honras militares, partindo para Braga às 15.15 horas.</p>','2018/07/04 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (51,'dui. Suspendisse ac metus vitae','2019/04/04 10:45:12');
+VALUES (51,'<p>Conheça a chave vencedora do sorteio do Euromilhões desta terça-feira.
+
+Os números vencedores são: 6, 11, 20, 38, 43 e as estrelas 2 e 4.</p>','2019/04/04 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (91,'Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper','07/11/2018');
+VALUES (91,'<p>A Assembleia da República discute e vota esta terça-feira os projetos de lei sobre a despenalização da morte medicamente assistida, numa pouco habitual votação deputado a deputado e de resultado imprevisível.</p>','07/11/2018');
 INSERT INTO "content" (votes,text,created)
-VALUES (157,'Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla.
-Donec feugiat metus sit amet ante. Vivamus non','2018/04/01 10:45:12');
+VALUES (157,'<p>O estudo, realizado por Manuel Pedro Carrapatoso sob a coordenação do professor Rui Nunes, inquiriu 405 estudantes do sexto ano de todas as universidades portuguesas em 2017. E revela uma posição contrária à da Ordem dos Médicos.</p>','2018/04/01 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (95,'orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque.','03/12/2018');
+VALUES (95,'<p>Em resposta a perguntas da agência Lusa, a Associação Portuguesa de Seguradores (APS) afirma que uma eventual aprovação de legislação sobre eutanásia "não será neutra em matéria de seguros de vida, face à legislação que hoje disciplina os contratos de seguro".</p>','03/12/2018');
 INSERT INTO "content" (votes,text,created)
-VALUES (152,'Pellentesque habitant morbi','2018/04/01 10:45:12');
+VALUES (152,'<p>Números do Ministério da Saúde a que a agência Lusa teve acesso, mostram que há atualmente 376 camas de internamento em cuidados paliativos na rede pública.
+
+Entre o início dos anos 1990 e 2015 foram criadas 362 camas e em 2017 foi criada a unidade de cuidados paliativos do Baixo Vouga, com 14 camas.</p>','2018/04/01 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (156,'ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet,
-libero et tristique pellentesque, tellus sem mollis dui,','2018/01/04 10:45:12');
+VALUES (156,'<p>A morte medicamente assistida é crime em Portugal, mas há portugueses a recorrerem à prática na Suíça e a encomendarem comprimidos do estrangeiro, comprados pela Internet, sem controlo, nem investigação.</p>','2018/01/04 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (61,'id risus quis diam luctus lobortis. Class aptent taciti sociosqu
-ad litora torquent per conubia nostra, per','2018/04/29 10:45:12');
+VALUES (61,'<p>Segundo o Instituto Português do Mar e da Atmosfera (IPMA), os distritos de Bragança, Guarda, Vila Real e Castelo Branco vão estar entre as 12 horas e as 21 horas sob aviso amarelo devido à previsão de aguaceiros por vezes fortes, de granizo e acompanhados de trovoada.</p>','2018/04/29 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (22,'adipiscing lobortis risus. In mi pede, nonummy ut, molestie','2018/04/24 10:45:12');
+VALUES (22,'<p>adipiscing lobortis risus. In mi pede, nonummy ut, molestie</p>','2018/04/24 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
+VALUES (65,'<p>Mauris vel turpis. Aliquam adipiscing lobortis</p>','2018/07/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
+VALUES (65,'<p>Mauris vel turpis. Aliquam adipiscing lobortis</p>','2018/07/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
+VALUES (65,'<p>Mauris vel turpis. Aliquam adipiscing lobortis</p>','2018/07/17 10:45:12');
 INSERT INTO "content" (votes,text,created)
-VALUES (65,'Mauris vel turpis. Aliquam adipiscing lobortis','2018/07/17 10:45:12');
+VALUES (65,'<p>Mauris vel turpis. Aliquam adipiscing lobortis</p>','2018/07/17 10:45:12');
 
 INSERT INTO "saves" (id_content,id_user) VALUES (6,5);
 INSERT INTO "saves" (id_content,id_user) VALUES (9,10);
