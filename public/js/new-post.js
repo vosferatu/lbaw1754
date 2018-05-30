@@ -2,8 +2,12 @@
 
     let authors = [];
 
+    let ready = document.querySelector('input[type=checkbox]');
+
+
 function addEventListeners() { 
    
+    
     let tags = [];
 
   let tagsAnchor = document.querySelectorAll('#sidebar .list-group a');
@@ -18,15 +22,14 @@ function addEventListeners() {
   });
 
 
-  let ready = document.querySelector('input[type=checkbox]');
 
   if (ready != null)
   ready.addEventListener('change', readyCheck);
 
   let postCreator = document.querySelector('.publish');
   if (postCreator != null)
-   postCreator.addEventListener('click', function() {
-    return sendCreatePostRequest(tags)});
+   postCreator.addEventListener('click', function() {return sendCreatePostRequest(tags)});
+
 
    let postDraft = document.querySelector('.save');
    if (postDraft != null)
@@ -46,6 +49,72 @@ function addEventListeners() {
 
 }
 
+
+
+function sendDraftPostRequest(tags){
+
+    warn_on_unload = "";   
+    let form = document.querySelector('.card-body');
+
+    let title = document.querySelector('input[type=text]').value;
+
+    let card = document.querySelector(' #errors');
+
+    if(title == ""){
+        let divWarn = document.createElement("div");
+        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        You must write a title.
+      </div>`;
+      card.appendChild(divWarn);
+    }
+
+    if(tags.length == 0){
+        let divWarn = document.createElement("div");
+        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        You must select at least 1 tag.
+      </div>`;
+      card.appendChild(divWarn);
+    }
+
+
+    let text = CKEDITOR.instances["editor"].getData();
+
+
+    if(text == ""){
+        let divWarn = document.createElement("div");
+        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        You must write the text.
+      </div>`;
+      card.appendChild(divWarn);
+    }
+
+    if(ready.checked){
+        sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, authors: authors, published: 1 }, postCreatedHandler);
+    }
+    else{
+        let divWarn = document.createElement("div");
+       divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+       You must set <b>ready to publish</b> before publishing.
+     </div>`;
+     card.appendChild(divWarn);
+    }
+
+}
+
+function sendCreateDraftRequest(tags){
+    let form = document.querySelector('.card-body');
+
+    let title = document.querySelector('input[type=text]').value;
+    let text = CKEDITOR.instances["editor"].getData();
+
+    sendAjaxRequest('post', '/api/post/save', { title: title, text: text, tags: tags, authors: authors, published: 0 }, postSavedHandler);
+
+}
+
+function postSavedHandler(){
+
+}
+
 function  sendAuthorAddRequest(){
 
     let inputBox = document.querySelector('input[name=author]');
@@ -59,7 +128,8 @@ function  sendAuthorAddRequest(){
 function authorAddHandler(){
     let inputBox = document.querySelector('input[name=author]');
 
-    console.log(authors);
+
+
     //if (this.status != 200) window.location = '/';
     let user = JSON.parse(this.responseText);
     
@@ -91,30 +161,48 @@ function authorAddHandler(){
             let li = document.createElement("li");
             li.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
             li.innerHTML= user['user']['username']; 
-                let close = document.createElement("button");
-                close.setAttribute=("type","button");
-                close.setAttribute=("class","close");
-                close.setAttribute=("aria-label","Close");
-
-                let spanClose =document.createElement("span");
-                spanClose.setAttribute=("aria-hidden","true");
-                spanClose.innerHTML = "&times;";
-
-                close.appendChild(spanClose);
-
+                let close = document.createElement("span");
+                close.innerHTML = `<button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>`;
+                li.setAttribute("id",user['user']['id']);
                 li.appendChild(close);
+
+                close.addEventListener('click', removeAuthorFromList)
 
             ul.appendChild(li);
 
 
             authors.push(user['user']['id']);
-
             let button = document.querySelector('.publish');
-            button.disabled = true;
+
+            if(authors.length != 0 )
+                button.disabled = true;
+            else 
+             button.disabled = false;
         }
     }
 }
 
+function removeAuthorFromList(){
+   let liAuthor =  this.closest('li');
+   let authorId = liAuthor.id;
+   
+   console.log(authorId);
+   console.log(authors);
+
+   let index = authors.indexOf(authorId);
+   console.log("index - "+index);
+   authors.splice(index, 1);
+
+   liAuthor.parentNode.removeChild(liAuthor);
+   let button = document.querySelector('.publish');
+
+   if(authors.length != 0 )
+        button.disabled = true;
+    else 
+        button.disabled = false;
+}
 
 
 function selectTag(tags){
@@ -152,14 +240,52 @@ function selectTag(tags){
 }
 
 function sendCreatePostRequest(tags){
-        warn_on_unload = "";   
-        console.log(warn_on_unload);
+    warn_on_unload = "";   
     let form = document.querySelector('.card-body');
 
     let title = document.querySelector('input[type=text]').value;
+
+    let card = document.querySelector(' #errors');
+
+    if(title == ""){
+        let divWarn = document.createElement("div");
+        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        You must write a title.
+      </div>`;
+      card.appendChild(divWarn);
+    }
+
+    if(tags.length == 0){
+        let divWarn = document.createElement("div");
+        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        You must select at least 1 tag.
+      </div>`;
+      card.appendChild(divWarn);
+    }
+
+
     let text = CKEDITOR.instances["editor"].getData();
 
-    sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, published: 1 }, postCreatedHandler);
+
+    if(text == ""){
+        let divWarn = document.createElement("div");
+        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+        You must write the text.
+      </div>`;
+      card.appendChild(divWarn);
+    }
+
+    if(ready.checked){
+        sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, authors: authors, published: 1 }, postCreatedHandler);
+    }
+    else{
+        let divWarn = document.createElement("div");
+       divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
+       You must set <b>ready to publish</b> before publishing.
+     </div>`;
+     card.appendChild(divWarn);
+    }
+
 }
 
 function sendCreateDraftRequest(tags){
@@ -190,6 +316,7 @@ function readyCheck(){
     
     if(this.checked) {
         own.appendChild(span);
+
     } else {// Checkbox is not checked..
         let spaned = document.querySelector('#checkOwn');
        spaned.parentNode.removeChild(spaned);
