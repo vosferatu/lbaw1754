@@ -26,36 +26,36 @@
     <div class="row">
         
 	<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-	    <div class="sidebar-sticky">
-		<ul class="nav flex-column">
-		    <li class="nav-item">
-		        <a class="nav-link" href="{{url('/admin')}}">
-		            <span data-feather="home"></span>
-		            Dashboard <span class="sr-only">(current)</span>
-		        </a>
-		    </li>
-		    <li class="nav-item">
-		        <a class="nav-link" href="{{url('/admin-users')}}">
-		            <span data-feather="users"></span>
-		            Users <!--<span class="badge badge-success">1</span>-->
-		        </a>
-		    </li>
-		    <li class="nav-item">
-		        <a class="nav-link" href="{{url('/admin-posts')}}">
-		            <span data-feather="file-text"></span>
-		            Posts
-		        </a>
-		    </li>
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/admin')}}">
+                            <span data-feather="home"></span>
+                            Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a  class="nav-link" href="{{url('/admin-users')}}">
+                            <span data-feather="users"></span>
+                            Users <!--<span class="badge badge-success">1</span>-->
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/admin-posts')}}">
+                            <span data-feather="file-text"></span>
+                            Posts
+                        </a>
+                    </li>
 
-		    <li class="nav-item">
-		        <a class="nav-link active" href="{{url('/admin-reports')}}">
-		            <span data-feather="flag"></span>
-		            Reports <!--<span class="badge badge-warning">3</span>-->
-		        </a>
-		    </li>
-		</ul>
-	    </div>
-</nav>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{url('/admin-reports')}}">
+                            <span data-feather="flag"></span>
+                            Reports <!--<span class="badge badge-warning">3</span>-->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
         <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
             <h2>Reports</h2>

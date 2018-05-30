@@ -31,6 +31,11 @@ DROP FUNCTION IF EXISTS set_news_publish_date() CASCADE;
 DROP FUNCTION IF EXISTS check_unique_values_user_f();
 DROP FUNCTION IF EXISTS check_unique_value_tags_f();
 
+CREATE TABLE password_resets (
+  email VARCHAR NOT NULL,
+  token VARCHAR NOT NULL,
+  created_at timestamp NOT NULL
+);
 
 CREATE TABLE users (
    id SERIAL NOT NULL,

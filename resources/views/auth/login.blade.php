@@ -46,7 +46,7 @@
                                              </span>
                                          @endif
                                   <div class= "afterpassword">
-                                  <a href="forgot.html" class="float-right">
+                                  <a href="{{ route('password.request') }}" class="float-right">
                                       Forgot Password?
                                   </a>
 
