@@ -19,6 +19,7 @@ use App\Tag;
 use App\Admin;
 use App\User;
 use App\Verified;
+use App\UserReport;
 use App\Moderator;
 use App\Ban;
 use Carbon\Carbon;
@@ -127,18 +128,35 @@ class AdminController extends Controller
 			$NComments= Comment::where('parent_news',$id)->count();
 			array_push($posts, array($id,
 						$newsPost->title,
-						substr($content->text, 0, 30),
+						substr($content->text, 3, 40),
 						$content->created,
 						$authorsNames,
 						$NUpvotes-$NDownvotes,
-						$NComments
+						$NComments,
+						$newsPost
 						));
 		}
 		return $posts;
 
 	}
-	public function getReports(){
+
+public function deletePost(Post $post){
+
+	if(null==$this->checkUser()){
+		return view('errors.404');
 	}
+
+	NewsCreation::where('id_news',$post->id)->delete();
+	Post::find($post->id)->delete();
+	Save::where('id_content',$post->id)->delete();
+	Upvote::where('id_content',$post->id)->delete();
+	Downvote::where('id_content',$post->id)->delete();
+	ContentReport::where('id_content',$post->id)->delete();
+	Content::find($post->id)->delete();
+	Comment::where('parent_news', $post->id)->delete();
+	return back()->with('success', 'Post deleted!');
+ }
+	
 
 
 	public function getRegsN(){
@@ -193,13 +211,60 @@ class AdminController extends Controller
 		return view('admin.admin-posts', compact('posts'));
 	}
 	   
+	public function getReports(){
+		$postsReports = array();
+		$commentsReports = array();
+		$contents = ContentReport::all();
+
+		foreach($contents as $content){
+			if(($post = Post::where('id', $content->id_content)) !=null){
+				$truePost = $post->first();
+				array_push($postsReports, array(
+							  $content->id_content,
+							  User::find($content->id_user)->username,
+							  '/post/'.$truePost->slug,
+								$content->date,
+								$content->reason,
+								$truePost
+							  ));
+			}else
+			if(($comment = Comment::where('id', $content->id_content)) !=null){
+				$trueComment = $comment->first();
+				array_push($commentsReports, array(
+				  $content->id_content,
+				  User::find($content->id_user)->username,
+				  '/post/'.Post::find( $trueComment->parent_news)->slug,
+					$content->date,
+					$content->reason,
+					$trueComment
+				  ));
+			}
+		}
+		
+		$userReports = array();
+		$Ucontents = UserReport::all();
+		foreach($Ucontents as $Ucontent){
+			array_push($userReports, array(
+						User::find($Ucontent->id_informer)->username,
+						User::find($Ucontent->id_reported)->username,
+						$Ucontent->reason,
+						User::find($Ucontent->id_reported)->first()
+						));
+		}
+		return array($postsReports, $commentsReports, $userReports);
+	}
+
 	public function showReportsPage(){
 		if(null==$this->checkUser()){
 			return view('errors.404');
 		}
-		$this->getReports();
-		return view('admin.admin-reports');
+		$allReports = $this->getReports();
+		$postsReports = $allReports[0];
+		$commentsReports = $allReports[1];
+		$userReports = $allReports[2];
+		return view('admin.admin-reports', compact('postsReports','commentsReports', 'userReports'));
 	}
+
 	
 	public function verifyUser($id){
 

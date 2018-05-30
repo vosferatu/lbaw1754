@@ -156,6 +156,8 @@ class ContentController extends Controller
       return back();
   }
 
+ 
+
 
   public function upvote(Content $content)
   {

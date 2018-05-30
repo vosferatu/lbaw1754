@@ -98,21 +98,25 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
+
+				    @foreach($postsReports as $postsReport)
                                     <tr>
-                                        <td>001</td>
-                                        <td>Kevin</td>
-                                        <td><a href="#">Post #12</a></td>
-                                        <td>4/3/2018 12:45</td>
-                                        <td>I think this post does not follow Ditto Content Policy.</td>
+                                        <td>{{$postsReport[0]}}</td>
+                                        <td>{{$postsReport[1]}}</td>
+                                        <td><a href="{{$postsReport[2]}}">Post target</a></td>
+                                        <td>{{$postsReport[3]}}</td>
+                                        <td>{{$postsReport[4]}}</td>
                                         <td>
-                                            <a href="#" data-toggle="tooltip" title="View post">
+                                            <a href="{{url('/post/'.$postsReport[5]->slug)}}" data-toggle="tooltip" title="View post">
                                                 <span data-feather="file-text"></span>
                                             </a>
-                                            <a href="#" data-toggle="tooltip" title="Delete post">
+                                            <a href="{{url('/post/'.$postsReport[5]->slug.'/delete')}}" data-toggle="tooltip" title="Delete post">
                                                 <span data-feather="trash" style="color: red"></span>
                                             </a>
                                         </td>
                                     </tr>
+				    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -149,21 +153,25 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
+
+				    @foreach($commentsReports as $commentReport)
                                     <tr>
-                                        <td>001</td>
-                                        <td>Kevin</td>
-                                        <td><a href="#">Comment #112</a></td>
-                                        <td>4/3/2018 12:45</td>
-                                        <td>I think this comment does not follow Ditto Content Policy.</td>
+                                        <td>{{$commentReport[0]}}</td>
+                                        <td>{{$commentReport[1]}}</td>
+                                        <td><a href="{{$commentReport[2]}}">Comment target</a></td>
+                                        <td>{{$commentReport[3]}}</td>
+                                        <td>{{$commentReport[4]}}</td>
                                         <td>
-                                            <a href="#" data-toggle="tooltip" title="View comment">
-                                                <span data-feather="message-circle"></span>
+                                            <a href="#" data-toggle="tooltip" title="View post">
+                                                <span data-feather="file-text"></span>
                                             </a>
-                                           <a href="#" data-toggle="tooltip" title="Delete comment">
+                                            <a href="#" data-toggle="tooltip" title="Delete post">
                                                 <span data-feather="trash" style="color: red"></span>
                                             </a>
                                         </td>
                                     </tr>
+				    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -181,40 +189,35 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Report From</th>
-                                        <th>Target</th>
-                                        <th>Date</th>
+                                        <th>Informer</th>
+                                        <th>Reported</th>
                                         <th>Description</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Report From</th>
-                                        <th>Target</th>
-                                        <th>Date</th>
+                                        <th>Informer</th>
+                                        <th>Reported</th>
                                         <th>Description</th>
                                         <th>Actions</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
+
+				    @foreach($userReports as $userReport)
                                     <tr>
-                                        <td>001</td>
-                                        <td>conceicao1</td>
-                                        <td><a href="#">User #003</a></td>
-                                        <td>4/3/2018 12:45</td>
-                                        <td>I think this user does not follow Ditto Content Policy.</td>
+                                        <td>{{$userReport[0]}}</td>
+                                        <td>{{$userReport[1]}}</td>
+                                        <td>{{$userReport[2]}}</td>
                                         <td>
-                                            <a href="#" data-toggle="tooltip" title="View user">
-                                                <span data-feather="user"></span>
-                                            </a>
-                                            <a href="#" data-toggle="tooltip" title="Delete report">
-                                                <span data-feather="trash" style="color: red"></span>
+                                            <a href="{{'user/'.$userReport[3]->slug}}" data-toggle="tooltip" title="View User">
+                                                <span data-feather="file-text"></span>
                                             </a>
                                         </td>
                                     </tr>
+				    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

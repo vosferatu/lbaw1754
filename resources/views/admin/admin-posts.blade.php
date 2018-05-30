@@ -113,13 +113,10 @@
 		                                <td>{{$post[5]}}</td>
 		                                <td>{{$post[6]}}</td>
 		                                <td>
-		                                    <a href="#" data-toggle="tooltip" title="View Thread">
+		                                    <a href="{{url('/post/'.$post[7]->slug)}}" data-toggle="tooltip" title="View Thread">
 		                                        <span data-feather="book-open"></span>
 		                                    </a>
-		                                    <a href="#" data-toggle="tooltip" title="Close Discussion">
-		                                        <span data-feather="message-circle" style="color: red"></span>
-		                                    </a>
-		                                    <a href="#" data-toggle="tooltip" title="Delete Post">
+		                                    <a href="{{url('/post/'.$post[7]->slug.'/delete')}}" data-toggle="tooltip" title="Delete Post">
 		                                        <span data-feather="trash" style="color: red"></span>
 		                                    </a>
 		                                </td>

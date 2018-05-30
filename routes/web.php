@@ -39,12 +39,12 @@ Route::delete('api/cards/{card_id}', 'CardController@delete');
 
 // Administration
 Route::get('admin', 'AdminController@showPage');
+
+Route::get('admin-users', 'AdminController@showUsersPage');
 Route::get('user/{id}/verify', 'AdminController@verifyUser');
 Route::get('user/{id}/moderator', 'AdminController@moderatorUser');
 Route::get('user/{id}/ban', 'AdminController@banUser');
 Route::get('user/{id}/admin/delete', 'AdminController@deleteUser');
-
-Route::get('admin-users', 'AdminController@showUsersPage');
 
 Route::get('admin-posts', 'AdminController@showPostsPage');
 
@@ -82,6 +82,7 @@ Route::get('/tag/{tag}', 'ContentController@indexPostsByTag')->name('postsByTag'
 // show the post
 
 Route::get('/post/{post}', 'ContentController@showPost')->name('post.show');
+Route::get('/post/{post}/delete', 'AdminController@deletePost')->name('post.delete');
 
 //comment
 Route::post('/post/{post}/comments', 'ContentController@addComment');
