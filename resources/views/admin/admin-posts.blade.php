@@ -34,7 +34,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin-users')}}">
                             <span data-feather="users"></span>
-                            Users <span class="badge badge-success">1</span>
+                            Users <!--<span class="badge badge-success">1</span>-->
                         </a>
                     </li>
                     <li class="nav-item">
@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin-reports')}}">
                             <span data-feather="flag"></span>
-                            Reports <span class="badge badge-warning">3</span>
+                            Reports <!--<span class="badge badge-warning">3</span>-->
                         </a>
                     </li>
                 </ul>

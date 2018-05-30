@@ -39,6 +39,8 @@ Route::delete('api/cards/{card_id}', 'CardController@delete');
 
 // Administration
 Route::get('admin', 'AdminController@showPage');
+Route::get('user/{id}/verify', 'AdminController@verifyUser');
+Route::get('user/{id}/moderator', 'AdminController@moderatorUser');
 
 Route::get('admin-users', 'AdminController@showUsersPage');
 
