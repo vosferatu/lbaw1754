@@ -50,8 +50,8 @@ function addEventListeners() {
 }
 
 
-
 function sendDraftPostRequest(tags){
+        alert('oi');
 
     warn_on_unload = "";   
     let form = document.querySelector('.card-body');
@@ -68,13 +68,7 @@ function sendDraftPostRequest(tags){
       card.appendChild(divWarn);
     }
 
-    if(tags.length == 0){
-        let divWarn = document.createElement("div");
-        divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
-        You must select at least 1 tag.
-      </div>`;
-      card.appendChild(divWarn);
-    }
+  
 
 
     let text = CKEDITOR.instances["editor"].getData();
@@ -88,31 +82,19 @@ function sendDraftPostRequest(tags){
       card.appendChild(divWarn);
     }
 
+    let readyValue = 0;
+
     if(ready.checked){
-        sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, authors: authors, published: 1 }, postCreatedHandler);
-    }
-    else{
-        let divWarn = document.createElement("div");
-       divWarn.innerHTML=`<div class="alert alert-danger my-2" role="alert">
-       You must set <b>ready to publish</b> before publishing.
-     </div>`;
-     card.appendChild(divWarn);
-    }
+        readyValue = 1;
+       
+    sendAjaxRequest('post', '/api/post/saveDraft', { title: title, text: text, tags: tags, authors: authors, published: 0, ready: readyValue }, postSavedHandler);
 
 }
-
-function sendCreateDraftRequest(tags){
-    let form = document.querySelector('.card-body');
-
-    let title = document.querySelector('input[type=text]').value;
-    let text = CKEDITOR.instances["editor"].getData();
-
-    sendAjaxRequest('post', '/api/post/save', { title: title, text: text, tags: tags, authors: authors, published: 0 }, postSavedHandler);
-
 }
+
 
 function postSavedHandler(){
-
+    let response = JSON.parse(this.responseText);
 }
 
 function  sendAuthorAddRequest(){
@@ -127,8 +109,6 @@ function  sendAuthorAddRequest(){
 
 function authorAddHandler(){
     let inputBox = document.querySelector('input[name=author]');
-
-
 
     //if (this.status != 200) window.location = '/';
     let user = JSON.parse(this.responseText);
@@ -276,7 +256,7 @@ function sendCreatePostRequest(tags){
     }
 
     if(ready.checked){
-        sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, authors: authors, published: 1 }, postCreatedHandler);
+        sendAjaxRequest('post', '/api/post/create', { title: title, text: text, tags: tags, published: 1 }, postCreatedHandler);
     }
     else{
         let divWarn = document.createElement("div");

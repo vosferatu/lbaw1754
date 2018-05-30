@@ -11,7 +11,7 @@
 |
 */
 
-
+Auth::routes();
 
 
 // Static pages
@@ -100,3 +100,4 @@ Route::post('/api/user/search/{username}', 'UserController@searchByUsername');
 
 Route::get('/api/post/create', 'ContentController@showPostForm')->name('post.create');
 Route::post('/api/post/create', 'ContentController@createPost');
+Route::post('/api/post/saveDraft', 'ContentController@saveDraft');
