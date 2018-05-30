@@ -121,9 +121,9 @@
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            labels: <?php echo json_encode($countRegsDays[0]);?>,
             datasets: [{
-                data: [5, 19, 25, 3, 2, 7, 10],
+                data: <?php echo json_encode($countRegsDays[1]);?>,
                 lineTension: 0,
                 backgroundColor: 'transparent',
                 borderColor: '#007bff',
