@@ -78,7 +78,7 @@
                     <tr>
                         <th>#</th>
                         <th>Username</th>
-                        <th>{{((string)now()).'+00'}}</th>
+                        <th>Date</th>
                     </tr>
                     </thead>
                     <tbody>
