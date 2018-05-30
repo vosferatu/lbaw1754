@@ -22,6 +22,6 @@ if(description==""){let divWarn=document.createElement("div");divWarn.innerHTML=
       </div>`;card.appendChild(divWarn)}
 sendAjaxRequest('post','/api/post/create',{title:title,text:text,tags:tags,description:description,published:published},postCreatedHandler)}
 function postCreatedHandler(){if(this.status!=200)window.location='/';let response=JSON.parse(this.responseText);if(response.published==1)
-window.location='/post/'+response.slug;else(response.published==0)
+window.location='/post/'+response.slug;else if(response.published==0)
 window.location='/user/'+response.user_id+'/drafts'}
 addEventListeners()
