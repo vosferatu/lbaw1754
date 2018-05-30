@@ -202,6 +202,12 @@ class ContentController extends Controller
 
   public function save(Content $content)
   {
+    $var = $content->saves->where('id_user', Auth::user()->id)->first();
+    
+    if($var){
+      $var->delete();
+      return;
+    }
 
     Save::create([
       'id_content' => $content->id,
