@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 use App\Post;
@@ -87,6 +88,13 @@ class ContentController extends Controller
 
   public function createPost(Request $request){
 
+    $this->validate(request(), [
+      'title' => 'required',
+      'text' => 'required',
+      'tags' => 'required'
+  ]);
+
+
     $content = Content::create([
       'text' => $request->input('text'),
       'created' => Carbon::now('Europe/Lisbon')
@@ -116,6 +124,67 @@ class ContentController extends Controller
     foreach ($tags_names as $tag){
       $tagModel = Tag::where('name', $tag)->first();
       $post->tags()->attach($tagModel->id);
+    }
+
+    $users_id = $request->input('authors');
+
+    foreach ($users_id as $user){
+      $userModel = Tag::where('name', $tag)->first();
+      $post->tags()->attach($tagModel->id);
+    }
+
+    $post->users()->attach(Auth::user()->id, ['ready'=> 1, 'approval_date' => Carbon::now('Europe/Lisbon')]);
+
+
+    return response()->json(['slug'=>$post->slug]);
+  }
+
+
+  public function createDraft(Request $request){
+
+    $this->validate(request(), [
+      'title' => 'required',
+      'text' => 'required',
+      'tags' => 'required'
+  ]);
+
+
+    $content = Content::create([
+      'text' => $request->input('text'),
+      'created' => Carbon::now('Europe/Lisbon')
+    ]);
+
+    $slug = str_slug($request->input('title'),"-") . "-" . $content->id;
+
+
+    $post = Post::create([
+      'id' => $content->id,
+      'title' => $request->input('title'),
+      'photo' => "test",
+      'slug' => $slug,
+      'comments_count' => 0,
+      'views' => 0,
+      'authors' => 1,
+      'published' => $request->input('published'),
+      'published_date' => $content->created
+    ]);
+
+
+    $tags_string = $request->input('tags');
+    $tags_names = explode(",", $tags_string);
+
+    $tags = array();
+
+    foreach ($tags_names as $tag){
+      $tagModel = Tag::where('name', $tag)->first();
+      $post->tags()->attach($tagModel->id);
+    }
+
+    $users_id = $request->input('authors');
+
+    foreach ($users_id as $user){
+      $userModel = User::where('id', $user)->first();
+      $post->users()->attach($tagModel->id);
     }
 
     $post->users()->attach(Auth::user()->id, ['ready'=> 1, 'approval_date' => Carbon::now('Europe/Lisbon')]);
@@ -243,4 +312,29 @@ class ContentController extends Controller
     return response()->json(['votes'=>$num]);
   }
   
+  public function searchByName(Request $request) {
+    $searchText = $request->input('text');
+    
+    $hi_posts = DB::select("SELECT * from news_post
+     WHERE textsearchable_name_col @@ to_tsquery('english',?)
+     ORDER BY title DESC LIMIT 20",[$searchText]);
+
+    $contents = DB::select("SELECT * from content
+    WHERE textsearchable_name_col @@ to_tsquery('english',?)
+    ORDER BY text DESC LIMIT 20",[$searchText]);
+
+    $posts = Post::hydrate($hi_posts);
+
+    $contents = Content::hydrate($contents);
+
+    foreach ( $contents as $content){
+        $var = $content->posts()->first();
+
+        $posts->push($var);
+    }
+
+
+    $tags = Tag::all();
+    return view('posts.index', compact('posts','tags'));    }
+
 }

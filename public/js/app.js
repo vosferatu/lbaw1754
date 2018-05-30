@@ -1,4 +1,21 @@
 function addEventListeners() {
+
+var nav = document.querySelector('.navbar');
+var navbarInput = document.querySelector('.nav');
+
+nav.addEventListener("keyup", function(event) {
+  console.log("cona");
+  event.preventDefault();
+  var htmlstring = navbarInput.innerHTML;
+  htmlstring = (htmlstring.trim) ? htmlstring.trim() : htmlstring.replace(/^\s+/,'');
+
+  if (event.keyCode === 13 && htmlstring != '') {
+       console.log(htmlstring);
+      document.getElementById('.nav').submit();
+  }
+});
+
+
   let itemCheckers = document.querySelectorAll('article.card li.item input[type=checkbox]');
   [].forEach.call(itemCheckers, function (checker) {
     checker.addEventListener('change', sendItemUpdateRequest);
@@ -42,9 +59,6 @@ function addEventListeners() {
   [].forEach.call(saveButtons, function (save) {
     save.addEventListener('click', sendSaveRequest);
   });
-
-
-
 
 }
 

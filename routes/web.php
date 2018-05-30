@@ -69,6 +69,7 @@ Route::delete('user/{user}/delete', 'UserController@delete')->name('user.delete'
 
 
 // Posts
+Route::post('/searchpost', 'ContentController@searchByName')->name('searchpost');
 Route::get('/', 'ContentController@indexPosts')->name('trending');
 Route::get('/latest', 'ContentController@indexPostsByDate')->name('postsByDate');
 Route::get('/tag/{tag}', 'ContentController@indexPostsByTag')->name('postsByTag');
